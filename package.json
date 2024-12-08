@@ -1,0 +1,32 @@
+{
+    "name": "node-api",
+    "version": "0.0.0",
+    "private": true,
+    "main": "bin/www",
+    "scripts": {
+        "start": "npx ts-node ./bin/www",
+        "prisma-generate": "npx prisma generate",
+        "format": "npx prettier . --write"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.22.0",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "dotenv": "^16.4.5",
+        "express": "5.0.0",
+        "express-async-handler": "^1.2.0",
+        "http-errors": "~1.6.3",
+        "mongodb": "^6.11.0",
+        "morgan": "~1.9.1",
+        "reflect-metadata": "^0.2.2",
+        "typedi": "^0.10.0"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.9.3",
+        "prettier": "^3.3.3",
+        "prisma": "^5.22.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.7.2"
+    }
+}
