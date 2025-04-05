@@ -9,7 +9,7 @@ const config = {
     tabWidth: 4,
     semi: false,
     singleQuote: true,
-    printWidth: 50,
+    printWidth: 80,
     arrowParens: 'always',
     bracketSpacing: true,
     endOfLine: 'lf',

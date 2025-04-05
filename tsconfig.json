@@ -9,7 +9,13 @@
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "paths": {
+            "@shared/*": ["./src/shared/*"],
+            "@core/*": ["./src/core/*"],
+            "@infrastructure/*": ["./src/infrastructure/*"]
+        }
+
     },
     "include": ["src/**/*"]
 }

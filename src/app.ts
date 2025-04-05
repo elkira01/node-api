@@ -1,12 +1,9 @@
-import "reflect-metadata";
-const express = require('express')
+import express from 'express'
+import { authRouter } from './routes'
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/user', userRouter)
-// app.use('/task', taskRouter)
+app.use(authRouter)
 
 module.exports = app

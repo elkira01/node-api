@@ -1,0 +1,1 @@
+export { RegistrationDTO } from './RegistrationDTO'
