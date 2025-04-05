@@ -15,9 +15,12 @@ export class UserAuthController {
 
         try {
             const user = await this.authService.registerUser(data)
-            res.status(201).json(user)
+            res.status(201).json({
+                data: new RegistrationDTO(user).out,
+                status: 201,
+            })
         } catch (error: any) {
-            res.status(500).json({ error: error.message })
+            res.status(500).json({ error: error.message, status: 500 })
         }
     }
 }

@@ -18,4 +18,4 @@ authRouter.post(
     expressAsyncHandler((req, res) => controller.register(req, res))
 )
 
-export { authRouter }
+export default authRouter

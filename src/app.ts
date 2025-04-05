@@ -1,9 +1,17 @@
+require('module-alias/register.js')
+
 import express from 'express'
-import { authRouter } from './routes'
+import * as router from './routes'
+
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(authRouter)
+
+app.get('/test', (req, res) => {
+    res.send('Hello World!')
+})
+
+app.use('/api', router.authRouter)
 
 module.exports = app

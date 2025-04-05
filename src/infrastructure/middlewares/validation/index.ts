@@ -10,14 +10,16 @@ export function validateData(schema: z.ZodObject<any, any>) {
         } catch (error) {
             if (error instanceof ZodError) {
                 const errorMessages = error.errors.map((issue: any) => ({
-                    message: `${issue.path.join('.')} is ${issue.message}`,
+                    message: `${issue.message}`,
                 }))
                 res.status(StatusCodes.BAD_REQUEST).json({
+                    status: StatusCodes.BAD_REQUEST,
                     error: 'Invalid data',
                     details: errorMessages,
                 })
             } else {
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                    status: StatusCodes.INTERNAL_SERVER_ERROR,
                     error: 'Internal Server Error',
                 })
             }

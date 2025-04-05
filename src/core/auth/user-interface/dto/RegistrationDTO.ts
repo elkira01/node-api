@@ -14,4 +14,10 @@ export class RegistrationDTO {
             password: this.payload.password,
         }
     }
+
+    get out() {
+        return {
+            id: this.payload.id,
+        }
+    }
 }

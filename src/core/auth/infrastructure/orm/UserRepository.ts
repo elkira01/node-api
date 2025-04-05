@@ -1,6 +1,7 @@
 import { IUserRepository } from '../../domain/repositories'
 import { IUser } from '../../domain/models'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 export class UserRepository implements IUserRepository {
     protected prismaClient: any
@@ -9,11 +10,14 @@ export class UserRepository implements IUserRepository {
         this.prismaClient = new PrismaClient()
     }
 
-    create(data: Partial<IUser>): Promise<any> {
-        return this.prismaClient.user.create({ data })
+    async create(payload: IUser): Promise<any> {
+        const data = payload
+        data.password = await bcrypt.hash(data.password, 10)
+
+        return await this.prismaClient.user.create({ data })
     }
 
-    update(id: any, data: Partial<IUser>): Promise<any> {
+    async update(id: any, data: Partial<IUser>): Promise<any> {
         return this.prismaClient.user.update({
             where: {
                 id,
@@ -22,7 +26,7 @@ export class UserRepository implements IUserRepository {
         })
     }
 
-    delete(id: any): Promise<void> {
+    async delete(id: any): Promise<void> {
         return this.prismaClient.user.delete({
             where: {
                 id,
@@ -30,11 +34,11 @@ export class UserRepository implements IUserRepository {
         })
     }
 
-    getAll(): Promise<IUser[]> {
+    async getAll(): Promise<IUser[]> {
         return this.prismaClient.user.findMany()
     }
 
-    findById(id: any): Promise<IUser | null> {
+    async findById(id: any): Promise<IUser | null> {
         return this.prismaClient.user.findUnique({
             where: {
                 id,
@@ -42,10 +46,10 @@ export class UserRepository implements IUserRepository {
         })
     }
 
-    findByMail(emailAddr: string): Promise<IUser | null> {
+    async findByMail(emailAddr: string): Promise<IUser | null> {
         return this.prismaClient.user.findUnique({
             where: {
-                emailAddr,
+                email: emailAddr,
             },
         })
     }
