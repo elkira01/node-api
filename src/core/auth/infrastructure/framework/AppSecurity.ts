@@ -37,8 +37,13 @@ export class AppSecurity {
                         status: 401,
                     })
 
-                const token = jwt.sign({ email: payload.email }, 'secret')
-                return resp.status(200).json({ data: { token }, status: 200 })
+                const accessToken = jwt.sign(
+                    { email: payload.email },
+                    process.env.ACCESS_TOKEN_SECRET as any
+                )
+                return resp
+                    .status(200)
+                    .json({ data: { accessToken }, status: 200 })
             }
         } catch (err) {
             resp.status(500).json({
