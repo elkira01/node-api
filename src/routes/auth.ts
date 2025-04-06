@@ -1,21 +1,25 @@
-import { validateData } from '@infrastructure/middlewares/validation'
+import { validateData } from '@infrastructure/middlewares/data-validation'
 
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 
-import { registrationSchema } from '@core/auth/user-interface/validators'
-import { UserRepository } from '@core/auth/infrastructure/orm/UserRepository'
-import { AuthController } from '@core/auth/user-interface/controllers'
+import {
+    loginSchema,
+    registrationSchema,
+} from '@core/auth/user-interface/validators'
+import { UserController } from '@core/auth/user-interface/controllers'
+import { UserRepository } from '@core/auth/infrastructure'
+
+const userController = new UserController(new UserRepository())
 
 const authRouter = express.Router()
-
-const dataRepo = new UserRepository()
-const controller = new AuthController(dataRepo)
 
 authRouter.post(
     '/register',
     validateData(registrationSchema),
-    expressAsyncHandler((req, res) => controller.register(req, res))
+    expressAsyncHandler((req, res) => userController.register(req, res))
 )
+
+authRouter.get('/login', validateData(loginSchema))
 
 export default authRouter

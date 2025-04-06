@@ -1,1 +1,2 @@
-export { registrationSchema } from './registration'
+export { registrationSchema } from './registrationSchema'
+export { loginSchema } from './loginSchema'

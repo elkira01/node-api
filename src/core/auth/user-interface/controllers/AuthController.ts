@@ -1,20 +1,20 @@
 import { Request, Response } from 'express'
-import { UserAuthService } from '../../services'
+import { SecurityService } from '../../services'
 import { RegistrationDTO } from '../dto'
 import { IUserRepository } from '../../domain/repositories'
 
-export class UserAuthController {
-    protected authService: UserAuthService
+export class AuthController {
+    protected authService: SecurityService
 
-    constructor(authRepo: IUserRepository) {
-        this.authService = new UserAuthService(authRepo)
+    constructor(userRepo: IUserRepository) {
+        this.authService = new SecurityService(userRepo)
     }
 
-    async register(req: Request, res: Response) {
+    async login(req: Request, res: Response) {
         const data = new RegistrationDTO(req.body).in
 
         try {
-            const user = await this.authService.registerUser(data)
+            const user = await this.authService.login(data)
             res.status(201).json({
                 data: new RegistrationDTO(user).out,
                 status: 201,

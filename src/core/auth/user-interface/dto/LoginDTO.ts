@@ -1,15 +1,13 @@
 import { IUser } from '../../domain/models'
 
 export class LoginDTO {
-    private readonly payload: Partial<IUser>
+    private readonly payload: IUser
 
-    constructor(data: Partial<IUser>) {
+    constructor(data: any) {
         this.payload = data
     }
 
-    get validated() {
-        return {
-
-        }
+    get in() {
+        return {}
     }
 }

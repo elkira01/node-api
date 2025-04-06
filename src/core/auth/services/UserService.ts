@@ -8,7 +8,25 @@ export class UserService {
         this.userRepo = userRepo
     }
 
+    async registerUser(payload: {
+        email: string
+        password: any
+        name: string
+    }): Promise<any> {
+        const existingUser = await this.userRepo.findByMail(payload.email)
+
+        if (existingUser) {
+            throw new Error('Email already exist')
+        } else {
+            return await this.userRepo.create(payload)
+        }
+    }
+
     async updateUser(id: any, payload: Partial<IUser>): Promise<IUser> {
+        return this.userRepo.update(id, payload)
+    }
+
+    async changeUserPassword(id: any, payload: Partial<IUser>): Promise<IUser> {
         return this.userRepo.update(id, payload)
     }
 

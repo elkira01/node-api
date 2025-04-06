@@ -1,2 +1,2 @@
 export * from './UserService'
-export * from './UserAuthService'
+export * from './SecurityService'

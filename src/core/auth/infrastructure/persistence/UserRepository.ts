@@ -17,12 +17,12 @@ export class UserRepository implements IUserRepository {
         return await this.prismaClient.user.create({ data })
     }
 
-    async update(id: any, data: Partial<IUser>): Promise<any> {
+    async update(id: any, payload: IUser): Promise<any> {
         return this.prismaClient.user.update({
             where: {
                 id,
             },
-            data,
+            payload,
         })
     }
 
