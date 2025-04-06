@@ -1,16 +1,18 @@
 import { IUser } from '../../domain/entities'
 
-export class LoginDTO {
-    private readonly payload: IUser
+export class UserDTO {
+    private payload: IUser
 
     constructor(data: any) {
         this.payload = data
     }
 
-    get in() {
+    get out() {
         return {
+            id: this.payload.id,
             email: this.payload.email,
-            password: this.payload.password,
+            name: this.payload.name,
+            createdAt: this.payload.createdAt,
         }
     }
 }

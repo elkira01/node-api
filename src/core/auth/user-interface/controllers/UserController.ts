@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { UserService } from '../../services'
-import { RegistrationDTO } from '@core/auth/user-interface/dto'
+import { RegistrationDTO, UserDTO } from '@core/auth/user-interface/dto'
 import { IUserRepository } from '@core/auth/domain/repositories'
 
 export class UserController {
@@ -20,7 +20,20 @@ export class UserController {
                 status: 201,
             })
         } catch (error: any) {
-            res.status(500).json({ error: error.message, status: 500 })
+            res.status(500).json({ details: error.message, status: 500 })
+        }
+    }
+
+    async details(req: Request, res: Response) {
+        const { id } = req.params
+
+        if (id) {
+            try {
+                const user = await this.userService.userDetails(id)
+                res.status(200).json({ data: new UserDTO(user).out })
+            } catch (err: any) {
+                res.status(404).json({ details: err.message })
+            }
         }
     }
 }

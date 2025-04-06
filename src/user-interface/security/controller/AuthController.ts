@@ -1,12 +1,12 @@
+import { IUserRepository } from '@core/auth/domain/repositories'
 import { PrismaClient } from '@prisma/client'
+import { UserRepository } from '@core/auth/infrastructure'
+import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { LoginDTO } from '@core/auth/user-interface/dto'
-import { Request, Response } from 'express'
-import { IUserRepository } from '@core/auth/domain/repositories'
-import { UserRepository } from '@core/auth/infrastructure'
+import { LoginDTO } from '../dto/LoginDTO'
 
-export class AppSecurity {
+export class AuthController {
     protected prismaClient: any
     private readonly userRepo: IUserRepository
 
@@ -39,11 +39,14 @@ export class AppSecurity {
 
                 const accessToken = jwt.sign(
                     { email: payload.email },
-                    process.env.ACCESS_TOKEN_SECRET as any
+                    process.env.ACCESS_TOKEN_SECRET as any,
+                    { expiresIn: '60s' }
                 )
+                const refreshToken = jwt.sign({email: payload.email}, process.env.REFRESH_TOKEN_SECRET as any)
+
                 return resp
                     .status(200)
-                    .json({ data: { accessToken }, status: 200 })
+                    .json({ data: { accessToken, refreshToken }, status: 200 })
             }
         } catch (err) {
             resp.status(500).json({
@@ -51,5 +54,10 @@ export class AppSecurity {
                 details: err,
             })
         }
+    }
+
+    async profile(req: Request, resp: Response): Promise<any> {
+        try {
+        } catch (err) {}
     }
 }

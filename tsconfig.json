@@ -9,7 +9,7 @@
         "sourceMap": true,
         "baseUrl": ".",
         "paths": {
-            "@shared/*": ["./src/shared/*"],
+            "@user-interface/*": ["./src/user-interface/*"],
             "@core/*": ["./src/core/*"],
             "@routes/*": ["./src/routes/*"],
             "@infrastructure/*": ["./src/infrastructure/*"]

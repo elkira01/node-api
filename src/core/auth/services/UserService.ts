@@ -22,20 +22,16 @@ export class UserService {
         }
     }
 
-    async updateUser(id: any, payload: Partial<IUser>): Promise<IUser> {
-        return this.userRepo.update(id, payload)
-    }
+    async userDetails(id: any): Promise<IUser | null> {
+        const user = this.userRepo.findById(id)
 
-    async changeUserPassword(id: any, payload: Partial<IUser>): Promise<IUser> {
-        return this.userRepo.update(id, payload)
+        if (!user) {
+            throw new Error('User not found')
+        } else return user
     }
 
     async deleteUser(id: any): Promise<void> {
         await this.userRepo.delete(id)
-    }
-
-    async getUserById(id: any): Promise<IUser | null> {
-        return this.userRepo.findById(id)
     }
 
     async userCollection(): Promise<IUser[]> {

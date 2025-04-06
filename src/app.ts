@@ -13,5 +13,6 @@ app.get('/test', (req, res) => {
 })
 
 app.use('/api', router.authRouter)
+app.use('/api', router.userRouter)
 
 module.exports = app
