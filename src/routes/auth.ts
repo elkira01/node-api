@@ -26,7 +26,7 @@ authRouter.post(
     expressAsyncHandler((req, res) => securityController.refreshToken(req, res))
 )
 
-authRouter.post(
+authRouter.get(
     '/me',
     authenticateAccessToken(),
     expressAsyncHandler((req, res) => securityController.profile(req, res))
