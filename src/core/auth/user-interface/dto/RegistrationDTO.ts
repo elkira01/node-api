@@ -1,4 +1,4 @@
-import { IUser } from '../../domain/models'
+import { IUser } from '../../domain/entities'
 
 export class RegistrationDTO {
     private readonly payload: IUser

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { UserService } from '../../services'
-import { UserDto } from '../dto/UserDto'
 import { RegistrationDTO } from '@core/auth/user-interface/dto'
 import { IUserRepository } from '@core/auth/domain/repositories'
 

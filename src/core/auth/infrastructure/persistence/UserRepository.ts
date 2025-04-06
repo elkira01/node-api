@@ -1,5 +1,5 @@
 import { IUserRepository } from '../../domain/repositories'
-import { IUser } from '../../domain/models'
+import { IUser } from '../../domain/entities'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 

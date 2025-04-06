@@ -1,2 +1,2 @@
-export { SecurityRepository } from './SecurityRepository'
+export { AppSecurity } from './framework/AppSecurity'
 export { UserRepository } from './persistence/UserRepository'

@@ -8,9 +8,10 @@ import {
     registrationSchema,
 } from '@core/auth/user-interface/validators'
 import { UserController } from '@core/auth/user-interface/controllers'
-import { UserRepository } from '@core/auth/infrastructure'
+import { AppSecurity, UserRepository } from '@core/auth/infrastructure'
 
 const userController = new UserController(new UserRepository())
+const securityService = new AppSecurity()
 
 const authRouter = express.Router()
 
@@ -20,6 +21,10 @@ authRouter.post(
     expressAsyncHandler((req, res) => userController.register(req, res))
 )
 
-authRouter.get('/login', validateData(loginSchema))
+authRouter.get(
+    '/login',
+    validateData(loginSchema),
+    expressAsyncHandler((req, res) => securityService.authenticate(req, res))
+)
 
 export default authRouter

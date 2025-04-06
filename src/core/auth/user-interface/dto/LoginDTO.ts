@@ -1,4 +1,4 @@
-import { IUser } from '../../domain/models'
+import { IUser } from '../../domain/entities'
 
 export class LoginDTO {
     private readonly payload: IUser
@@ -8,6 +8,9 @@ export class LoginDTO {
     }
 
     get in() {
-        return {}
+        return {
+            email: this.payload.email,
+            password: this.payload.password,
+        }
     }
 }

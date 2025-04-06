@@ -1,4 +1,4 @@
-import { IUser } from '../../domain/models'
+import { IUser } from '../../domain/entities'
 
 export class UserDto {
     private data: Partial<IUser>

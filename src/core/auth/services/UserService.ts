@@ -1,5 +1,5 @@
 import { IUserRepository } from '../domain/repositories'
-import { IUser } from '../domain/models'
+import { IUser } from '../domain/entities'
 
 export class UserService {
     private userRepo: IUserRepository
