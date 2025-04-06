@@ -6,7 +6,7 @@ import expressAsyncHandler from 'express-async-handler'
 import { registrationSchema } from '@core/auth/user-interface/validators'
 import { UserController } from '@core/auth/user-interface/controllers'
 import { UserRepository } from '@core/auth/infrastructure'
-import { authenticateToken } from '@infrastructure/middlewares/token-validation'
+import { authenticateAccessToken } from '@infrastructure/middlewares/token-validation'
 
 const userController = new UserController(new UserRepository())
 
@@ -20,7 +20,7 @@ authRouter.post(
 
 authRouter.get(
     '/user/:id',
-    authenticateToken(),
+    authenticateAccessToken(),
     expressAsyncHandler((req, res) => userController.details(req, res))
 )
 

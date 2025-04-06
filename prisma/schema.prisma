@@ -14,11 +14,21 @@ datasource db {
 }
 
 model User {
-  id              String    @id @default(uuid())
-  email           String    @unique
+  id              String        @id @default(uuid())
+  email           String        @unique
   name            String
   password        String
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   lastConnectedAt DateTime?
+  sessions        UserSession[]
+}
+
+model UserSession {
+  id           String   @id @default(uuid())
+  userId       String
+  refreshToken String   @unique
+  hasExpired   Int      @default(0)
+  createdAt    DateTime @default(now())
+  User         User     @relation(fields: [userId], references: [id])
 }

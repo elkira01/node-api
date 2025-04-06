@@ -5,14 +5,21 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { LoginDTO } from '../dto/LoginDTO'
+import * as process from 'node:process'
+import { UserDTO } from '@core/auth/user-interface/dto'
+import { StatusCodes } from 'http-status-codes'
 
 export class AuthController {
     protected prismaClient: any
     private readonly userRepo: IUserRepository
+    // private readonly sessionService: UserSessionService
 
     constructor() {
         this.prismaClient = new PrismaClient()
         this.userRepo = new UserRepository()
+        // this.sessionService = new UserSessionService(
+        //     new UserSessionRepository()
+        // )
     }
 
     async authenticate(req: Request, resp: Response): Promise<any> {
@@ -40,9 +47,22 @@ export class AuthController {
                 const accessToken = jwt.sign(
                     { email: payload.email },
                     process.env.ACCESS_TOKEN_SECRET as any,
-                    { expiresIn: '60s' }
+                    {
+                        expiresIn: `${parseInt(process.env.ACCESS_TOKEN_EXPIRATION as any)}s`,
+                    }
                 )
-                const refreshToken = jwt.sign({email: payload.email}, process.env.REFRESH_TOKEN_SECRET as any)
+                const refreshToken = jwt.sign(
+                    { email: payload.email },
+                    process.env.REFRESH_TOKEN_SECRET as any,
+                    {
+                        expiresIn: `${parseInt(process.env.REFRESH_TOKEN_EXPIRATION as any)}s`,
+                    }
+                )
+
+                // let session = await this.sessionService.createSession(
+                //     user.id,
+                //     refreshToken
+                // )
 
                 return resp
                     .status(200)
@@ -56,8 +76,57 @@ export class AuthController {
         }
     }
 
-    async profile(req: Request, resp: Response): Promise<any> {
+    async refreshToken(req: any, resp: Response): Promise<any> {
+        const payload = req.user
+
         try {
-        } catch (err) {}
+            const user = await this.userRepo.findByMail(payload.email)
+
+            if (!user) {
+                return resp
+                    .status(StatusCodes.NOT_FOUND)
+                    .json({ error: 'User not found', status: 404 })
+            } else {
+                const accessToken = jwt.sign(
+                    { email: payload.email },
+                    process.env.ACCESS_TOKEN_SECRET as any,
+                    {
+                        expiresIn: `${parseInt(process.env.ACCESS_TOKEN_EXPIRATION as any)}s`,
+                    }
+                )
+
+                return resp
+                    .status(StatusCodes.OK)
+                    .json({ data: { accessToken }, status: 200 })
+            }
+        } catch (err) {
+            return resp.status(500).json({
+                error: 'Internal server error',
+                details: err,
+            })
+        }
+    }
+
+    async profile(req: any, resp: Response): Promise<any> {
+        const payload = req.user
+
+        try {
+            const user = await this.userRepo.findByMail(payload.email)
+
+            if (!user) {
+                return resp
+                    .status(404)
+                    .json({ details: 'User not found', status: 401 })
+            } else {
+                return resp
+                    .status(200)
+                    .json({ data: new UserDTO(user).out, status: 200 })
+            }
+        } catch (err) {
+            return resp.status(500).json({
+                error: 'Internal server error',
+                details: err,
+            })
+        }
     }
 }
