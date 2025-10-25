@@ -11,6 +11,7 @@
     "dependencies": {
         "@prisma/adapter-pg": "^6.5.0",
         "@prisma/client": "^5.22.0",
+        "@vercel/blob": "^2.0.0",
         "bcryptjs": "^3.0.2",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
@@ -37,10 +38,10 @@
         "typescript": "^5.7.2"
     },
     "_moduleAliases": {
-        "@routes": "./src/routes",
-        "@core": "./src/core",
-        "@user-interface": "./src/user-interface",
-        "@infrastructure": "./src/infrastructure"
+        "@shared": "./src/shared-kernel",
+        "@app": "./src/kernel",
+        "@ui": "./src/user-interface",
+        "@infra": "./src/infrastructure"
     },
     "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

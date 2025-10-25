@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/infrastructure/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String  @id @default(uuid())
+  email       String  @unique
+  firstName   String
+  lastName    String
+  companyName String? @db.VarChar(50)
+  password    String
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  lastConnectedAt DateTime?
+
+  sessions UserSession[]
+}
+
+model UserSession {
+  id           String @id @default(uuid())
+  userId       String
+  refreshToken String @unique
+  hasExpired   Int    @default(0)
+
+  createdAt DateTime @default(now())
+
+  User User @relation(fields: [userId], references: [id])
+}
+
+model Author {
+  id         String     @id @default(uuid())
+  biography  String
+  email      String     @unique
+  firstName  String
+  lastName   String?    @default("")
+  authorType AuthorType @default(AUTHOR)
+  pictureUrl String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  publications Publication[]
+}
+
+model PublicationCategory {
+  id          String  @id @default(uuid())
+  designation String  @db.VarChar(50)
+  description String?
+  imageUrl    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Publication Publication[]
+}
+
+model Publication {
+  id               String          @id @default(uuid())
+  categoryId       String
+  authorId         String
+  type             PublicationType
+  title            String          @db.VarChar(100)
+  resume           String
+  contentFileUrl   String
+  coverImageUrl    String
+  additionalImages String[]        @default([])
+  sellingPrice     Decimal         @db.Money
+  rentalPrice      Decimal         @db.Money
+  rentalPeriod     String
+  description      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Category PublicationCategory @relation(fields: [categoryId], references: [id])
+  Author   Author              @relation(fields: [authorId], references: [id])
+}
+
+enum PublicationType {
+  BOOK
+  MAGAZINE
+}
+
+enum AuthorType {
+  PUBLISHER
+  AUTHOR
+}

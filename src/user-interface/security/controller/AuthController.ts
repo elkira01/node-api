@@ -1,13 +1,13 @@
-import { IUserRepository } from '@core/auth/domain/repositories'
-import { PrismaClient } from '@prisma/client'
-import { UserRepository } from '@core/auth/infrastructure'
+import { IUserRepository } from '../../../kernel/auth/domain/repositories'
+import { UserRepository } from '../../../kernel/auth/infrastructure'
 import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { LoginDTO } from '../dto/LoginDTO'
 import * as process from 'node:process'
-import { UserDTO } from '@core/auth/user-interface/dto'
+import { UserDTO } from '../../../kernel/auth/user-interface/dto'
 import { StatusCodes } from 'http-status-codes'
+import { PrismaClient } from '@infra/generated/client'
 
 export class AuthController {
     protected prismaClient: any

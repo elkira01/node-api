@@ -9,10 +9,10 @@
         "sourceMap": true,
         "baseUrl": ".",
         "paths": {
-            "@user-interface/*": ["./src/user-interface/*"],
-            "@core/*": ["./src/core/*"],
-            "@routes/*": ["./src/routes/*"],
-            "@infrastructure/*": ["./src/infrastructure/*"]
+            "@ui/*": ["./src/user-interface/*"],
+            "@app/*": ["./src/kernel/*"],
+            "@infra/*": ["./src/infrastructure/*"],
+            "@shared/*": ["./src/shared-kernel/*"],
         }
 
     },

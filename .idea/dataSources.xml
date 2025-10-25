@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db_tasks_board@localhost" uuid="6e244213-0882-463e-8e39-3b1a1cb60395">
+    <data-source source="LOCAL" name="prisma_migrate_shadow_db_925ebbc1-b7f6-403d-9011-d9f5dd40fe7b@ep-holy-heart-ad5ye3a8-pooler.c-2.us-east-1.aws.neon.tech" uuid="05240941-bef0-4757-8c84-6855aaaaeb36">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/db_tasks_board</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ep-holy-heart-ad5ye3a8-pooler.c-2.us-east-1.aws.neon.tech/prisma_migrate_shadow_db_925ebbc1-b7f6-403d-9011-d9f5dd40fe7b</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="neondb@ep-holy-heart-ad5ye3a8-pooler.c-2.us-east-1.aws.neon.tech" uuid="11894b8e-c27d-4bf3-b435-febdd63b4779">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ep-holy-heart-ad5ye3a8-pooler.c-2.us-east-1.aws.neon.tech/neondb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

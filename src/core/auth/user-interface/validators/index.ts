@@ -1,1 +1,0 @@
-export { registrationSchema } from './registrationSchema'
