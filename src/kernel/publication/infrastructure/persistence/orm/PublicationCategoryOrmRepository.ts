@@ -1,6 +1,7 @@
 import { IPublicationCategoryRepository } from '@app/publication/domain/repository/IPublicationCategoryRepository'
 import { PublicationCategory } from '@app/publication/domain/entity/PublicationCategory'
 import { AbstractOrmRepository } from '@shared/infrastructure/orm/AbstractOrmRepository'
+import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
 
 export class PublicationCategoryOrmRepository
     extends AbstractOrmRepository
@@ -10,8 +11,15 @@ export class PublicationCategoryOrmRepository
         super()
     }
 
-    async collection(query: any): Promise<any[]> {
-        return this.repositoryClient.publicationCategory.findMany()
+    async collection(query: AbstractCollectionQuery): Promise<any> {
+        console.log(query.getStartIndex(), query.limit, query.page)
+        const results =
+            await this.repositoryClient.publicationCategory.findMany({
+                skip: query.getStartIndex(),
+                take: query.limit,
+            })
+
+        return { data: results }
     }
 
     async findById(id: any): Promise<PublicationCategory | null> {
@@ -51,8 +59,6 @@ export class PublicationCategoryOrmRepository
         const resp = await this.repositoryClient.publicationCategory.delete({
             where: { id: id },
         })
-
-        console.log(resp, id)
     }
 
     async update(payload: PublicationCategory): Promise<void> {

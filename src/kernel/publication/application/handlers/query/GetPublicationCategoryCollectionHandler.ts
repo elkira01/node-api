@@ -5,7 +5,6 @@ export class GetPublicationCategoryCollectionHandler {
     constructor(private repository: IPublicationCategoryRepository) {}
 
     handle(query: GetPublicationCategoryCollectionQuery): Promise<any[]> {
-        return this.repository.collection(query.query)
-        // return Promise.resolve(['hello', 'ni hao', 'konnichiwa'])
+        return this.repository.collection(query)
     }
 }

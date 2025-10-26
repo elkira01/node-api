@@ -2,7 +2,11 @@ import { busConfig } from '@infra/dependencies/bus-config'
 import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
 import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
 import { Request, Response, NextFunction } from 'express'
+import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
 
+const MAX_LIMIT = 100
+const DEFAULT_LIMIT = 10
+const DEFAULT_OFFSET = 1
 export abstract class AppAbstractController {
     private commandBus: CommandBus[]
     private queryBus: QueryBus[]
@@ -37,6 +41,27 @@ export abstract class AppAbstractController {
     ) {
         return (req: Request, res: Response, next: NextFunction) => {
             Promise.resolve(fn(req, res, next)).catch(next)
+        }
+    }
+
+    parseCollectionQuery(query: any) {
+        const page = query['page[offset]'] ?? DEFAULT_OFFSET
+        const limit = query['page[limit]'] ?? DEFAULT_LIMIT
+
+        if (limit > MAX_LIMIT) {
+            return {
+                page: parseInt(page),
+                limit: MAX_LIMIT,
+                sort: query['sort'],
+                filter: query['filter'],
+            }
+        }
+
+        return {
+            page: parseInt(page),
+            limit: parseInt(limit),
+            sort: query['sort'],
+            filter: query['filter'],
         }
     }
 }

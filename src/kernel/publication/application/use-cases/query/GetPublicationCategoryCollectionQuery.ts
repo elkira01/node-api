@@ -1,3 +1,3 @@
-export class GetPublicationCategoryCollectionQuery {
-    constructor(public query: any) {}
-}
+import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
+
+export class GetPublicationCategoryCollectionQuery extends AbstractCollectionQuery {}
