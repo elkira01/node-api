@@ -5,6 +5,7 @@
     "main": "bin/www",
     "scripts": {
         "start": "npx ts-node ./bin/www",
+        "dev:watch": "nodemon --watch ./bin/www",
         "prisma-generate": "npx prisma generate",
         "format": "npx prettier . --write"
     },
