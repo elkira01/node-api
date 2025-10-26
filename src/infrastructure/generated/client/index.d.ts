@@ -6770,16 +6770,16 @@ export namespace Prisma {
 
   export type PublicationCategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    designation?: string
     AND?: PublicationCategoryWhereInput | PublicationCategoryWhereInput[]
     OR?: PublicationCategoryWhereInput[]
     NOT?: PublicationCategoryWhereInput | PublicationCategoryWhereInput[]
-    designation?: StringFilter<"PublicationCategory"> | string
     description?: StringNullableFilter<"PublicationCategory"> | string | null
     imageUrl?: StringFilter<"PublicationCategory"> | string
     createdAt?: DateTimeFilter<"PublicationCategory"> | Date | string
     updatedAt?: DateTimeFilter<"PublicationCategory"> | Date | string
     Publication?: PublicationListRelationFilter
-  }, "id">
+  }, "id" | "designation">
 
   export type PublicationCategoryOrderByWithAggregationInput = {
     id?: SortOrder

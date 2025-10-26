@@ -57,7 +57,7 @@ model Author {
 
 model PublicationCategory {
   id          String  @id @default(uuid())
-  designation String  @db.VarChar(50)
+  designation String  @unique @db.VarChar(50)
   description String?
   imageUrl    String
 

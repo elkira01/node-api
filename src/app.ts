@@ -12,8 +12,8 @@ app.get('/test', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', router.authRouter)
-app.use('/api', router.userRouter)
+// app.use('/api', router.authRouter)
+// app.use('/api', router.userRouter)
 app.use('/api/publication-category', router.categoryRouter)
 
 module.exports = app
