@@ -4,7 +4,7 @@ import { DeletePublicationCategoryCommand } from '@app/publication/application/u
 export class DeletePublicationCategoryHandler {
     constructor(private repository: IPublicationCategoryRepository) {}
 
-    handle(command: DeletePublicationCategoryCommand): Promise<any> {
-        return this.repository.delete(command.categoryId)
+    async handle(command: DeletePublicationCategoryCommand): Promise<void> {
+        await this.repository.delete(command.categoryId)
     }
 }

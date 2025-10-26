@@ -1,0 +1,32 @@
+POST {{baseUrl}}/publication-category/create
+Content-Type: application/json
+
+{
+  "designation": "Jeunesse et sante",
+  "description": "NOTHING TO ADD HERE",
+  "imageUrl": ""
+}
+
+###
+DELETE {{baseUrl}}/publication-category/1d42a856-2741-4d2e-aff8-4171853ac3ea/delete
+Content-Type: application/json
+
+###
+PATCH {{baseUrl}}/publication-category/b61b559d-5f43-4055-b6de-233d83533aae/update
+Content-Type: application/json
+
+{
+  "designation": "Jeunesse et sante",
+  "description": "TRIBAL CHIEF",
+  "imageUrl": "https://i.ibb.co/rKJnLJ3Y/74093fc52193.jpg"
+}
+
+###
+GET {{baseUrl}}/publication-category/1d42a856-2741-4d2e-aff8-4171853ac3ea
+Accept: application/json
+
+###
+GET {{baseUrl}}/publication-category/collection
+Accept: application/json
+
+###

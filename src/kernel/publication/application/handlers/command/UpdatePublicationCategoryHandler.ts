@@ -5,13 +5,19 @@ import { UpdatePublicationCategoryCommand } from '@app/publication/application/u
 export class UpdatePublicationCategoryHandler {
     constructor(private repository: IPublicationCategoryRepository) {}
 
-    handle(command: UpdatePublicationCategoryCommand): Promise<void> {
-        const publicationCategory = new PublicationCategory(
-            command.categoryId,
-            command.designation,
-            command.imageUrl,
-            command.description
+    async handle(command: UpdatePublicationCategoryCommand): Promise<void> {
+        const publicationCategory = await this.repository.findById(
+            command.categoryId
         )
-        return this.repository.update(publicationCategory)
+
+        if (!(publicationCategory instanceof PublicationCategory)) {
+            throw Error(`Category with id ${command.categoryId} not found`)
+        }
+
+        publicationCategory.setDesignation(command.designation)
+        publicationCategory.setImageUrl(command.imageUrl)
+        publicationCategory.setDescription(command.description)
+
+        await this.repository.update(publicationCategory)
     }
 }

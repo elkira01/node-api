@@ -14,8 +14,25 @@ export class PublicationCategoryOrmRepository
         return this.repositoryClient.publicationCategory.findMany()
     }
 
-    findById(id: any): Promise<PublicationCategory | null> {
-        console.log('findById')
+    async findById(id: any): Promise<PublicationCategory | null> {
+        const resp = await this.repositoryClient.publicationCategory.findUnique(
+            {
+                where: { id: id },
+            }
+        )
+
+        if (resp) {
+            return Promise.resolve(
+                new PublicationCategory(
+                    resp.id,
+                    resp.designation,
+                    resp.imageUrl,
+                    resp.description,
+                    resp.createdAt,
+                    resp.updatedAt
+                )
+            )
+        }
         return Promise.resolve(null)
     }
 
@@ -30,13 +47,22 @@ export class PublicationCategoryOrmRepository
         return result.id
     }
 
-    delete(id: any): Promise<void> {
-        console.log('deleted')
-        return Promise.resolve(undefined)
+    async delete(id: any): Promise<void> {
+        const resp = await this.repositoryClient.publicationCategory.delete({
+            where: { id: id },
+        })
+
+        console.log(resp, id)
     }
 
-    update(payload: PublicationCategory): Promise<void> {
-        console.log('updated')
-        return Promise.resolve(undefined)
+    async update(payload: PublicationCategory): Promise<void> {
+        await this.repositoryClient.publicationCategory.update({
+            where: { id: payload.getId() },
+            data: {
+                designation: payload.getDesignation(),
+                description: payload.getDescription(),
+                imageUrl: payload.getImageUrl(),
+            },
+        })
     }
 }

@@ -17,4 +17,19 @@ publicationCategoryRouter.post(
     expressAsyncHandler(categoryController.create)
 )
 
+publicationCategoryRouter.get(
+    '/:id',
+    expressAsyncHandler(categoryController.getOne)
+)
+
+publicationCategoryRouter.patch(
+    '/:id/update',
+    expressAsyncHandler(categoryController.update)
+)
+
+publicationCategoryRouter.delete(
+    '/:id/delete',
+    expressAsyncHandler(categoryController.delete)
+)
+
 export default publicationCategoryRouter
