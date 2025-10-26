@@ -35,7 +35,8 @@ export class CommandBus {
         const deps = handler.deps.map((dep: string) =>
             this.injectionContainer.get(dep)
         )
-        const handlerInstance = new handler.handler(deps)
+
+        const handlerInstance = new handler.handler(...deps)
 
         return await handlerInstance.handle(command)
     }

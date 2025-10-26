@@ -12,4 +12,9 @@ publicationCategoryRouter.get(
     expressAsyncHandler(categoryController.getAll)
 )
 
+publicationCategoryRouter.post(
+    '/create',
+    expressAsyncHandler(categoryController.create)
+)
+
 export default publicationCategoryRouter

@@ -11,7 +11,6 @@ export class DependencyContainer {
     }
 
     bind(interfaceName: string, implementation: any, options = {}) {
-        console.log(interfaceName, implementation)
         this._services.set(interfaceName, {
             definition: implementation,
             options,
