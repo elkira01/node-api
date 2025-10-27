@@ -44,7 +44,7 @@ model UserSession {
 model Author {
   id         String     @id @default(uuid())
   biography  String
-  email      String     @unique
+  email      String?    @unique
   firstName  String
   lastName   String?    @default("")
   authorType AuthorType @default(AUTHOR)

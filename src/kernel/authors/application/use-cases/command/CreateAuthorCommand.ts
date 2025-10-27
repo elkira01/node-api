@@ -5,8 +5,8 @@ export class CreateAuthorCommand {
         public firstName: string,
         public lastName: string,
         public type: AuthorType,
+        public biography: string,
         public profileImageUrl?: string,
-        public biography?: string,
         public email?: string
     ) {}
 }

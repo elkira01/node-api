@@ -195,50 +195,6 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  id: 'id',
-  email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  companyName: 'companyName',
-  password: 'password'
-};
-
-exports.Prisma.UserSessionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  refreshToken: 'refreshToken'
-};
-
-exports.Prisma.AuthorOrderByRelevanceFieldEnum = {
-  id: 'id',
-  biography: 'biography',
-  email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  pictureUrl: 'pictureUrl'
-};
-
-exports.Prisma.PublicationCategoryOrderByRelevanceFieldEnum = {
-  id: 'id',
-  designation: 'designation',
-  description: 'description',
-  imageUrl: 'imageUrl'
-};
-
-exports.Prisma.PublicationOrderByRelevanceFieldEnum = {
-  id: 'id',
-  categoryId: 'categoryId',
-  authorId: 'authorId',
-  title: 'title',
-  resume: 'resume',
-  contentFileUrl: 'contentFileUrl',
-  coverImageUrl: 'coverImageUrl',
-  additionalImages: 'additionalImages',
-  rentalPeriod: 'rentalPeriod',
-  description: 'description'
-};
 exports.AuthorType = exports.$Enums.AuthorType = {
   PUBLISHER: 'PUBLISHER',
   AUTHOR: 'AUTHOR'

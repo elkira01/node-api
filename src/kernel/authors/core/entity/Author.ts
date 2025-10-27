@@ -7,8 +7,8 @@ export class Author {
         private firstName: string,
         private lastName: string,
         private biography: string,
-        private email: string,
-        private profileImageUrl: string | null = null,
+        private email?: string,
+        private profileImageUrl?: string,
         private createdAt?: any,
         private updatedAt?: any
     ) {}
@@ -61,11 +61,11 @@ export class Author {
         this.biography = biography
     }
 
-    setEmail(email: string) {
+    setEmail(email?: string) {
         this.email = email
     }
 
-    setProfileImageUrl(profileImageUrl: string) {
+    setProfileImageUrl(profileImageUrl?: string) {
         this.profileImageUrl = profileImageUrl
     }
 

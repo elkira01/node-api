@@ -43,9 +43,12 @@ export class AuthorController extends AppAbstractController {
 
         const resp = await this.handleCommand(
             new CreateAuthorCommand(
-                data.designation,
-                data.imageUrl,
-                data.description
+                data.firstName,
+                data.lastName,
+                data.type,
+                data.biography,
+                data.profileImageUrl,
+                data.email
             )
         )
         res.status(201).json({ id: resp })
@@ -58,9 +61,12 @@ export class AuthorController extends AppAbstractController {
         await this.handleCommand(
             new UpdateAuthorCommand(
                 resourceId,
-                data.designation,
-                data.imageUrl,
-                data.description
+                data.firstName,
+                data.lastName,
+                data.type,
+                data.biography,
+                data.profileImageUrl,
+                data.email
             )
         )
 

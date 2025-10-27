@@ -5,9 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider        = "prisma-client-js"
-  output          = "../src/infrastructure/generated/client"
-  previewFeatures = ["fullTextSearch"]
+  provider = "prisma-client-js"
+  output   = "../src/infrastructure/generated/client"
+  // previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -44,7 +44,7 @@ model UserSession {
 model Author {
   id         String     @id @default(uuid())
   biography  String
-  email      String     @unique
+  email      String?    @unique
   firstName  String
   lastName   String?    @default("")
   authorType AuthorType @default(AUTHOR)

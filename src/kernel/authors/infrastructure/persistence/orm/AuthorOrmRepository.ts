@@ -44,8 +44,8 @@ export class AuthorOrmRepository
                     resp.firstName,
                     resp.lastName ?? '',
                     resp.biography,
-                    resp.email,
-                    resp.pictureUrl,
+                    resp.email as any,
+                    resp.pictureUrl as any,
                     resp.createdAt,
                     resp.updatedAt
                 )
@@ -67,8 +67,8 @@ export class AuthorOrmRepository
                     resp.firstName,
                     resp.lastName ?? '',
                     resp.biography,
-                    resp.email,
-                    resp.pictureUrl,
+                    resp.email as any,
+                    resp.pictureUrl as any,
                     resp.createdAt,
                     resp.updatedAt
                 )

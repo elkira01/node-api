@@ -3,24 +3,18 @@ import expressAsyncHandler from 'express-async-handler'
 
 import { AuthorController } from '@app/authors/user-interface/controller/AuthorController'
 
-const categoryController = new AuthorController()
+const authorController = new AuthorController()
 
 const authorRouter = express.Router()
 
-authorRouter.get('/collection', expressAsyncHandler(categoryController.getAll))
+authorRouter.get('/collection', expressAsyncHandler(authorController.getAll))
 
-authorRouter.post('/create', expressAsyncHandler(categoryController.create))
+authorRouter.post('/create', expressAsyncHandler(authorController.create))
 
-authorRouter.get('/:id', expressAsyncHandler(categoryController.getOne))
+authorRouter.get('/:id', expressAsyncHandler(authorController.getOne))
 
-authorRouter.patch(
-    '/:id/update',
-    expressAsyncHandler(categoryController.update)
-)
+authorRouter.patch('/:id/update', expressAsyncHandler(authorController.update))
 
-authorRouter.delete(
-    '/:id/delete',
-    expressAsyncHandler(categoryController.delete)
-)
+authorRouter.delete('/:id/delete', expressAsyncHandler(authorController.delete))
 
 export default authorRouter

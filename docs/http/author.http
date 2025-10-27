@@ -2,9 +2,12 @@ POST {{baseUrl}}/author/create
 Content-Type: application/json
 
 {
-  "designation": "Jeunesse et sante",
-  "description": "NOTHING TO ADD HERE",
-  "imageUrl": ""
+  "firstName": "El",
+  "lastName": "Kira 01",
+  "email": "elkira01@gmail.com",
+  "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/default-images/download-%281%29.jpg",
+  "resume": "RAS, but lack of concentration",
+  "type": "AUTHOR"
 }
 
 ###
@@ -26,7 +29,7 @@ GET {{baseUrl}}/author/1d42a856-2741-4d2e-aff8-4171853ac3ea
 Accept: application/json
 
 ###
-GET {{baseUrl}}/author/collection?page[offset]=1&page[limit]=1&q=poll
+GET {{baseUrl}}/author/collection
 Accept: application/json
 
 ###

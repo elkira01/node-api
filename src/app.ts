@@ -20,7 +20,7 @@ app.get('/test', (req, res) => {
 
 // app.use('/api', router.authRouter)
 // app.use('/api', router.userRouter)
-app.use('/api/publication-category', publicationCategoryRouter)
+// app.use('/api/publication-category', publicationCategoryRouter)
 app.use('/api/author', authorRouter)
 app.use('/api', router.assetRouter)
 
