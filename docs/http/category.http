@@ -1,3 +1,11 @@
+POST {{baseUrl}}/upload-image
+Content-Type: application/json
+
+{
+    "file": "file"
+}
+
+###
 POST {{baseUrl}}/publication-category/create
 Content-Type: application/json
 

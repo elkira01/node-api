@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 require('dotenv').config()
-const cors = require('cors')
+// const cors = require('cors')
 
 const app = require('../src/app')
-app.use(cors())
+// app.use()
 const debug = require('debug')('node-api:server')
 
 const http = require('http')

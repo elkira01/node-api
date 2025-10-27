@@ -42,6 +42,7 @@ export class PublicationCategoryController extends AppAbstractController {
 
     create = this.asyncHandler(async (req: Request, res: Response) => {
         const data = req.body
+
         const resp = await this.handleCommand(
             new CreatePublicationCategoryCommand(
                 data.designation,

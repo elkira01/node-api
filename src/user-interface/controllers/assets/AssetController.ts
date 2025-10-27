@@ -1,16 +1,23 @@
 import { AppAbstractController } from '@shared/user-interface/controller/AppAbstractController'
-import { Request, Response } from 'express'
+import { Response } from 'express'
 import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
-import { VercelImageUploadService } from '../../../application/services/vercel/VercelImageUploadService'
+import { ImageUploadService } from '@infra/upload/vercel/ImageUploadService'
 
 export class AssetController extends AppAbstractController {
     private uploadService: AbstractFileUploadService | undefined
 
-    uploadImage = this.asyncHandler(async (req: Request, res: Response) => {
-        this.uploadService = new VercelImageUploadService('default-images')
+    uploadImage = this.asyncHandler(async (req: any, res: Response) => {
+        this.uploadService = new ImageUploadService('default-images')
 
-        console.log(req)
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' })
+        }
 
-        return await this.uploadService.uploadFile(req.body.file)
+        const uploaded = await this.uploadService.uploadFile({
+            name: req.file.originalname,
+            buffer: req.file.buffer,
+        })
+
+        res.status(200).json({ url: uploaded })
     })
 }

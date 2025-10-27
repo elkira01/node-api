@@ -6,7 +6,7 @@ abstract class AbstractFileUploadService {
 
     abstract validateFile(file: File): boolean
 
-    abstract uploadFile(file: File): Promise<string>
+    abstract uploadFile(file: { name: string; buffer: Buffer }): Promise<string>
 
     abstract deleteFile(): void
 }
