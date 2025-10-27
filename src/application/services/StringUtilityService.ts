@@ -20,4 +20,15 @@ export class StringUtilityService {
 
         return str
     }
+
+    static trimStringSpaces(str: string, separator: string = '') {
+        return decodeURIComponent(str)
+            ?.toString() // Ensure it's a string
+            .toLowerCase() // Convert to lowercase
+            .trim() // Remove leading/trailing spaces
+            .replace(/\s+/g, separator) // Replace spaces separator
+            .replace(/--+/g, separator) // Replace multiple hyphens with one
+            .replace(/^-+/, '') // Trim hyphens from start
+            .replace(/-+$/, '') // Trim hyphens from end
+    }
 }

@@ -2,7 +2,7 @@ import AbstractFileUploadService from '../../../application/services/AbstractFil
 import { put } from '@vercel/blob'
 import { StringUtilityService } from '../../../application/services/StringUtilityService'
 
-export class ImageUploadService extends AbstractFileUploadService {
+export class PdfUploadService extends AbstractFileUploadService {
     constructor(
         public target:
             | 'covers'
@@ -18,7 +18,7 @@ export class ImageUploadService extends AbstractFileUploadService {
 
     async uploadFile(file: { name: string; buffer: Buffer }): Promise<string> {
         const blob = await put(
-            `${this.storageFolder}/${StringUtilityService.trimStringSpaces(file.name, '-')}`,
+            `${this.storageFolder}/${StringUtilityService.stringToSlug(file.name)}`,
             file.buffer,
             {
                 access: 'public',
