@@ -2,7 +2,6 @@ import { busConfig } from '@infra/dependencies/bus-config'
 import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
 import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
 import { Request, Response, NextFunction } from 'express'
-import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
 
 const MAX_LIMIT = 100
 const DEFAULT_LIMIT = 10
@@ -54,6 +53,7 @@ export abstract class AppAbstractController {
                 limit: MAX_LIMIT,
                 sort: query['sort'],
                 filter: query['filter'],
+                q: query['q'],
             }
         }
 
@@ -62,6 +62,7 @@ export abstract class AppAbstractController {
             limit: parseInt(limit),
             sort: query['sort'],
             filter: query['filter'],
+            q: query['q'],
         }
     }
 }

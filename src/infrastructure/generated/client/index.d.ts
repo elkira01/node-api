@@ -6432,6 +6432,65 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
+  export const UserOrderByRelevanceFieldEnum: {
+    id: 'id',
+    email: 'email',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    companyName: 'companyName',
+    password: 'password'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const UserSessionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    refreshToken: 'refreshToken'
+  };
+
+  export type UserSessionOrderByRelevanceFieldEnum = (typeof UserSessionOrderByRelevanceFieldEnum)[keyof typeof UserSessionOrderByRelevanceFieldEnum]
+
+
+  export const AuthorOrderByRelevanceFieldEnum: {
+    id: 'id',
+    biography: 'biography',
+    email: 'email',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    pictureUrl: 'pictureUrl'
+  };
+
+  export type AuthorOrderByRelevanceFieldEnum = (typeof AuthorOrderByRelevanceFieldEnum)[keyof typeof AuthorOrderByRelevanceFieldEnum]
+
+
+  export const PublicationCategoryOrderByRelevanceFieldEnum: {
+    id: 'id',
+    designation: 'designation',
+    description: 'description',
+    imageUrl: 'imageUrl'
+  };
+
+  export type PublicationCategoryOrderByRelevanceFieldEnum = (typeof PublicationCategoryOrderByRelevanceFieldEnum)[keyof typeof PublicationCategoryOrderByRelevanceFieldEnum]
+
+
+  export const PublicationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    categoryId: 'categoryId',
+    authorId: 'authorId',
+    title: 'title',
+    resume: 'resume',
+    contentFileUrl: 'contentFileUrl',
+    coverImageUrl: 'coverImageUrl',
+    additionalImages: 'additionalImages',
+    rentalPeriod: 'rentalPeriod',
+    description: 'description'
+  };
+
+  export type PublicationOrderByRelevanceFieldEnum = (typeof PublicationOrderByRelevanceFieldEnum)[keyof typeof PublicationOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references 
    */
@@ -6565,6 +6624,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     lastConnectedAt?: SortOrderInput | SortOrder
     sessions?: UserSessionOrderByRelationAggregateInput
+    _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6632,6 +6692,7 @@ export namespace Prisma {
     hasExpired?: SortOrder
     createdAt?: SortOrder
     User?: UserOrderByWithRelationInput
+    _relevance?: UserSessionOrderByRelevanceInput
   }
 
   export type UserSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -6697,6 +6758,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     publications?: PublicationOrderByRelationAggregateInput
+    _relevance?: AuthorOrderByRelevanceInput
   }
 
   export type AuthorWhereUniqueInput = Prisma.AtLeast<{
@@ -6766,6 +6828,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     Publication?: PublicationOrderByRelationAggregateInput
+    _relevance?: PublicationCategoryOrderByRelevanceInput
   }
 
   export type PublicationCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -6846,6 +6909,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     Category?: PublicationCategoryOrderByWithRelationInput
     Author?: AuthorOrderByWithRelationInput
+    _relevance?: PublicationOrderByRelevanceInput
   }
 
   export type PublicationWhereUniqueInput = Prisma.AtLeast<{
@@ -7348,6 +7412,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
@@ -7363,6 +7428,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
@@ -7402,6 +7468,12 @@ export namespace Prisma {
 
   export type UserSessionOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -7451,6 +7523,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
@@ -7469,6 +7542,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
@@ -7518,6 +7592,12 @@ export namespace Prisma {
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type UserSessionOrderByRelevanceInput = {
+    fields: UserSessionOrderByRelevanceFieldEnum | UserSessionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type UserSessionCountOrderByAggregateInput = {
@@ -7585,6 +7665,12 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type AuthorOrderByRelevanceInput = {
+    fields: AuthorOrderByRelevanceFieldEnum | AuthorOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type AuthorCountOrderByAggregateInput = {
     id?: SortOrder
     biography?: SortOrder
@@ -7629,6 +7715,12 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAuthorTypeFilter<$PrismaModel>
     _max?: NestedEnumAuthorTypeFilter<$PrismaModel>
+  }
+
+  export type PublicationCategoryOrderByRelevanceInput = {
+    fields: PublicationCategoryOrderByRelevanceFieldEnum | PublicationCategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type PublicationCategoryCountOrderByAggregateInput = {
@@ -7692,6 +7784,12 @@ export namespace Prisma {
   export type AuthorRelationFilter = {
     is?: AuthorWhereInput
     isNot?: AuthorWhereInput
+  }
+
+  export type PublicationOrderByRelevanceInput = {
+    fields: PublicationOrderByRelevanceFieldEnum | PublicationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type PublicationCountOrderByAggregateInput = {
@@ -8010,6 +8108,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -8024,6 +8123,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
@@ -8060,6 +8160,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -8088,6 +8189,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>

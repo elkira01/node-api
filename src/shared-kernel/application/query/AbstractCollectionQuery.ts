@@ -2,7 +2,7 @@ export abstract class AbstractCollectionQuery {
     constructor(
         public page: number,
         public limit: number,
-        q?: string,
+        public q?: string,
         public sort?: any,
         public filter?: any
     ) {}

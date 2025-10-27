@@ -12,11 +12,18 @@ export class PublicationCategoryOrmRepository
     }
 
     async collection(query: AbstractCollectionQuery): Promise<any> {
-        console.log(query.getStartIndex(), query.limit, query.page)
+        console.log(query)
+
         const results =
             await this.repositoryClient.publicationCategory.findMany({
                 skip: query.getStartIndex(),
                 take: query.limit,
+                where: {
+                    designation: {
+                        startsWith: query.q,
+                        mode: 'insensitive',
+                    },
+                },
             })
 
         return { data: results }
@@ -56,7 +63,7 @@ export class PublicationCategoryOrmRepository
     }
 
     async delete(id: any): Promise<void> {
-        const resp = await this.repositoryClient.publicationCategory.delete({
+        await this.repositoryClient.publicationCategory.delete({
             where: { id: id },
         })
     }

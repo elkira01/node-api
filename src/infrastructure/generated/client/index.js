@@ -164,6 +164,50 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  email: 'email',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  companyName: 'companyName',
+  password: 'password'
+};
+
+exports.Prisma.UserSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  refreshToken: 'refreshToken'
+};
+
+exports.Prisma.AuthorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  biography: 'biography',
+  email: 'email',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  pictureUrl: 'pictureUrl'
+};
+
+exports.Prisma.PublicationCategoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  designation: 'designation',
+  description: 'description',
+  imageUrl: 'imageUrl'
+};
+
+exports.Prisma.PublicationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  authorId: 'authorId',
+  title: 'title',
+  resume: 'resume',
+  contentFileUrl: 'contentFileUrl',
+  coverImageUrl: 'coverImageUrl',
+  additionalImages: 'additionalImages',
+  rentalPeriod: 'rentalPeriod',
+  description: 'description'
+};
 exports.AuthorType = exports.$Enums.AuthorType = {
   PUBLISHER: 'PUBLISHER',
   AUTHOR: 'AUTHOR'
@@ -205,7 +249,9 @@ const config = {
         "native": true
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "fullTextSearch"
+    ],
     "sourceFilePath": "C:\\workspace\\PROJECTS\\node-api\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
@@ -220,7 +266,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -229,8 +275,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/infrastructure/generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          String  @id @default(uuid())\n  email       String  @unique\n  firstName   String\n  lastName    String\n  companyName String? @db.VarChar(50)\n  password    String\n\n  createdAt       DateTime  @default(now())\n  updatedAt       DateTime  @updatedAt\n  lastConnectedAt DateTime?\n\n  sessions UserSession[]\n}\n\nmodel UserSession {\n  id           String @id @default(uuid())\n  userId       String\n  refreshToken String @unique\n  hasExpired   Int    @default(0)\n\n  createdAt DateTime @default(now())\n\n  User User @relation(fields: [userId], references: [id])\n}\n\nmodel Author {\n  id         String     @id @default(uuid())\n  biography  String\n  email      String     @unique\n  firstName  String\n  lastName   String?    @default(\"\")\n  authorType AuthorType @default(AUTHOR)\n  pictureUrl String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  publications Publication[]\n}\n\nmodel PublicationCategory {\n  id          String  @id @default(uuid())\n  designation String  @unique @db.VarChar(50)\n  description String?\n  imageUrl    String\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  Publication Publication[]\n}\n\nmodel Publication {\n  id               String          @id @default(uuid())\n  categoryId       String\n  authorId         String\n  type             PublicationType\n  title            String          @db.VarChar(100)\n  resume           String\n  contentFileUrl   String\n  coverImageUrl    String\n  additionalImages String[]        @default([])\n  sellingPrice     Decimal         @db.Money\n  rentalPrice      Decimal         @db.Money\n  rentalPeriod     String\n  description      String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  Category PublicationCategory @relation(fields: [categoryId], references: [id])\n  Author   Author              @relation(fields: [authorId], references: [id])\n}\n\nenum PublicationType {\n  BOOK\n  MAGAZINE\n}\n\nenum AuthorType {\n  PUBLISHER\n  AUTHOR\n}\n",
-  "inlineSchemaHash": "345bf1d2f8afc203a2bd337581655a2500a055d99488c3e87c266f2303ba8165",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../src/infrastructure/generated/client\"\n  previewFeatures = [\"fullTextSearch\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          String  @id @default(uuid())\n  email       String  @unique\n  firstName   String\n  lastName    String\n  companyName String? @db.VarChar(50)\n  password    String\n\n  createdAt       DateTime  @default(now())\n  updatedAt       DateTime  @updatedAt\n  lastConnectedAt DateTime?\n\n  sessions UserSession[]\n}\n\nmodel UserSession {\n  id           String @id @default(uuid())\n  userId       String\n  refreshToken String @unique\n  hasExpired   Int    @default(0)\n\n  createdAt DateTime @default(now())\n\n  User User @relation(fields: [userId], references: [id])\n}\n\nmodel Author {\n  id         String     @id @default(uuid())\n  biography  String\n  email      String     @unique\n  firstName  String\n  lastName   String?    @default(\"\")\n  authorType AuthorType @default(AUTHOR)\n  pictureUrl String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  publications Publication[]\n}\n\nmodel PublicationCategory {\n  id          String  @id @default(uuid())\n  designation String  @unique @db.VarChar(50)\n  description String?\n  imageUrl    String\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  Publication Publication[]\n}\n\nmodel Publication {\n  id               String          @id @default(uuid())\n  categoryId       String\n  authorId         String\n  type             PublicationType\n  title            String          @db.VarChar(100)\n  resume           String\n  contentFileUrl   String\n  coverImageUrl    String\n  additionalImages String[]        @default([])\n  sellingPrice     Decimal         @db.Money\n  rentalPrice      Decimal         @db.Money\n  rentalPeriod     String\n  description      String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  Category PublicationCategory @relation(fields: [categoryId], references: [id])\n  Author   Author              @relation(fields: [authorId], references: [id])\n}\n\nenum PublicationType {\n  BOOK\n  MAGAZINE\n}\n\nenum AuthorType {\n  PUBLISHER\n  AUTHOR\n}\n",
+  "inlineSchemaHash": "8732a152e2832b2732e364eadb1a70efde1838c55d6b83945cf675b78a6240b2",
   "copyEngine": true
 }
 
