@@ -12,8 +12,6 @@ export class PublicationCategoryOrmRepository
     }
 
     async collection(query: AbstractCollectionQuery): Promise<any> {
-        console.log(query)
-
         const results =
             await this.repositoryClient.publicationCategory.findMany({
                 skip: query.getStartIndex(),

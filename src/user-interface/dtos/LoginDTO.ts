@@ -1,4 +1,4 @@
-import { IUser } from '../../../kernel/auth/domain/entities'
+import { IUser } from '@app/auth/domain/entities'
 
 export class LoginDTO {
     private readonly payload: IUser
