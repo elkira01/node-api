@@ -1,6 +1,6 @@
-import { IPublicationCategoryRepository } from '@app/publication/domain/repository/IPublicationCategoryRepository'
+import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
 import { GetPublicationCategoryQuery } from '@app/publication/application/use-cases/query/GetPublicationCategoryQuery'
-import { PublicationCategory } from '@app/publication/domain/entity/PublicationCategory'
+import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
 
 export class GetPublicationCategoryHandler {
     constructor(private repository: IPublicationCategoryRepository) {}

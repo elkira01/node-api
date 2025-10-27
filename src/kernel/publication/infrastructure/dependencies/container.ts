@@ -3,9 +3,6 @@ import { PublicationCategoryOrmRepository } from '@app/publication/infrastructur
 
 const publicationContainer = new DependencyContainer()
 
-publicationContainer.bind(
-    'IPublicationCategoryRepository',
-    PublicationCategoryOrmRepository
-)
+publicationContainer.bind('IAuthorRepository', PublicationCategoryOrmRepository)
 
 export default publicationContainer

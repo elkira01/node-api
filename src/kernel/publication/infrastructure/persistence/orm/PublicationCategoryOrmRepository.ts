@@ -1,5 +1,5 @@
-import { IPublicationCategoryRepository } from '@app/publication/domain/repository/IPublicationCategoryRepository'
-import { PublicationCategory } from '@app/publication/domain/entity/PublicationCategory'
+import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
+import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
 import { AbstractOrmRepository } from '@shared/infrastructure/orm/AbstractOrmRepository'
 import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
 

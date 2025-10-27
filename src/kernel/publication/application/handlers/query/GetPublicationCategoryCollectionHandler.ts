@@ -1,4 +1,4 @@
-import { IPublicationCategoryRepository } from '@app/publication/domain/repository/IPublicationCategoryRepository'
+import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
 import { GetPublicationCategoryCollectionQuery } from '@app/publication/application/use-cases/query/GetPublicationCategoryCollectionQuery'
 
 export class GetPublicationCategoryCollectionHandler {

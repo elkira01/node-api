@@ -1,5 +1,8 @@
 require('module-alias/register.js')
 
+import publicationCategoryRouter from '@app/publication/user-interface/routes/category-routes'
+import authorRouter from '@app/authors/user-interface/routes/author-routes'
+
 import express from 'express'
 import * as router from './user-interface/routes'
 import cors from 'cors'
@@ -17,7 +20,8 @@ app.get('/test', (req, res) => {
 
 // app.use('/api', router.authRouter)
 // app.use('/api', router.userRouter)
-app.use('/api/publication-category', router.categoryRouter)
+app.use('/api/publication-category', publicationCategoryRouter)
+app.use('/api/author', authorRouter)
 app.use('/api', router.assetRouter)
 
 module.exports = app

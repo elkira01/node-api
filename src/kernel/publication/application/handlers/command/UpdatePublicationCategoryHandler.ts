@@ -1,5 +1,5 @@
-import { IPublicationCategoryRepository } from '@app/publication/domain/repository/IPublicationCategoryRepository'
-import { PublicationCategory } from '@app/publication/domain/entity/PublicationCategory'
+import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
+import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
 import { UpdatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/UpdatePublicationCategoryCommand'
 
 export class UpdatePublicationCategoryHandler {
