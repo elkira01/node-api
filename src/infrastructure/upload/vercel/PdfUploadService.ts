@@ -1,15 +1,10 @@
 import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
-import { put } from '@vercel/blob'
+import { del, put } from '@vercel/blob'
 import { StringUtilityService } from '../../../application/services/StringUtilityService'
 
 export class PdfUploadService extends AbstractFileUploadService {
-    constructor(
-        public target:
-            | 'covers'
-            | 'profile-images'
-            | 'default-images' = 'default-images'
-    ) {
-        super('', `/${target}`)
+    constructor() {
+        super('', `/pdf`)
     }
 
     validateFile(file: File): boolean {
@@ -18,7 +13,7 @@ export class PdfUploadService extends AbstractFileUploadService {
 
     async uploadFile(file: { name: string; buffer: Buffer }): Promise<string> {
         const blob = await put(
-            `${this.storageFolder}/${StringUtilityService.stringToSlug(file.name)}`,
+            `${this.storageFolder}/${StringUtilityService.trimStringSpaces(file.name, '-')}`,
             file.buffer,
             {
                 access: 'public',
@@ -28,5 +23,7 @@ export class PdfUploadService extends AbstractFileUploadService {
         return blob.url
     }
 
-    deleteFile(): void {}
+    async deleteFile(fileUrl: string): Promise<void> {
+        await del(fileUrl)
+    }
 }

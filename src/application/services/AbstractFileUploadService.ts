@@ -8,7 +8,7 @@ abstract class AbstractFileUploadService {
 
     abstract uploadFile(file: { name: string; buffer: Buffer }): Promise<string>
 
-    abstract deleteFile(): void
+    abstract deleteFile(fileUrl: string): void
 }
 
 export default AbstractFileUploadService

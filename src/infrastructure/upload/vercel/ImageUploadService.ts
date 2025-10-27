@@ -1,5 +1,5 @@
 import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
-import { put } from '@vercel/blob'
+import { del, put } from '@vercel/blob'
 import { StringUtilityService } from '../../../application/services/StringUtilityService'
 
 export class ImageUploadService extends AbstractFileUploadService {
@@ -28,5 +28,7 @@ export class ImageUploadService extends AbstractFileUploadService {
         return blob.url
     }
 
-    deleteFile(): void {}
+    async deleteFile(fileUrl: string): Promise<void> {
+        await del(fileUrl)
+    }
 }
