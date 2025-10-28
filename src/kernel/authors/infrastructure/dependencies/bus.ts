@@ -1,6 +1,5 @@
 import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
 import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
-
 import { servicesBindings } from '@infra/dependencies/services-bindings'
 import { CreateAuthorHandler } from '@app/authors/application/handlers/command/CreateAuthorHandler'
 import { UpdateAuthorHandler } from '@app/authors/application/handlers/command/UpdateAuthorHandler'

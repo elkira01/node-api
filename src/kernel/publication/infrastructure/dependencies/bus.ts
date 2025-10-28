@@ -12,27 +12,29 @@ const publicationCommandBus = new CommandBus(servicesBindings.publication)
 const publicationQueryBus = new QueryBus(servicesBindings.publication)
 
 publicationCommandBus.register(
-    'CreateAuthorCommand',
+    'CreatePublicationCategoryCommand',
     CreatePublicationCategoryHandler,
-    ['IAuthorRepository']
+    ['IPublicationCategoryRepository']
 )
 publicationCommandBus.register(
-    'UpdateAuthorCommand',
+    'UpdatePublicationCategoryCommand',
     UpdatePublicationCategoryHandler,
-    ['IAuthorRepository']
+    ['IPublicationCategoryRepository']
 )
 publicationCommandBus.register(
-    'DeleteAuthorCommand',
+    'DeletePublicationCategoryCommand',
     DeletePublicationCategoryHandler,
-    ['IAuthorRepository']
+    ['IPublicationCategoryRepository']
 )
-publicationQueryBus.register('GetAuthorQuery', GetPublicationCategoryHandler, [
-    'IAuthorRepository',
-])
 publicationQueryBus.register(
-    'GetAuthorCollectionQuery',
+    'GetPublicationCategoryQuery',
+    GetPublicationCategoryHandler,
+    ['IPublicationCategoryRepository']
+)
+publicationQueryBus.register(
+    'GetPublicationCategoryCollectionQuery',
     GetPublicationCategoryCollectionHandler,
-    ['IAuthorRepository']
+    ['IPublicationCategoryRepository']
 )
 
 export { publicationQueryBus, publicationCommandBus }

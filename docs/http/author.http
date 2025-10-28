@@ -2,30 +2,34 @@ POST {{baseUrl}}/author/create
 Content-Type: application/json
 
 {
-  "firstName": "El",
-  "lastName": "Kira 01",
-  "email": "elkira01@gmail.com",
+  "firstName": "Lebus",
+  "lastName": "237",
+  "email": "lebus237@yahoo.com",
   "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/default-images/download-%281%29.jpg",
-  "resume": "RAS, but lack of concentration",
-  "type": "AUTHOR"
+  "biography": "RAS, but lack of concentration",
+  "type": "PUBLISHER"
 }
 
 ###
-DELETE {{baseUrl}}/author/1d42a856-2741-4d2e-aff8-4171853ac3ea/delete
+DELETE {{baseUrl}}/author/ec46b470-f8ea-4f50-bc0d-08c4d46f6630/delete
 Content-Type: application/json
 
 ###
-PATCH {{baseUrl}}/author/b61b559d-5f43-4055-b6de-233d83533aae/update
+PATCH {{baseUrl}}/author/ec46b470-f8ea-4f50-bc0d-08c4d46f6630/update
 Content-Type: application/json
 
 {
-  "designation": "Jeunesse et sante",
-  "description": "TRIBAL CHIEF",
-  "imageUrl": "https://i.ibb.co/rKJnLJ3Y/74093fc52193.jpg"
+  "firstName": "To DELETE",
+  "lastName": "DELETE",
+  "email": "delete@yahoo.com",
+  "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/default-images/download-%281%29.jpg",
+  "biography": "RAS, but lack of concentration",
+  "type": "PUBLISHER"
 }
 
+
 ###
-GET {{baseUrl}}/author/1d42a856-2741-4d2e-aff8-4171853ac3ea
+GET {{baseUrl}}/author/ec46b470-f8ea-4f50-bc0d-08c4d46f6630
 Accept: application/json
 
 ###

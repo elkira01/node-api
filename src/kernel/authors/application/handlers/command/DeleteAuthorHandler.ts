@@ -1,10 +1,10 @@
-import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
-import { DeletePublicationCategoryCommand } from '@app/publication/application/use-cases/command/DeletePublicationCategoryCommand'
+import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
+import { DeleteAuthorCommand } from '../../use-cases/command/DeleteAuthorCommand'
 
 export class DeleteAuthorHandler {
-    constructor(private repository: IPublicationCategoryRepository) {}
+    constructor(private repository: IAuthorRepository) {}
 
-    async handle(command: DeletePublicationCategoryCommand): Promise<void> {
-        await this.repository.delete(command.categoryId)
+    async handle(command: DeleteAuthorCommand): Promise<void> {
+        await this.repository.delete(command.authorId)
     }
 }

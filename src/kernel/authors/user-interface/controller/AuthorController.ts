@@ -13,6 +13,7 @@ export class AuthorController extends AppAbstractController {
 
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
+
         const categories = await this.handleQuery(
             new GetAuthorCollectionQuery(
                 parsedQuery.page,
@@ -26,15 +27,16 @@ export class AuthorController extends AppAbstractController {
     getOne = this.asyncHandler(async (req: Request, res: Response) => {
         const resourceId = req.params.id
 
-        const category = await this.handleQuery(new GetAuthorQuery(resourceId))
+        const author = await this.handleQuery(new GetAuthorQuery(resourceId))
 
         res.status(200).json({
-            id: category.getId(),
-            designation: category.getDesignation(),
-            imageUrl: category.getImageUrl(),
-            description: category.getDescription(),
-            createdAt: category.getCreatedAt(),
-            updatedAt: category.getUpdatedAt(),
+            id: author.getId(),
+            firstName: author.getFirstName(),
+            lastName: author.getLastName(),
+            biography: author.getBiography(),
+            profileImage: author.getProfileImageUrl(),
+            email: author.getEmail(),
+            createdAt: author.getCreatedAt(),
         })
     })
 

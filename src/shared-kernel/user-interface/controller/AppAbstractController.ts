@@ -1,7 +1,7 @@
 import { busConfig } from '@infra/dependencies/bus-config'
 import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
 import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 
 const MAX_LIMIT = 100
 const DEFAULT_LIMIT = 10
@@ -31,8 +31,8 @@ export abstract class AppAbstractController {
         return this.getCommandBus(command)?.execute(command)
     }
 
-    async handleQuery(command: any): Promise<any> {
-        return this.getQueryBus(command)?.execute(command)
+    async handleQuery(query: any): Promise<any> {
+        return this.getQueryBus(query)?.execute(query)
     }
 
     protected asyncHandler(
