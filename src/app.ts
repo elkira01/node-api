@@ -1,5 +1,3 @@
-require('module-alias/register.js')
-
 import publicationRouter from '@app/publication/user-interface/routes/publication-routes'
 import publicationCategoryRouter from '@app/publication/user-interface/routes/category-routes'
 import authorRouter from '@app/authors/user-interface/routes/author-routes'
