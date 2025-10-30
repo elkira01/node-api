@@ -177,6 +177,7 @@ exports.Prisma.PublicationScalarFieldEnum = {
   rentalPrice: 'rentalPrice',
   rentalPeriod: 'rentalPeriod',
   description: 'description',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -203,6 +204,11 @@ exports.AuthorType = exports.$Enums.AuthorType = {
 exports.PublicationType = exports.$Enums.PublicationType = {
   BOOK: 'BOOK',
   MAGAZINE: 'MAGAZINE'
+};
+
+exports.PublicationStatus = exports.$Enums.PublicationStatus = {
+  PUBLISHED: 'PUBLISHED',
+  DRAFT: 'DRAFT'
 };
 
 exports.Prisma.ModelName = {

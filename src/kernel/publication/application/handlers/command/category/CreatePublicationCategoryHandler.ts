@@ -1,5 +1,5 @@
 import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
-import { CreatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/CreatePublicationCategoryCommand'
+import { CreatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/category/CreatePublicationCategoryCommand'
 import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
 
 export class CreatePublicationCategoryHandler {

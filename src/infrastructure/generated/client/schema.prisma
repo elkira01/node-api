@@ -69,19 +69,20 @@ model PublicationCategory {
 }
 
 model Publication {
-  id               String          @id @default(uuid())
+  id               String            @id @default(uuid())
   categoryId       String
   authorId         String
   type             PublicationType
-  title            String          @db.VarChar(100)
+  title            String            @db.VarChar(100)
   resume           String
   contentFileUrl   String
   coverImageUrl    String
-  additionalImages String[]        @default([])
-  sellingPrice     Decimal         @db.Money
-  rentalPrice      Decimal         @db.Money
+  additionalImages String[]          @default([])
+  sellingPrice     Decimal           @db.Money
+  rentalPrice      Decimal           @db.Money
   rentalPeriod     String
   description      String?
+  status           PublicationStatus @default(DRAFT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -98,4 +99,9 @@ enum PublicationType {
 enum AuthorType {
   PUBLISHER
   AUTHOR
+}
+
+enum PublicationStatus {
+  PUBLISHED
+  DRAFT
 }

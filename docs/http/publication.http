@@ -1,0 +1,55 @@
+###
+POST {{baseUrl}}/publication/create
+Content-Type: application/json
+
+{
+  "title": "La guerre des mondes",
+  "type": "BOOK",
+  "authorId": "dd844d86-8e65-43d9-b341-4b191bd59889",
+  "categoryId": "9d2decea-7db3-45bf-9eb0-7ac80f7f653b",
+  "coverImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/covers/War-of-the-worlds-tripod.jpg",
+  "contentFileUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/pdf/La%20Guerre%20des%20mondes%20%28H.%20G.%20Wells%29%20%28Z-Library%29.pdf",
+  "sellingPrice": 10,
+  "rentalPrice": 10,
+  "rentalPeriod": "",
+  "resume": "1894. Des astronomes sont témoins d'étranges activités à la surface de Mars, comme des éclairs ou des explosions de gaz incandescent. L'étonnant phénomène se répète pendant les dix nuits suivantes puis cesse. Des météores venant de la planète rouge se dirigent bientôt vers la Terre. Le premier s'écrase en Angleterre, dans le Surrey : il s'agit d'un objet ayant la forme d'un cylindre de vingt-cinq à trente mètres. Les curieux se rassemblent autour du cratère formé par la chute du projectile, mais ils sont bientôt tués par un « Rayon Ardent » projeté par une machine gigantesque à trois énormes jambes sortie du cylindre."
+}
+
+###
+DELETE {{baseUrl}}/publication/1d42a856-2741-4d2e-aff8-4171853ac3ea/delete
+Content-Type: application/json
+
+###
+PATCH {{baseUrl}}/publication/7c1888e9-3cee-45e2-aa1d-249fcb0f1013/update
+Content-Type: application/json
+
+{
+  "title": "La guerre des mondes",
+  "type": "BOOK",
+  "authorId": "dd844d86-8e65-43d9-b341-4b191bd59889",
+  "categoryId": "9d2decea-7db3-45bf-9eb0-7ac80f7f653b",
+  "coverImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/covers/War-of-the-worlds-tripod.jpg",
+  "contentFileUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/pdf/La%20Guerre%20des%20mondes%20%28H.%20G.%20Wells%29%20%28Z-Library%29.pdf",
+  "sellingPrice": 100,
+  "rentalPrice": 10,
+  "rentalPeriod": "",
+  "resume": "1894. Des astronomes sont témoins d'étranges activités à la surface de Mars, comme des éclairs ou des explosions de gaz incandescent. L'étonnant phénomène se répète pendant les dix nuits suivantes puis cesse. Des météores venant de la planète rouge se dirigent bientôt vers la Terre. Le premier s'écrase en Angleterre, dans le Surrey : il s'agit d'un objet ayant la forme d'un cylindre de vingt-cinq à trente mètres. Les curieux se rassemblent autour du cratère formé par la chute du projectile, mais ils sont bientôt tués par un « Rayon Ardent » projeté par une machine gigantesque à trois énormes jambes sortie du cylindre."
+}
+
+###
+PUT {{baseUrl}}/publication/7c1888e9-3cee-45e2-aa1d-249fcb0f1013/change-status
+Content-Type: application/json
+
+{
+  "status": "DRAFT"
+}
+
+###
+GET {{baseUrl}}/publication/7c1888e9-3cee-45e2-aa1d-249fcb0f1013
+Accept: application/json
+
+###
+GET {{baseUrl}}/publication/collection?page[offset]=1&page[limit]=10
+Accept: application/json
+
+###

@@ -1,8 +1,13 @@
 import { DependencyContainer } from '@shared/infrastructure/DependencyContainer'
-import { PublicationCategoryOrmRepository } from '@app/publication/infrastructure/persistence/orm/PublicationCategoryOrmRepository'
+import { PublicationCategoryOrmRepository } from '../persistence/orm/PublicationCategoryOrmRepository'
+import { PublicationOrmRepository } from '../persistence/orm/PublicationOrmRepository'
 
 const publicationContainer = new DependencyContainer()
 
-publicationContainer.bind('IAuthorRepository', PublicationCategoryOrmRepository)
+publicationContainer.bind(
+    'IPublicationCategoryRepository',
+    PublicationCategoryOrmRepository
+)
+publicationContainer.bind('IPublicationRepository', PublicationOrmRepository)
 
 export default publicationContainer

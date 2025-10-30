@@ -58,6 +58,14 @@ export const PublicationType: {
 
 export type PublicationType = (typeof PublicationType)[keyof typeof PublicationType]
 
+
+export const PublicationStatus: {
+  PUBLISHED: 'PUBLISHED',
+  DRAFT: 'DRAFT'
+};
+
+export type PublicationStatus = (typeof PublicationStatus)[keyof typeof PublicationStatus]
+
 }
 
 export type AuthorType = $Enums.AuthorType
@@ -67,6 +75,10 @@ export const AuthorType: typeof $Enums.AuthorType
 export type PublicationType = $Enums.PublicationType
 
 export const PublicationType: typeof $Enums.PublicationType
+
+export type PublicationStatus = $Enums.PublicationStatus
+
+export const PublicationStatus: typeof $Enums.PublicationStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -5262,6 +5274,7 @@ export namespace Prisma {
     rentalPrice: Decimal | null
     rentalPeriod: string | null
     description: string | null
+    status: $Enums.PublicationStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5279,6 +5292,7 @@ export namespace Prisma {
     rentalPrice: Decimal | null
     rentalPeriod: string | null
     description: string | null
+    status: $Enums.PublicationStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5297,6 +5311,7 @@ export namespace Prisma {
     rentalPrice: number
     rentalPeriod: number
     description: number
+    status: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5326,6 +5341,7 @@ export namespace Prisma {
     rentalPrice?: true
     rentalPeriod?: true
     description?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5343,6 +5359,7 @@ export namespace Prisma {
     rentalPrice?: true
     rentalPeriod?: true
     description?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5361,6 +5378,7 @@ export namespace Prisma {
     rentalPrice?: true
     rentalPeriod?: true
     description?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5466,6 +5484,7 @@ export namespace Prisma {
     rentalPrice: Decimal
     rentalPeriod: string
     description: string | null
+    status: $Enums.PublicationStatus
     createdAt: Date
     updatedAt: Date
     _count: PublicationCountAggregateOutputType | null
@@ -5503,6 +5522,7 @@ export namespace Prisma {
     rentalPrice?: boolean
     rentalPeriod?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     Category?: boolean | PublicationCategoryDefaultArgs<ExtArgs>
@@ -5523,6 +5543,7 @@ export namespace Prisma {
     rentalPrice?: boolean
     rentalPeriod?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     Category?: boolean | PublicationCategoryDefaultArgs<ExtArgs>
@@ -5543,6 +5564,7 @@ export namespace Prisma {
     rentalPrice?: boolean
     rentalPeriod?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -5576,6 +5598,7 @@ export namespace Prisma {
       rentalPrice: Prisma.Decimal
       rentalPeriod: string
       description: string | null
+      status: $Enums.PublicationStatus
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["publication"]>
@@ -5986,6 +6009,7 @@ export namespace Prisma {
     readonly rentalPrice: FieldRef<"Publication", 'Decimal'>
     readonly rentalPeriod: FieldRef<"Publication", 'String'>
     readonly description: FieldRef<"Publication", 'String'>
+    readonly status: FieldRef<"Publication", 'PublicationStatus'>
     readonly createdAt: FieldRef<"Publication", 'DateTime'>
     readonly updatedAt: FieldRef<"Publication", 'DateTime'>
   }
@@ -6401,6 +6425,7 @@ export namespace Prisma {
     rentalPrice: 'rentalPrice',
     rentalPeriod: 'rentalPeriod',
     description: 'description',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -6518,6 +6543,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PublicationStatus'
+   */
+  export type EnumPublicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PublicationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'PublicationStatus[]'
+   */
+  export type ListEnumPublicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PublicationStatus[]'>
     
 
 
@@ -6822,6 +6861,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFilter<"Publication"> | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFilter<"Publication"> | string
     description?: StringNullableFilter<"Publication"> | string | null
+    status?: EnumPublicationStatusFilter<"Publication"> | $Enums.PublicationStatus
     createdAt?: DateTimeFilter<"Publication"> | Date | string
     updatedAt?: DateTimeFilter<"Publication"> | Date | string
     Category?: XOR<PublicationCategoryRelationFilter, PublicationCategoryWhereInput>
@@ -6842,6 +6882,7 @@ export namespace Prisma {
     rentalPrice?: SortOrder
     rentalPeriod?: SortOrder
     description?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     Category?: PublicationCategoryOrderByWithRelationInput
@@ -6865,6 +6906,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFilter<"Publication"> | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFilter<"Publication"> | string
     description?: StringNullableFilter<"Publication"> | string | null
+    status?: EnumPublicationStatusFilter<"Publication"> | $Enums.PublicationStatus
     createdAt?: DateTimeFilter<"Publication"> | Date | string
     updatedAt?: DateTimeFilter<"Publication"> | Date | string
     Category?: XOR<PublicationCategoryRelationFilter, PublicationCategoryWhereInput>
@@ -6885,6 +6927,7 @@ export namespace Prisma {
     rentalPrice?: SortOrder
     rentalPeriod?: SortOrder
     description?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PublicationCountOrderByAggregateInput
@@ -6911,6 +6954,7 @@ export namespace Prisma {
     rentalPrice?: DecimalWithAggregatesFilter<"Publication"> | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringWithAggregatesFilter<"Publication"> | string
     description?: StringNullableWithAggregatesFilter<"Publication"> | string | null
+    status?: EnumPublicationStatusWithAggregatesFilter<"Publication"> | $Enums.PublicationStatus
     createdAt?: DateTimeWithAggregatesFilter<"Publication"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Publication"> | Date | string
   }
@@ -7225,6 +7269,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     Category: PublicationCategoryCreateNestedOneWithoutPublicationInput
@@ -7245,6 +7290,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7261,6 +7307,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Category?: PublicationCategoryUpdateOneRequiredWithoutPublicationNestedInput
@@ -7281,6 +7328,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7299,6 +7347,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7315,6 +7364,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7333,6 +7383,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7684,6 +7735,13 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type EnumPublicationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PublicationStatus | EnumPublicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPublicationStatusFilter<$PrismaModel> | $Enums.PublicationStatus
+  }
+
   export type PublicationCategoryRelationFilter = {
     is?: PublicationCategoryWhereInput
     isNot?: PublicationCategoryWhereInput
@@ -7708,6 +7766,7 @@ export namespace Prisma {
     rentalPrice?: SortOrder
     rentalPeriod?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7730,6 +7789,7 @@ export namespace Prisma {
     rentalPrice?: SortOrder
     rentalPeriod?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7747,6 +7807,7 @@ export namespace Prisma {
     rentalPrice?: SortOrder
     rentalPeriod?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7780,6 +7841,16 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type EnumPublicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PublicationStatus | EnumPublicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPublicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.PublicationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPublicationStatusFilter<$PrismaModel>
+    _max?: NestedEnumPublicationStatusFilter<$PrismaModel>
   }
 
   export type UserSessionCreateNestedManyWithoutUserInput = {
@@ -7981,6 +8052,10 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type EnumPublicationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.PublicationStatus
   }
 
   export type PublicationCategoryUpdateOneRequiredWithoutPublicationNestedInput = {
@@ -8195,6 +8270,13 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedEnumPublicationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PublicationStatus | EnumPublicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPublicationStatusFilter<$PrismaModel> | $Enums.PublicationStatus
+  }
+
   export type NestedEnumPublicationTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PublicationType | EnumPublicationTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PublicationType[] | ListEnumPublicationTypeFieldRefInput<$PrismaModel>
@@ -8219,6 +8301,16 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPublicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PublicationStatus | EnumPublicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PublicationStatus[] | ListEnumPublicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPublicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.PublicationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPublicationStatusFilter<$PrismaModel>
+    _max?: NestedEnumPublicationStatusFilter<$PrismaModel>
   }
 
   export type UserSessionCreateWithoutUserInput = {
@@ -8348,6 +8440,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     Category: PublicationCategoryCreateNestedOneWithoutPublicationInput
@@ -8366,6 +8459,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8413,6 +8507,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFilter<"Publication"> | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFilter<"Publication"> | string
     description?: StringNullableFilter<"Publication"> | string | null
+    status?: EnumPublicationStatusFilter<"Publication"> | $Enums.PublicationStatus
     createdAt?: DateTimeFilter<"Publication"> | Date | string
     updatedAt?: DateTimeFilter<"Publication"> | Date | string
   }
@@ -8429,6 +8524,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     Author: AuthorCreateNestedOneWithoutPublicationsInput
@@ -8447,6 +8543,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8634,6 +8731,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8650,6 +8748,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Category?: PublicationCategoryUpdateOneRequiredWithoutPublicationNestedInput
@@ -8668,6 +8767,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8685,6 +8785,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8702,6 +8803,7 @@ export namespace Prisma {
     rentalPrice: Decimal | DecimalJsLike | number | string
     rentalPeriod: string
     description?: string | null
+    status?: $Enums.PublicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8718,6 +8820,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Author?: AuthorUpdateOneRequiredWithoutPublicationsNestedInput
@@ -8736,6 +8839,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8753,6 +8857,7 @@ export namespace Prisma {
     rentalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     rentalPeriod?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

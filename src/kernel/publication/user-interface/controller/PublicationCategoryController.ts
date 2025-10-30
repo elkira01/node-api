@@ -1,9 +1,9 @@
 import { AppAbstractController } from '@shared/user-interface/controller/AppAbstractController'
 import { GetPublicationCategoryCollectionQuery } from '@app/publication/application/use-cases/query/GetPublicationCategoryCollectionQuery'
 import { Request, Response } from 'express'
-import { CreatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/CreatePublicationCategoryCommand'
-import { UpdatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/UpdatePublicationCategoryCommand'
-import { DeletePublicationCategoryCommand } from '@app/publication/application/use-cases/command/DeletePublicationCategoryCommand'
+import { CreatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/category/CreatePublicationCategoryCommand'
+import { UpdatePublicationCategoryCommand } from '@app/publication/application/use-cases/command/category/UpdatePublicationCategoryCommand'
+import { DeletePublicationCategoryCommand } from '@app/publication/application/use-cases/command/category/DeletePublicationCategoryCommand'
 import { GetPublicationCategoryQuery } from '@app/publication/application/use-cases/query/GetPublicationCategoryQuery'
 
 export class PublicationCategoryController extends AppAbstractController {

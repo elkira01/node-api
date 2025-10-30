@@ -1,5 +1,6 @@
 import { PublicationType } from '../type/PublicationType'
 import { InvalidPublicationException } from '../exception/InvalidPublicationException'
+import { PublicationStatus } from '@app/publication/core/type/PublicationStatus'
 
 export class Publication {
     constructor(
@@ -14,6 +15,7 @@ export class Publication {
         private sellingPrice?: number,
         private rentalPrice?: number,
         private rentalPeriod?: any,
+        private status: PublicationStatus = PublicationStatus.DRAFT,
         private createdAt?: any,
         private updatedAt?: any
     ) {
@@ -80,5 +82,13 @@ export class Publication {
     }
     setPublicationType(publicationType: PublicationType) {
         this.publicationType = publicationType
+    }
+
+    setStatus(status: PublicationStatus) {
+        this.status = status
+    }
+
+    getStatus() {
+        return this.status
     }
 }

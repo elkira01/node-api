@@ -82,6 +82,7 @@ model Publication {
   rentalPrice      Decimal         @db.Money
   rentalPeriod     String
   description      String?
+  status           PublicationStatus @default(DRAFT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -98,4 +99,9 @@ enum PublicationType {
 enum AuthorType {
   PUBLISHER
   AUTHOR
+}
+
+enum PublicationStatus {
+  PUBLISHED
+  DRAFT
 }
