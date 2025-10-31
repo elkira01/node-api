@@ -13,7 +13,7 @@
             "@app/*": ["./src/kernel/*"],
             "@infra/*": ["./src/infrastructure/*"],
             "@shared/*": ["./src/shared-kernel/*"]
-        }
+        },
     },
     "include": ["src/**/*"]
 }

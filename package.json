@@ -7,7 +7,9 @@
         "start": "npx ts-node ./bin/www",
         "dev:watch": "nodemon --watch ./bin/www",
         "prisma-generate": "npx prisma generate",
-        "format": "npx prettier . --write"
+        "format": "npx prettier . --write",
+        "build": "tsc && tsc-alias",
+        "vercel-build": "tsc && tsc-alias"
     },
     "dependencies": {
         "@prisma/adapter-pg": "^6.5.0",
@@ -42,6 +44,7 @@
         "prettier": "^3.3.3",
         "prisma": "^5.22.0",
         "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.16",
         "typescript": "^5.7.2"
     },
     "_moduleAliases": {
