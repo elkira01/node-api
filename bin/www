@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// require('module-alias/register.js')
+require('tsconfig-paths/register')
+// import
 
 /**
  * Module dependencies.

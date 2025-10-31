@@ -1,5 +1,4 @@
 import '../register-paths.js'
-import 'tsconfig-paths/register'
 
 import publicationRouter from '@app/publication/user-interface/routes/publication-routes'
 import publicationCategoryRouter from '@app/publication/user-interface/routes/category-routes'

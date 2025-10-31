@@ -4,8 +4,7 @@
     "private": true,
     "main": "bin/www",
     "scripts": {
-        "start": "npx ts-node ./bin/www --resolveJsonModule",
-        "dev:watch": "nodemon --watch ./bin/www",
+        "start": "npx ts-node ./bin/www",
         "prisma-generate": "npx prisma generate",
         "format": "npx prettier . --write",
         "build": "tsc && tsc-alias",
