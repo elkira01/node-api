@@ -1,4 +1,4 @@
-import { PublicationStatus } from '@app/publication/core/type/PublicationStatus'
+import { PublicationStatus } from '../../../core/type/PublicationStatus'
 
 export class ChangePublicationStatusCommand {
     constructor(

@@ -1,6 +1,6 @@
-import { AssetController } from '@ui/controllers/assets/AssetController'
 import express from 'express'
-import { imageUpload, pdfUpload } from '@infra/middlewares/upload'
+import { AssetController } from '../controllers/assets/AssetController'
+import { imageUpload, pdfUpload } from '../../infrastructure/middlewares/upload'
 
 const assetController = new AssetController()
 

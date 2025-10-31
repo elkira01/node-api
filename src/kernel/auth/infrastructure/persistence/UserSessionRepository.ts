@@ -1,6 +1,6 @@
-import { IUserSessionRepository } from '../../../auth/domain/repositories'
-import { IUserSession } from '../../../auth/domain/entities'
-import { PrismaClient } from '@infra/generated/client'
+import { IUserSessionRepository } from '../../domain/repositories'
+import { IUserSession } from '../../domain/entities'
+import { PrismaClient } from '../../../../infrastructure/generated/client'
 
 export class UserSessionRepository implements IUserSessionRepository {
     private prismaClient: any

@@ -1,11 +1,11 @@
 import {
     publicationCommandBus,
     publicationQueryBus,
-} from '@app/publication/infrastructure/dependencies/bus'
+} from '../../kernel/publication/infrastructure/dependencies/bus'
 import {
     authorCommandBus,
     authorQueryBus,
-} from '@app/authors/infrastructure/dependencies/bus'
+} from '../../kernel/authors/infrastructure/dependencies/bus'
 
 export const busConfig = {
     publication: { command: publicationCommandBus, query: publicationQueryBus },

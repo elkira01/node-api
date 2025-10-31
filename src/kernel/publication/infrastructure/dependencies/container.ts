@@ -1,6 +1,6 @@
-import { DependencyContainer } from '@shared/infrastructure/DependencyContainer'
 import { PublicationCategoryOrmRepository } from '../persistence/orm/PublicationCategoryOrmRepository'
 import { PublicationOrmRepository } from '../persistence/orm/PublicationOrmRepository'
+import { DependencyContainer } from '../../../../shared-kernel/infrastructure/DependencyContainer'
 
 const publicationContainer = new DependencyContainer()
 

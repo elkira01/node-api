@@ -1,5 +1,5 @@
-import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
 import { GetAuthorCollectionQuery } from '../../use-cases/query/GetAuthorCollectionQuery'
+import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
 
 export class GetAuthorCollectionHandler {
     constructor(private repository: IAuthorRepository) {}

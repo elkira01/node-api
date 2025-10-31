@@ -1,7 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
-
-import { PublicationController } from '@app/publication/user-interface/controller/PublicationController'
+import { PublicationController } from '../controller/PublicationController'
 
 const publicationController = new PublicationController()
 

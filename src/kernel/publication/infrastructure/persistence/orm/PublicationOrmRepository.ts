@@ -1,8 +1,8 @@
-import { Publication } from '@app/publication/core/entity/Publication'
-import { AbstractOrmRepository } from '@shared/infrastructure/orm/AbstractOrmRepository'
-import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
-import { IPublicationRepository } from '@app/publication/core/repository/IPublicationRepository'
-import { PublicationType } from '@app/publication/core/type/PublicationType'
+import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
+import { AbstractOrmRepository } from '../../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
+import { PublicationType } from '../../../core/type/PublicationType'
+import { Publication } from '../../../core/entity/Publication'
 
 export class PublicationOrmRepository
     extends AbstractOrmRepository

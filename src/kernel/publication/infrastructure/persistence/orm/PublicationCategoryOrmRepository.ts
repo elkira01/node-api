@@ -1,7 +1,7 @@
-import { IPublicationCategoryRepository } from '@app/publication/core/repository/IPublicationCategoryRepository'
-import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
-import { AbstractOrmRepository } from '@shared/infrastructure/orm/AbstractOrmRepository'
-import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
+import { AbstractOrmRepository } from '../../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { IPublicationCategoryRepository } from '../../../core/repository/IPublicationCategoryRepository'
+import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
+import { PublicationCategory } from '../../../core/entity/PublicationCategory'
 
 export class PublicationCategoryOrmRepository
     extends AbstractOrmRepository

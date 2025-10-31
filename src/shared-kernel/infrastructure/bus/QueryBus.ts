@@ -1,4 +1,4 @@
-import { DependencyContainer } from '@shared/infrastructure/DependencyContainer'
+import { DependencyContainer } from '../DependencyContainer'
 
 export class QueryBus {
     private handlers: Map<any, any>

@@ -1,6 +1,6 @@
-import { IPublicationRepository } from '@app/publication/core/repository/IPublicationRepository'
-import { GetPublicationQuery } from '@app/publication/application/use-cases/query/GetPublicationQuery'
-import { Publication } from '@app/publication/core/entity/Publication'
+import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
+import { GetPublicationQuery } from '../../use-cases/query/GetPublicationQuery'
+import { Publication } from '../../../core/entity/Publication'
 
 export class GetPublicationHandler {
     constructor(private repository: IPublicationRepository) {}

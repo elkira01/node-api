@@ -1,6 +1,6 @@
-import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
-import { Author } from '@app/authors/core/entity/Author'
 import { UpdateAuthorCommand } from '../../use-cases/command/UpdateAuthorCommand'
+import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
+import { Author } from '../../../core/entity/Author'
 
 export class UpdateAuthorHandler {
     constructor(private repository: IAuthorRepository) {}

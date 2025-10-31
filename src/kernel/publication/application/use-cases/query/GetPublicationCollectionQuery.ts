@@ -1,3 +1,3 @@
-import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
+import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
 
 export class GetPublicationCollectionQuery extends AbstractCollectionQuery {}

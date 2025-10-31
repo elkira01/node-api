@@ -1,7 +1,7 @@
-import { busConfig } from '@infra/dependencies/bus-config'
-import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
-import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
 import { NextFunction, Request, Response } from 'express'
+import { QueryBus } from '../../infrastructure/bus/QueryBus'
+import { CommandBus } from '../../infrastructure/bus/CommandBus'
+import { busConfig } from '../../../infrastructure/dependencies/bus-config'
 
 const MAX_LIMIT = 100
 const DEFAULT_LIMIT = 10

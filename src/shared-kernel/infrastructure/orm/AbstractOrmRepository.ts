@@ -1,4 +1,4 @@
-import { PrismaClient } from '@infra/generated/client'
+import { PrismaClient } from '../../../infrastructure/generated/client'
 
 export abstract class AbstractOrmRepository {
     protected repositoryClient: PrismaClient

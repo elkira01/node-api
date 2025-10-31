@@ -1,10 +1,10 @@
-import { AppAbstractController } from '@shared/user-interface/controller/AppAbstractController'
 import { Request, Response } from 'express'
-import { GetAuthorCollectionQuery } from '@app/authors/application/use-cases/query/GetAuthorCollectionQuery'
-import { GetAuthorQuery } from '@app/authors/application/use-cases/query/GetAuthorQuery'
-import { CreateAuthorCommand } from '@app/authors/application/use-cases/command/CreateAuthorCommand'
-import { UpdateAuthorCommand } from '@app/authors/application/use-cases/command/UpdateAuthorCommand'
-import { DeleteAuthorCommand } from '@app/authors/application/use-cases/command/DeleteAuthorCommand'
+import { AppAbstractController } from '../../../../shared-kernel/user-interface/controller/AppAbstractController'
+import { GetAuthorCollectionQuery } from '../../application/use-cases/query/GetAuthorCollectionQuery'
+import { GetAuthorQuery } from '../../application/use-cases/query/GetAuthorQuery'
+import { CreateAuthorCommand } from '../../application/use-cases/command/CreateAuthorCommand'
+import { UpdateAuthorCommand } from '../../application/use-cases/command/UpdateAuthorCommand'
+import { DeleteAuthorCommand } from '../../application/use-cases/command/DeleteAuthorCommand'
 
 export class AuthorController extends AppAbstractController {
     constructor() {

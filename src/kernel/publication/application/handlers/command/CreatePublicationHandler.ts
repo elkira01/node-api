@@ -1,6 +1,6 @@
 import { CreatePublicationCommand } from '../../use-cases/command/CreatePublicationCommand'
-import { IPublicationRepository } from '@app/publication/core/repository/IPublicationRepository'
-import { Publication } from '@app/publication/core/entity/Publication'
+import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
+import { Publication } from '../../../core/entity/Publication'
 
 export class CreatePublicationHandler {
     constructor(private repository: IPublicationRepository) {}

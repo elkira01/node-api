@@ -1,11 +1,11 @@
-import { AppAbstractController } from '@shared/user-interface/controller/AppAbstractController'
-import { GetPublicationCollectionQuery } from '@app/publication/application/use-cases/query/GetPublicationCollectionQuery'
 import { Request, Response } from 'express'
-import { CreatePublicationCommand } from '@app/publication/application/use-cases/command//CreatePublicationCommand'
-import { UpdatePublicationCommand } from '@app/publication/application/use-cases/command//UpdatePublicationCommand'
-import { DeletePublicationCommand } from '@app/publication/application/use-cases/command//DeletePublicationCommand'
-import { GetPublicationQuery } from '@app/publication/application/use-cases/query/GetPublicationQuery'
-import { ChangePublicationStatusCommand } from '@app/publication/application/use-cases/command/ChangePublicationStatusCommand'
+import { AppAbstractController } from '../../../../shared-kernel/user-interface/controller/AppAbstractController'
+import { GetPublicationCollectionQuery } from '../../application/use-cases/query/GetPublicationCollectionQuery'
+import { GetPublicationQuery } from '../../application/use-cases/query/GetPublicationQuery'
+import { CreatePublicationCommand } from '../../application/use-cases/command/CreatePublicationCommand'
+import { UpdatePublicationCommand } from '../../application/use-cases/command/UpdatePublicationCommand'
+import { ChangePublicationStatusCommand } from '../../application/use-cases/command/ChangePublicationStatusCommand'
+import { DeletePublicationCommand } from '../../application/use-cases/command/DeletePublicationCommand'
 
 export class PublicationController extends AppAbstractController {
     constructor() {

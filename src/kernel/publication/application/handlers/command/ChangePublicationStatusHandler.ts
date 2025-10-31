@@ -1,6 +1,6 @@
-import { IPublicationRepository } from '@app/publication/core/repository/IPublicationRepository'
-import { Publication } from '@app/publication/core/entity/Publication'
 import { ChangePublicationStatusCommand } from '../../use-cases/command/ChangePublicationStatusCommand'
+import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
+import { Publication } from '../../../core/entity/Publication'
 
 export class ChangePublicationStatusHandler {
     constructor(private repository: IPublicationRepository) {}

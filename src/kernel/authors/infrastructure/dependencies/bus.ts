@@ -1,11 +1,11 @@
-import { CommandBus } from '@shared/infrastructure/bus/CommandBus'
-import { QueryBus } from '@shared/infrastructure/bus/QueryBus'
-import { servicesBindings } from '@infra/dependencies/services-bindings'
-import { CreateAuthorHandler } from '@app/authors/application/handlers/command/CreateAuthorHandler'
-import { UpdateAuthorHandler } from '@app/authors/application/handlers/command/UpdateAuthorHandler'
-import { DeleteAuthorHandler } from '@app/authors/application/handlers/command/DeleteAuthorHandler'
-import { GetAuthorHandler } from '@app/authors/application/handlers/query/GetAuthorHandler'
-import { GetAuthorCollectionHandler } from '@app/authors/application/handlers/query/GetAuthorCollectionHandler'
+import { CommandBus } from '../../../../shared-kernel/infrastructure/bus/CommandBus'
+import { servicesBindings } from '../../../../infrastructure/dependencies/services-bindings'
+import { QueryBus } from '../../../../shared-kernel/infrastructure/bus/QueryBus'
+import { CreateAuthorHandler } from '../../application/handlers/command/CreateAuthorHandler'
+import { UpdateAuthorHandler } from '../../application/handlers/command/UpdateAuthorHandler'
+import { DeleteAuthorHandler } from '../../application/handlers/command/DeleteAuthorHandler'
+import { GetAuthorHandler } from '../../application/handlers/query/GetAuthorHandler'
+import { GetAuthorCollectionHandler } from '../../application/handlers/query/GetAuthorCollectionHandler'
 
 const authorCommandBus = new CommandBus(servicesBindings.author)
 const authorQueryBus = new QueryBus(servicesBindings.author)

@@ -1,7 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
-
-import { AuthorController } from '@app/authors/user-interface/controller/AuthorController'
+import { AuthorController } from '../controller/AuthorController'
 
 const authorController = new AuthorController()
 

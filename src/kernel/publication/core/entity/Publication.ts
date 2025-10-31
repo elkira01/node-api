@@ -1,6 +1,6 @@
 import { PublicationType } from '../type/PublicationType'
 import { InvalidPublicationException } from '../exception/InvalidPublicationException'
-import { PublicationStatus } from '@app/publication/core/type/PublicationStatus'
+import { PublicationStatus } from '../type/PublicationStatus'
 
 export class Publication {
     constructor(

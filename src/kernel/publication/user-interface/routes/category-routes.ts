@@ -1,7 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
-
-import { PublicationCategoryController } from '@app/publication/user-interface/controller/PublicationCategoryController'
+import { PublicationCategoryController } from '../controller/PublicationCategoryController'
 
 const categoryController = new PublicationCategoryController()
 

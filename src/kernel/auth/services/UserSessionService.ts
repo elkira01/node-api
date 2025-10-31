@@ -1,4 +1,4 @@
-import { IUserSessionRepository } from '../../auth/domain/repositories'
+import { IUserSessionRepository } from '../domain/repositories'
 
 export class UserSessionService {
     private sessionRepo: IUserSessionRepository

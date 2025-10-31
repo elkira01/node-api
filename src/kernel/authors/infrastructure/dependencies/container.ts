@@ -1,5 +1,5 @@
-import { DependencyContainer } from '@shared/infrastructure/DependencyContainer'
-import { AuthorOrmRepository } from '@app/authors/infrastructure/persistence/orm/AuthorOrmRepository'
+import { DependencyContainer } from '../../../../shared-kernel/infrastructure/DependencyContainer'
+import { AuthorOrmRepository } from '../persistence/orm/AuthorOrmRepository'
 
 const authorContainer = new DependencyContainer()
 

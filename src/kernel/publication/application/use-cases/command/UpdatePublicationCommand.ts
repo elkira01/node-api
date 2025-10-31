@@ -1,6 +1,3 @@
-import { $Enums } from '@infra/generated/client'
-import PublicationType = $Enums.PublicationType
-
 export class UpdatePublicationCommand {
     constructor(
         public publicationId: any,

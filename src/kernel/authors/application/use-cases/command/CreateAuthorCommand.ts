@@ -1,4 +1,4 @@
-import { AuthorType } from '@app/authors/core/type/AuthorType'
+import { AuthorType } from '../../../core/type/AuthorType'
 
 export class CreateAuthorCommand {
     constructor(

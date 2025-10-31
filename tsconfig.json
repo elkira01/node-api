@@ -7,13 +7,7 @@
         "rootDir": "./src",
         "strict": true,
         "sourceMap": true,
-        "baseUrl": ".",
-        "paths": {
-            "@ui/*": ["./src/user-interface/*"],
-            "@app/*": ["./src/kernel/*"],
-            "@infra/*": ["./src/infrastructure/*"],
-            "@shared/*": ["./src/shared-kernel/*"]
-        }
+        "baseUrl": "."
     },
     "include": ["src/**/*"]
 }

@@ -1,6 +1,6 @@
-import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
 import { GetAuthorQuery } from '../../use-cases/query/GetAuthorQuery'
-import { Author } from '@app/authors/core/entity/Author'
+import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
+import { Author } from '../../../core/entity/Author'
 
 export class GetAuthorHandler {
     constructor(private repository: IAuthorRepository) {}

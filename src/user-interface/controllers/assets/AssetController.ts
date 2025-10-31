@@ -1,8 +1,8 @@
-import { AppAbstractController } from '@shared/user-interface/controller/AppAbstractController'
 import { Response } from 'express'
 import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
-import { ImageUploadService } from '@infra/upload/vercel/ImageUploadService'
-import { PdfUploadService } from '@infra/upload/vercel/PdfUploadService'
+import { AppAbstractController } from '../../../shared-kernel/user-interface/controller/AppAbstractController'
+import { ImageUploadService } from '../../../infrastructure/upload/vercel/ImageUploadService'
+import { PdfUploadService } from '../../../infrastructure/upload/vercel/PdfUploadService'
 
 export class AssetController extends AppAbstractController {
     private uploadService: AbstractFileUploadService | undefined

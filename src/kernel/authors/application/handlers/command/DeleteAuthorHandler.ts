@@ -1,5 +1,5 @@
-import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
 import { DeleteAuthorCommand } from '../../use-cases/command/DeleteAuthorCommand'
+import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
 
 export class DeleteAuthorHandler {
     constructor(private repository: IAuthorRepository) {}

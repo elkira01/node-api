@@ -1,12 +1,11 @@
 // import '../register-paths.js'
 
-import publicationRouter from '@app/publication/user-interface/routes/publication-routes'
-import publicationCategoryRouter from '@app/publication/user-interface/routes/category-routes'
-import authorRouter from '@app/authors/user-interface/routes/author-routes'
-
 import express from 'express'
 import * as router from './user-interface/routes'
 import cors from 'cors'
+import publicationCategoryRouter from './kernel/publication/user-interface/routes/category-routes'
+import publicationRouter from './kernel/publication/user-interface/routes/publication-routes'
+import authorRouter from './kernel/authors/user-interface/routes/author-routes'
 
 const app = express()
 

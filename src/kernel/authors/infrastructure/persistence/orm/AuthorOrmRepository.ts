@@ -1,8 +1,8 @@
-import { AbstractOrmRepository } from '@shared/infrastructure/orm/AbstractOrmRepository'
-import { AbstractCollectionQuery } from '@shared/application/query/AbstractCollectionQuery'
-import { IAuthorRepository } from '@app/authors/core/repository/IAuthorRepository'
-import { Author } from '@app/authors/core/entity/Author'
-import { AuthorType } from '@app/authors/core/type/AuthorType'
+import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
+import { AbstractOrmRepository } from '../../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
+import { AuthorType } from '../../../core/type/AuthorType'
+import { Author } from '../../../core/entity/Author'
 
 export class AuthorOrmRepository
     extends AbstractOrmRepository

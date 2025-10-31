@@ -1,7 +1,7 @@
 import { IUserRepository } from '../../domain/repositories'
 import { IUser } from '../../domain/entities'
 import bcrypt from 'bcryptjs'
-import { PrismaClient } from '@infra/generated/client'
+import { PrismaClient } from '../../../../infrastructure/generated/client'
 
 export class UserRepository implements IUserRepository {
     protected prismaClient: any

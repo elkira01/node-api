@@ -47,11 +47,5 @@
         "ts-node": "^10.9.2",
         "tsc-alias": "^1.8.16",
         "typescript": "^5.7.2"
-    },
-    "_moduleAliases": {
-        "@shared": "./src/shared-kernel",
-        "@app": "./src/kernel",
-        "@ui": "./src/user-interface",
-        "@infra": "./src/infrastructure"
     }
 }
