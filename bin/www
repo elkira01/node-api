@@ -1,15 +1,13 @@
 #!/usr/bin/env node
-require('tsconfig-paths/register')
+// require('tsconfig-paths/register')
 // import
 
 /**
  * Module dependencies.
  */
 require('dotenv').config()
-// const cors = require('cors')
 
 const app = require('../src/app')
-// app.use()
 const debug = require('debug')('node-api:server')
 
 const http = require('http')

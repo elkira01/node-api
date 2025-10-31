@@ -1,4 +1,4 @@
-import '../register-paths.js'
+// import '../register-paths.js'
 
 import publicationRouter from '@app/publication/user-interface/routes/publication-routes'
 import publicationCategoryRouter from '@app/publication/user-interface/routes/category-routes'
