@@ -1,4 +1,4 @@
-import { PublicationCategory } from '@app/publication/core/entity/PublicationCategory'
+import { PublicationCategory } from '../entity/PublicationCategory'
 
 export interface IPublicationCategoryRepository {
     create(payload: PublicationCategory): Promise<any>

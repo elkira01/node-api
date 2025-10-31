@@ -1,4 +1,4 @@
-import { Publication } from '@app/publication/core/entity/Publication'
+import { Publication } from '../entity/Publication'
 
 export interface IPublicationRepository {
     create(payload: Publication): Promise<any>
