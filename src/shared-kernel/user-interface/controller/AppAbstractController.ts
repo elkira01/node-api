@@ -27,11 +27,11 @@ export abstract class AppAbstractController {
         return this.queryBus.find((bus) => bus.getNames().includes(queryName))
     }
 
-    async handleCommand(command: any): Promise<any> {
+    protected async handleCommand(command: any): Promise<any> {
         return this.getCommandBus(command)?.execute(command)
     }
 
-    async handleQuery(query: any): Promise<any> {
+    protected async handleQuery(query: any): Promise<any> {
         return this.getQueryBus(query)?.execute(query)
     }
 
@@ -43,7 +43,7 @@ export abstract class AppAbstractController {
         }
     }
 
-    parseCollectionQuery(query: any) {
+    protected parseCollectionQuery(query: any) {
         const page = query['page[offset]'] ?? DEFAULT_OFFSET
         const limit = query['page[limit]'] ?? DEFAULT_LIMIT
 
