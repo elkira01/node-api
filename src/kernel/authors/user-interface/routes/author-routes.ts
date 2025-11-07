@@ -12,6 +12,11 @@ authorRouter.post('/create', expressAsyncHandler(authorController.create))
 
 authorRouter.get('/:id', expressAsyncHandler(authorController.getOne))
 
+authorRouter.get(
+    '/email/:email',
+    expressAsyncHandler(authorController.getByEmail)
+)
+
 authorRouter.patch('/:id/update', expressAsyncHandler(authorController.update))
 
 authorRouter.delete('/:id/delete', expressAsyncHandler(authorController.delete))

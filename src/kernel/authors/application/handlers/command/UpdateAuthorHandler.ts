@@ -6,7 +6,7 @@ export class UpdateAuthorHandler {
     constructor(private repository: IAuthorRepository) {}
 
     async handle(command: UpdateAuthorCommand): Promise<void> {
-        const author = await this.repository.findById(command.authorId)
+        const author = await this.repository.find('id', command.authorId)
 
         if (!(author instanceof Author)) {
             throw Error(`Category with id ${command.authorId} not found`)
@@ -19,6 +19,6 @@ export class UpdateAuthorHandler {
         author.setProfileImageUrl(command.profileImageUrl)
         author.setType(command.type)
 
-        await this.repository.update(author)
+        await this.repository.save(author)
     }
 }

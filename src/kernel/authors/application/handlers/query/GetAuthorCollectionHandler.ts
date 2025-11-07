@@ -1,8 +1,10 @@
 import { GetAuthorCollectionQuery } from '../../use-cases/query/GetAuthorCollectionQuery'
-import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
+import { AuthorEntityRepositoryImpl } from '../../../infrastructure/persistence/orm/AuthorEntityRepositoryImpl'
 
 export class GetAuthorCollectionHandler {
-    constructor(private repository: IAuthorRepository) {}
+    constructor(private repository: any) {
+        this.repository = new AuthorEntityRepositoryImpl()
+    }
 
     handle(query: GetAuthorCollectionQuery): Promise<any[]> {
         return this.repository.collection(query)

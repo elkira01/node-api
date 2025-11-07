@@ -1,8 +1,8 @@
 import { DependencyContainer } from '../../../../shared-kernel/infrastructure/DependencyContainer'
-import { AuthorOrmRepository } from '../persistence/orm/AuthorOrmRepository'
+import { AuthorEntityRepositoryImpl } from '../persistence/orm/AuthorEntityRepositoryImpl'
 
 const authorContainer = new DependencyContainer()
 
-authorContainer.bind('IAuthorRepository', AuthorOrmRepository)
+authorContainer.bind('IAuthorRepository', AuthorEntityRepositoryImpl)
 
 export default authorContainer

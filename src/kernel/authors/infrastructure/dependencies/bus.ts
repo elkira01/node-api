@@ -6,6 +6,7 @@ import { UpdateAuthorHandler } from '../../application/handlers/command/UpdateAu
 import { DeleteAuthorHandler } from '../../application/handlers/command/DeleteAuthorHandler'
 import { GetAuthorHandler } from '../../application/handlers/query/GetAuthorHandler'
 import { GetAuthorCollectionHandler } from '../../application/handlers/query/GetAuthorCollectionHandler'
+import { GetAuthorByEmailHandler } from '../../application/handlers/query/GetAuthorByEmailHandler'
 
 const authorCommandBus = new CommandBus(servicesBindings.author)
 const authorQueryBus = new QueryBus(servicesBindings.author)
@@ -13,15 +14,23 @@ const authorQueryBus = new QueryBus(servicesBindings.author)
 authorCommandBus.register('CreateAuthorCommand', CreateAuthorHandler, [
     'IAuthorRepository',
 ])
+
 authorCommandBus.register('UpdateAuthorCommand', UpdateAuthorHandler, [
     'IAuthorRepository',
 ])
+
 authorCommandBus.register('DeleteAuthorCommand', DeleteAuthorHandler, [
     'IAuthorRepository',
 ])
+
 authorQueryBus.register('GetAuthorQuery', GetAuthorHandler, [
     'IAuthorRepository',
 ])
+
+authorQueryBus.register('GetAuthorByEmailQuery', GetAuthorByEmailHandler, [
+    'IAuthorRepository',
+])
+
 authorQueryBus.register(
     'GetAuthorCollectionQuery',
     GetAuthorCollectionHandler,

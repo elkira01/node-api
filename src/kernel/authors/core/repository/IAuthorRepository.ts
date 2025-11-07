@@ -1,10 +1,7 @@
 import { Author } from '../entity/Author'
 
 export interface IAuthorRepository {
-    create(payload: Author): Promise<any>
-    update(payload: Author): Promise<void>
+    save(payload: Author): Promise<any>
     delete(id: any): Promise<void>
-    findById(id: any): Promise<Author | null>
-    findByEmail(id: any): Promise<Author | null>
-    collection(query: any): Promise<Author[]>
+    find(key: string, value: any): Promise<Author | null>
 }

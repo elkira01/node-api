@@ -5,7 +5,7 @@ import { Author } from '../../../core/entity/Author'
 export class CreateAuthorHandler {
     constructor(private repository: IAuthorRepository) {}
 
-    handle(command: CreateAuthorCommand): Promise<any> {
+    async handle(command: CreateAuthorCommand): Promise<any> {
         const author = new Author(
             null,
             command.type,
@@ -15,6 +15,8 @@ export class CreateAuthorHandler {
             command.email,
             command.profileImageUrl
         )
-        return this.repository.create(author)
+        await this.repository.save(author)
+
+        return author.getId()
     }
 }

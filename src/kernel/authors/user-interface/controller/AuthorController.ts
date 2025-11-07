@@ -5,6 +5,7 @@ import { GetAuthorQuery } from '../../application/use-cases/query/GetAuthorQuery
 import { CreateAuthorCommand } from '../../application/use-cases/command/CreateAuthorCommand'
 import { UpdateAuthorCommand } from '../../application/use-cases/command/UpdateAuthorCommand'
 import { DeleteAuthorCommand } from '../../application/use-cases/command/DeleteAuthorCommand'
+import { GetAuthorByEmailQuery } from '../../application/use-cases/query/GetAuthorByEmailQuery'
 
 export class AuthorController extends AppAbstractController {
     constructor() {
@@ -28,6 +29,24 @@ export class AuthorController extends AppAbstractController {
         const resourceId = req.params.id
 
         const author = await this.handleQuery(new GetAuthorQuery(resourceId))
+
+        res.status(200).json({
+            id: author.getId(),
+            firstName: author.getFirstName(),
+            lastName: author.getLastName(),
+            biography: author.getBiography(),
+            profileImage: author.getProfileImageUrl(),
+            email: author.getEmail(),
+            createdAt: author.getCreatedAt(),
+        })
+    })
+
+    getByEmail = this.asyncHandler(async (req: Request, res: Response) => {
+        const resource = req.params.email
+
+        const author = await this.handleQuery(
+            new GetAuthorByEmailQuery(resource)
+        )
 
         res.status(200).json({
             id: author.getId(),
