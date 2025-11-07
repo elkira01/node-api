@@ -1,0 +1,22 @@
+meta {
+  name: createFede
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3333/api/federation/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "All ELite Wrestling 2",
+    "slug": "all-elite-wrestling-2",
+    "description": "Dynamite & Collison on Warner Bros",
+    "logo": "none",
+    "website": "allelitewrestling.com",
+    "headOffice": "Pensilvania"
+  }
+}

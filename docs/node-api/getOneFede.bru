@@ -1,0 +1,22 @@
+meta {
+  name: getOneFede
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3333/api/federation/d608982a-b104-44c4-8ded-93b014873424
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "name": "All ELite Wrestling",
+    "slug": "all-elite-wrestling",
+    "description": "Dynamite & Collison on Warner Bros",
+    "logo": "none",
+    "website": "allelitewrestling.com",
+    "headOffice": "Pensilvania"
+  }
+}
