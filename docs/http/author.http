@@ -2,33 +2,33 @@ POST {{baseUrl}}/author/create
 Content-Type: application/json
 
 {
-  "firstName": "Bruce",
-  "lastName": "Willis",
-  "email": "brucewillis@email.com",
+  "firstName": "Kocy",
+  "lastName": "Yanno",
+  "email": "kocyyano@email.com",
   "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/profile-images/H.G._Wells_by_Beresford.jpg",
-  "biography": "Né à Atlas Huse, au 47 High Street dans la ville de Bromley, située une dizaine de kilomètres au sud-est de Londres, Herbert George Wells, Bertie pour sa famille[2], est le quatrième et dernier enfant de Joseph Wells, un jardinier devenu joueur de cricket professionnel et commerçant, et de Sarah Neal, une ancienne domestique[3]. Un héritage permet à la famille de racheter un magasin de porcelaines et d'articles de sport dont elle tire un maigre revenu, complété par les cachets de joueur de cricket de Joseph Wells pour le Kent County Cricket Club[4]",
+  "biography": "C'est Kocy",
   "type": "AUTHOR"
 }
 
 ###
-DELETE {{baseUrl}}/author/ec46b470-f8ea-4f50-bc0d-08c4d46f6630/delete
+DELETE {{baseUrl}}/author/50e23f81-ec0e-468e-959c-d5bf967f1f73/delete
 Content-Type: application/json
 
 ###
-PATCH {{baseUrl}}/author/f8c148a5-95e6-4ad0-9dd0-d9714b53ac62/update
+PATCH {{baseUrl}}/author/bbd99482-1ba3-405d-a347-d9517d91d2e5/update
 Content-Type: application/json
 
 {
-  "firstName": "Johnny",
-  "lastName": "Doe Willis",
-  "email": "brucewillis@email.com",
+  "firstName": "Kocy Rap",
+  "lastName": "Yanno",
+  "email": "kocyyano@email.com",
   "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/profile-images/H.G._Wells_by_Beresford.jpg",
-  "biography": "Né à Atlas Huse, au 47 High Street dans la ville de Bromley, située une dizaine de kilomètres au sud-est de Londres, Herbert George Wells, Bertie pour sa famille[2], est le quatrième et dernier enfant de Joseph Wells, un jardinier devenu joueur de cricket professionnel et commerçant, et de Sarah Neal, une ancienne domestique[3]. Un héritage permet à la famille de racheter un magasin de porcelaines et d'articles de sport dont elle tire un maigre revenu, complété par les cachets de joueur de cricket de Joseph Wells pour le Kent County Cricket Club[4]",
+  "biography": "C'est Kocy Mboa",
   "type": "AUTHOR"
 }
 
 ###
-GET {{baseUrl}}/author/f8c148a5-95e6-4ad0-9dd0-d9714b53ac62
+GET {{baseUrl}}/author/bbd99482-1ba3-405d-a347-d9517d91d2e5
 Accept: application/json
 
 ###

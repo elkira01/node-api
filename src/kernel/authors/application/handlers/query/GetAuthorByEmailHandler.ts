@@ -6,6 +6,6 @@ export class GetAuthorByEmailHandler {
     constructor(private repository: IAuthorRepository) {}
 
     handle(query: GetAuthorByEmailQuery): Promise<Author | null> {
-        return this.repository.find('email', query.authorEmail)
+        return this.repository.findByKey('email', query.authorEmail)
     }
 }

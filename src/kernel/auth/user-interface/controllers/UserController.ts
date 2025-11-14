@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { UserService } from '../../services'
+import { UserService } from '../../application'
 import { RegistrationDTO, UserDTO } from '../../../auth/user-interface/dto'
 import { IUserRepository } from '../../../auth/domain/repositories'
 

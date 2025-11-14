@@ -6,6 +6,6 @@ export class GetAuthorHandler {
     constructor(private repository: IAuthorRepository) {}
 
     handle(query: GetAuthorQuery): Promise<Author | null> {
-        return this.repository.find('id', query.authorId)
+        return this.repository.findByKey('id', query.authorId)
     }
 }

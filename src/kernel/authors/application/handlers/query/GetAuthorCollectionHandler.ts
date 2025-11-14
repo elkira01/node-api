@@ -1,5 +1,5 @@
 import { GetAuthorCollectionQuery } from '../../use-cases/query/GetAuthorCollectionQuery'
-import { AuthorEntityRepositoryImpl } from '../../../infrastructure/persistence/orm/AuthorEntityRepositoryImpl'
+import { AuthorEntityRepositoryImpl } from '../../../infrastructure/persistence/AuthorEntityRepositoryImpl'
 
 export class GetAuthorCollectionHandler {
     constructor(private repository: any) {

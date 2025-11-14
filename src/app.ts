@@ -6,6 +6,8 @@ import cors from 'cors'
 import publicationCategoryRouter from './kernel/publication/user-interface/routes/category-routes'
 import publicationRouter from './kernel/publication/user-interface/routes/publication-routes'
 import authorRouter from './kernel/authors/user-interface/routes/author-routes'
+import { StripeController } from './user-interface/controllers/stripe/StripeController'
+import expressAsyncHandler from 'express-async-handler'
 
 const app = express()
 
@@ -17,6 +19,13 @@ app.use(express.urlencoded({ extended: false }))
 app.get('/test', (req, res) => {
     res.send('Hello World!')
 })
+
+const StripeCtrl = new StripeController()
+
+app.post(
+    '/create-checkout-session',
+    expressAsyncHandler(StripeCtrl.createSession)
+)
 
 // app.use('/api', router.authRouter)
 // app.use('/api', router.userRouter)
