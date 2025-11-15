@@ -1,8 +1,15 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import { AuthorController } from '../controller/AuthorController'
+import { ControllerBuilderFactory } from '../../../../shared-kernel/user-interface/controller/ControllerBuilderFactory'
+import { BuildType } from '../../../../core/types/utilities'
+import { IAuthorCollection } from '../../application/collection/IAuthorCollection'
+import { IAuthorReadModel } from '../../application/read-models/IAuthorReadModel'
 
-const authorController = new AuthorController()
+const authorController =
+    ControllerBuilderFactory.build<
+        BuildType<IAuthorCollection, BuildType<IAuthorReadModel>>
+    >(AuthorController)
 
 const authorRouter = express.Router()
 

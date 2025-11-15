@@ -6,9 +6,15 @@ import { CreateAuthorCommand } from '../../application/use-cases/command/CreateA
 import { UpdateAuthorCommand } from '../../application/use-cases/command/UpdateAuthorCommand'
 import { DeleteAuthorCommand } from '../../application/use-cases/command/DeleteAuthorCommand'
 import { GetAuthorByEmailQuery } from '../../application/use-cases/query/GetAuthorByEmailQuery'
+import { IAuthorCollection } from '../../application/collection/IAuthorCollection'
+import { IAuthorReadModel } from '../../application/read-models/IAuthorReadModel'
 
 export class AuthorController extends AppAbstractController {
-    constructor() {
+    constructor(
+        private readonly collectionService: IAuthorCollection,
+        private readonly readModelService: IAuthorReadModel
+    ) {
+        console.log(arguments)
         super()
     }
 
