@@ -36,7 +36,7 @@ GET {{baseUrl}}/author/email/brucewillis@email.com
 Accept: application/json
 
 ###
-GET {{baseUrl}}/author/collection
+GET {{baseUrl}}/author/collection?page[offset]=1&page[limit]=10
 Accept: application/json
 
 ###
