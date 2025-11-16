@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-GET {{baseUrl}}/author/bbd99482-1ba3-405d-a347-d9517d91d2e5
+GET {{baseUrl}}/author/f8c148a5-95e6-4ad0-9dd0-d9714b53ac62
 Accept: application/json
 
 ###

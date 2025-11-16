@@ -1,6 +1,6 @@
 import { CreatePublicationCommand } from '../../use-cases/command/CreatePublicationCommand'
-import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
-import { Publication } from '../../../core/entity/Publication'
+import { IPublicationRepository } from '../../../domain/repository/IPublicationRepository'
+import { Publication } from '../../../domain/entity/Publication'
 
 export class CreatePublicationHandler {
     constructor(private repository: IPublicationRepository) {}
@@ -19,6 +19,6 @@ export class CreatePublicationHandler {
             command.rentalPrice,
             command.rentalDuration
         )
-        return this.repository.create(publication)
+        return this.repository.save(publication)
     }
 }

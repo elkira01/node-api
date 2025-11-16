@@ -1,3 +1,3 @@
 export class GetAuthorQuery {
-    constructor(public authorId: any) {}
+    constructor(public authorId?: any) {}
 }

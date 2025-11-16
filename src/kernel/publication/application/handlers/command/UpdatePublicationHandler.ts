@@ -1,6 +1,6 @@
-import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
+import { IPublicationRepository } from '../../../domain/repository/IPublicationRepository'
 import { UpdatePublicationCommand } from '../../use-cases/command/UpdatePublicationCommand'
-import { Publication } from '../../../core/entity/Publication'
+import { Publication } from '../../../domain/entity/Publication'
 
 export class UpdatePublicationHandler {
     constructor(private repository: IPublicationRepository) {}
@@ -30,6 +30,6 @@ export class UpdatePublicationHandler {
             command.rentalDuration
         )
 
-        await this.repository.update(updated)
+        await this.repository.save(updated)
     }
 }

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { QueryBus } from '../../infrastructure/bus/QueryBus'
 import { CommandBus } from '../../infrastructure/bus/CommandBus'
-import { busConfig } from '../../../infrastructure/dependencies/bus-config'
+import { busConfig } from '../../../infrastructure/config/bus-config'
 
 const MAX_LIMIT = 100
 const DEFAULT_LIMIT = 10

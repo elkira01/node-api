@@ -1,6 +1,6 @@
 import { IAuthorCollection } from '../../application/collection/IAuthorCollection'
 import { GetAuthorCollectionQuery } from '../../application/use-cases/query/GetAuthorCollectionQuery'
-import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
 import { AuthorCollectionViewModel } from '../../application/view-models/AuthorCollectionViewModel'
 import { AuthorSelectViewModel } from '../../application/view-models/AuthorSelectViewModel'
 

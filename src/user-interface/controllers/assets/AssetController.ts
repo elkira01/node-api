@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
+import AbstractFileUploadService from '../../../core/application/services/AbstractFileUploadService'
 import { AppAbstractController } from '../../../shared-kernel/user-interface/controller/AppAbstractController'
 import { ImageUploadService } from '../../../infrastructure/upload/vercel/ImageUploadService'
 import { PdfUploadService } from '../../../infrastructure/upload/vercel/PdfUploadService'

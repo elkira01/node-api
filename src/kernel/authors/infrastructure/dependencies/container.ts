@@ -1,4 +1,4 @@
-import { DependencyContainer } from '../../../../shared-kernel/infrastructure/DependencyContainer'
+import { DependencyContainer } from '../../../../infrastructure/dependencies/DependencyContainer'
 import { AuthorEntityRepositoryImpl } from '../persistence/AuthorEntityRepositoryImpl'
 import { AuthorCollectionRepositoryImpl } from '../persistence/AuthorCollectionRepositoryImpl'
 import { AuthorReadModelRepositoryImpl } from '../persistence/AuthorReadModelRepositoryImpl'
@@ -6,7 +6,7 @@ import { AuthorReadModelRepositoryImpl } from '../persistence/AuthorReadModelRep
 const authorContainer = new DependencyContainer()
 
 authorContainer.bind('IAuthorRepository', AuthorEntityRepositoryImpl)
-authorContainer.bind('IAuthorCollection', AuthorCollectionRepositoryImpl)
-authorContainer.bind('IAuthorReadModel', AuthorReadModelRepositoryImpl)
+authorContainer.bind('IPublicationCollection', AuthorCollectionRepositoryImpl)
+authorContainer.bind('IPublicationReadModel', AuthorReadModelRepositoryImpl)
 
 export default authorContainer

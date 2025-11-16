@@ -6,44 +6,74 @@ import { CreatePublicationCommand } from '../../application/use-cases/command/Cr
 import { UpdatePublicationCommand } from '../../application/use-cases/command/UpdatePublicationCommand'
 import { ChangePublicationStatusCommand } from '../../application/use-cases/command/ChangePublicationStatusCommand'
 import { DeletePublicationCommand } from '../../application/use-cases/command/DeletePublicationCommand'
+import { IPublicationCollection } from '../../application/collection/IPublicationCollection'
+import { PublicationReadModelRepositoryImpl } from '../../infrastructure/persistence/PublicationReadModelRepositoryImpl'
+import { PublicationType } from '../../domain/type/PublicationType'
+import { GetPublicationCollectionByCategoryQuery } from '../../application/use-cases/query/GetPublicationCollectionByCategoryQuery'
 
 export class PublicationController extends AppAbstractController {
-    constructor() {
+    constructor(
+        private publicationCollection: IPublicationCollection,
+        private publicationReadModel: PublicationReadModelRepositoryImpl
+    ) {
         super()
     }
 
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
-        const categories = await this.handleQuery(
+        const publication = await this.publicationCollection.collection(
             new GetPublicationCollectionQuery(
                 parsedQuery.page,
                 parsedQuery.limit,
                 parsedQuery.q
             )
         )
-        res.status(200).json(categories)
+        res.status(200).json(publication)
+    })
+
+    getByCategory = this.asyncHandler(async (req: Request, res: Response) => {
+        const parsedQuery = this.parseCollectionQuery(req.query)
+        const params = req.params
+
+        const publication =
+            await this.publicationCollection.collectionByCategory(
+                new GetPublicationCollectionByCategoryQuery(
+                    params?.categoryId,
+                    parsedQuery.page,
+                    parsedQuery.limit,
+                    parsedQuery.q
+                )
+            )
+        res.status(200).json(publication)
+    })
+
+    getAllForSelect = this.asyncHandler(async (req: Request, res: Response) => {
+        const parsedQuery = this.parseCollectionQuery(req.query)
+        const publication =
+            await this.publicationCollection.collectionForSelect(
+                new GetPublicationCollectionQuery(
+                    parsedQuery.page,
+                    parsedQuery.limit,
+                    parsedQuery.q
+                )
+            )
+        res.status(200).json(publication)
     })
 
     getOne = this.asyncHandler(async (req: Request, res: Response) => {
         const resourceId = req.params.id
+        const resourceType = req.params.publicationType
 
-        const publication = await this.handleQuery(
-            new GetPublicationQuery(resourceId)
-        )
+        const publication =
+            resourceType.toUpperCase() == PublicationType.BOOK
+                ? await this.publicationReadModel.viewBook(
+                      new GetPublicationQuery(resourceId)
+                  )
+                : await this.publicationReadModel.viewMagazine(
+                      new GetPublicationQuery(resourceId)
+                  )
 
-        res.status(200).json({
-            id: publication.getId(),
-            title: publication.getTitle(),
-            authorId: publication.getAuthorId(),
-            categoryId: publication.getCategoryId(),
-            type: publication.getPublicationType(),
-            resume: publication.getResume(),
-            coverImageUrl: publication.getCoverImageUrl(),
-            contentFileUrl: publication.getContentFileUrl(),
-            sellingPrice: publication.getSellingPrice(),
-            rentalPrice: publication.getRentalPrice(),
-            rentalPeriod: publication.getRentalPeriod(),
-        })
+        res.status(200).json(publication)
     })
 
     create = this.asyncHandler(async (req: Request, res: Response) => {

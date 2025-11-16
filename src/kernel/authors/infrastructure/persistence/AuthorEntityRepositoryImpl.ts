@@ -1,5 +1,5 @@
 import { AbstractCollectionQuery } from '../../../../shared-kernel/application/query/AbstractCollectionQuery'
-import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
 import { IAuthorRepository } from '../../core/repository/IAuthorRepository'
 import { AuthorType } from '../../core/type/AuthorType'
 import { Author } from '../../core/entity/Author'

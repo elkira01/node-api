@@ -1,4 +1,4 @@
-import { IPublicationCategoryRepository } from '../../../../core/repository/IPublicationCategoryRepository'
+import { IPublicationCategoryRepository } from '../../../../domain/repository/IPublicationCategoryRepository'
 import { DeletePublicationCategoryCommand } from '../../../use-cases/command/category/DeletePublicationCategoryCommand'
 
 export class DeletePublicationCategoryHandler {

@@ -5,7 +5,7 @@ import { GetAuthorQuery } from '../../application/use-cases/query/GetAuthorQuery
 import { AuthorViewModel } from '../../application/view-models/AuthorViewModel'
 import { Author } from '../../core/entity/Author'
 import { AuthorType } from '../../core/type/AuthorType'
-import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
+import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
 
 export class AuthorReadModelRepositoryImpl
     extends AbstractOrmRepository
@@ -14,7 +14,7 @@ export class AuthorReadModelRepositoryImpl
     constructor() {
         super()
     }
-    async getAuthor(query: GetAuthorQuery): Promise<AuthorViewModel | null> {
+    async viewAuthor(query: GetAuthorQuery): Promise<AuthorViewModel | null> {
         const author = await this.repositoryClient.author.findUnique({
             where: { id: query.authorId },
             include: { publications: true },
