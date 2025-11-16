@@ -1,5 +1,5 @@
 import { CommandBus } from '../../../../shared-kernel/infrastructure/bus/CommandBus'
-import { servicesBindings } from '../../../../infrastructure/dependencies/services-bindings'
+import { servicesBindings } from '../../../../infrastructure/config/services-bindings'
 import { QueryBus } from '../../../../shared-kernel/infrastructure/bus/QueryBus'
 import { CreatePublicationCategoryHandler } from '../../application/handlers/command/category/CreatePublicationCategoryHandler'
 import { UpdatePublicationCategoryHandler } from '../../application/handlers/command/category/UpdatePublicationCategoryHandler'
@@ -10,8 +10,6 @@ import { DeletePublicationHandler } from '../../application/handlers/command/Del
 import { ChangePublicationStatusHandler } from '../../application/handlers/command/ChangePublicationStatusHandler'
 import { GetPublicationCategoryHandler } from '../../application/handlers/query/GetPublicationCategoryHandler'
 import { GetPublicationCategoryCollectionHandler } from '../../application/handlers/query/GetPublicationCategoryCollectionHandler'
-import { GetPublicationHandler } from '../../application/handlers/query/GetPublicationHandler'
-import { GetPublicationCollectionHandler } from '../../application/handlers/query/GetPublicationCollectionHandler'
 
 const publicationCommandBus = new CommandBus(servicesBindings.publication)
 const publicationQueryBus = new QueryBus(servicesBindings.publication)
@@ -48,7 +46,7 @@ publicationCommandBus.register(
     ['IPublicationRepository']
 )
 publicationCommandBus.register(
-    'ChangePublicationCommand',
+    'ChangePublicationStatusCommand',
     ChangePublicationStatusHandler,
     ['IPublicationRepository']
 )
@@ -62,15 +60,6 @@ publicationQueryBus.register(
     'GetPublicationCategoryCollectionQuery',
     GetPublicationCategoryCollectionHandler,
     ['IPublicationCategoryRepository']
-)
-
-publicationQueryBus.register('GetPublicationQuery', GetPublicationHandler, [
-    'IPublicationRepository',
-])
-publicationQueryBus.register(
-    'GetPublicationCollectionQuery',
-    GetPublicationCollectionHandler,
-    ['IPublicationRepository']
 )
 
 export { publicationQueryBus, publicationCommandBus }

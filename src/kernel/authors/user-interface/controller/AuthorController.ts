@@ -6,39 +6,38 @@ import { CreateAuthorCommand } from '../../application/use-cases/command/CreateA
 import { UpdateAuthorCommand } from '../../application/use-cases/command/UpdateAuthorCommand'
 import { DeleteAuthorCommand } from '../../application/use-cases/command/DeleteAuthorCommand'
 import { GetAuthorByEmailQuery } from '../../application/use-cases/query/GetAuthorByEmailQuery'
+import { IAuthorCollection } from '../../application/collection/IAuthorCollection'
+import { IAuthorReadModel } from '../../application/read-models/IAuthorReadModel'
 
 export class AuthorController extends AppAbstractController {
-    constructor() {
+    constructor(
+        private readonly collectionService: IAuthorCollection,
+        private readonly readModelService: IAuthorReadModel
+    ) {
         super()
     }
 
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
 
-        const categories = await this.handleQuery(
+        const results = await this.collectionService.collection(
             new GetAuthorCollectionQuery(
                 parsedQuery.page,
                 parsedQuery.limit,
                 parsedQuery.q
             )
         )
-        res.status(200).json(categories)
+        res.status(200).json(results)
     })
 
     getOne = this.asyncHandler(async (req: Request, res: Response) => {
         const resourceId = req.params.id
 
-        const author = await this.handleQuery(new GetAuthorQuery(resourceId))
+        const author = await this.readModelService.viewAuthor(
+            new GetAuthorQuery(resourceId)
+        )
 
-        res.status(200).json({
-            id: author.getId(),
-            firstName: author.getFirstName(),
-            lastName: author.getLastName(),
-            biography: author.getBiography(),
-            profileImage: author.getProfileImageUrl(),
-            email: author.getEmail(),
-            createdAt: author.getCreatedAt(),
-        })
+        res.status(200).json({ author })
     })
 
     getByEmail = this.asyncHandler(async (req: Request, res: Response) => {

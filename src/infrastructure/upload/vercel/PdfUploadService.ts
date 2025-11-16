@@ -1,6 +1,6 @@
-import AbstractFileUploadService from '../../../application/services/AbstractFileUploadService'
+import AbstractFileUploadService from '../../../core/application/services/AbstractFileUploadService'
 import { del, put } from '@vercel/blob'
-import { StringUtilityService } from '../../../application/services/StringUtilityService'
+import { StringUtilityService } from '../../../core/application/services/StringUtilityService'
 
 export class PdfUploadService extends AbstractFileUploadService {
     constructor() {

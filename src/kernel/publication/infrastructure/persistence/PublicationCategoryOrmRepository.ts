@@ -1,7 +1,7 @@
-import { AbstractOrmRepository } from '../../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
-import { IPublicationCategoryRepository } from '../../../core/repository/IPublicationCategoryRepository'
-import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
-import { PublicationCategory } from '../../../core/entity/PublicationCategory'
+import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
+import { IPublicationCategoryRepository } from '../../domain/repository/IPublicationCategoryRepository'
+import { AbstractCollectionQuery } from '../../../../shared-kernel/application/query/AbstractCollectionQuery'
+import { PublicationCategory } from '../../domain/entity/PublicationCategory'
 
 export class PublicationCategoryOrmRepository
     extends AbstractOrmRepository
@@ -49,7 +49,7 @@ export class PublicationCategoryOrmRepository
         return Promise.resolve(null)
     }
 
-    async create(payload: PublicationCategory): Promise<any> {
+    async save(payload: PublicationCategory): Promise<any> {
         const result = await this.repositoryClient.publicationCategory.create({
             data: {
                 designation: payload.getDesignation(),

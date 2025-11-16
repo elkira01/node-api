@@ -1,4 +1,4 @@
-import { DependencyContainer } from '../DependencyContainer'
+import { DependencyContainer } from '../../../infrastructure/dependencies/DependencyContainer'
 
 export class CommandBus {
     private handlers: Map<string, any>

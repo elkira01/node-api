@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { QueryBus } from '../../infrastructure/bus/QueryBus'
 import { CommandBus } from '../../infrastructure/bus/CommandBus'
-import { busConfig } from '../../../infrastructure/dependencies/bus-config'
+import { busConfig } from '../../../infrastructure/config/bus-config'
 
 const MAX_LIMIT = 100
 const DEFAULT_LIMIT = 10
@@ -28,11 +28,23 @@ export abstract class AppAbstractController {
     }
 
     protected async handleCommand(command: any): Promise<any> {
-        return this.getCommandBus(command)?.execute(command)
+        const commandBus = this.getCommandBus(command)
+        if (!commandBus) {
+            throw new Error(
+                `No command handler registered for ${command.constructor.name}`
+            )
+        }
+        return commandBus.execute(command)
     }
 
     protected async handleQuery(query: any): Promise<any> {
-        return this.getQueryBus(query)?.execute(query)
+        const queryBus = this.getQueryBus(query)
+        if (!queryBus) {
+            throw new Error(
+                `No query handler registered for ${query.constructor.name}`
+            )
+        }
+        return queryBus.execute(query)
     }
 
     protected asyncHandler(

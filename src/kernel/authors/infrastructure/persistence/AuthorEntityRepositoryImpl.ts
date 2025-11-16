@@ -1,37 +1,14 @@
-import { AbstractCollectionQuery } from '../../../../../shared-kernel/application/query/AbstractCollectionQuery'
-import { AbstractOrmRepository } from '../../../../../shared-kernel/infrastructure/orm/AbstractOrmRepository'
-import { IAuthorRepository } from '../../../core/repository/IAuthorRepository'
-import { AuthorType } from '../../../core/type/AuthorType'
-import { Author } from '../../../core/entity/Author'
+import { AbstractCollectionQuery } from '../../../../shared-kernel/application/query/AbstractCollectionQuery'
+import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
+import { IAuthorRepository } from '../../core/repository/IAuthorRepository'
+import { AuthorType } from '../../core/type/AuthorType'
+import { Author } from '../../core/entity/Author'
 
 export class AuthorEntityRepositoryImpl
     extends AbstractOrmRepository
     implements IAuthorRepository
 {
-    constructor() {
-        super()
-    }
-
-    async collection(query: AbstractCollectionQuery): Promise<any> {
-        const results = await this.repositoryClient.author.findMany({
-            skip: query.getStartIndex(),
-            take: query.limit,
-            where: {
-                firstName: {
-                    startsWith: query.q,
-                    mode: 'insensitive',
-                },
-                lastName: {
-                    startsWith: query.q,
-                    mode: 'insensitive',
-                },
-            },
-        })
-
-        return { data: results }
-    }
-
-    async find(key: string, value: any): Promise<Author | null> {
+    async findByKey(key: string, value: any): Promise<Author | null> {
         const resp = await this.repositoryClient.author.findUnique({
             where: { [key]: value } as any,
         })
@@ -84,6 +61,4 @@ export class AuthorEntityRepositoryImpl
             where: { id: id },
         })
     }
-
-    async update(payload: Author): Promise<void> {}
 }

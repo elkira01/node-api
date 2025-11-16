@@ -1,6 +1,7 @@
 import { ChangePublicationStatusCommand } from '../../use-cases/command/ChangePublicationStatusCommand'
-import { IPublicationRepository } from '../../../core/repository/IPublicationRepository'
-import { Publication } from '../../../core/entity/Publication'
+import { IPublicationRepository } from '../../../domain/repository/IPublicationRepository'
+import { Publication } from '../../../domain/entity/Publication'
+import { NotFoundException } from '../../../../../shared-kernel/domain/NotFoundException'
 
 export class ChangePublicationStatusHandler {
     constructor(private repository: IPublicationRepository) {}
@@ -11,13 +12,13 @@ export class ChangePublicationStatusHandler {
         )
 
         if (!(publication instanceof Publication)) {
-            throw new Error(
+            throw new NotFoundException(
                 `Publication with id ${command.publicationId} not found`
             )
         }
 
         publication.setStatus(command.status)
 
-        await this.repository.update(publication)
+        await this.repository.save(publication)
     }
 }

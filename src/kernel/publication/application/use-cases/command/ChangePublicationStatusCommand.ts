@@ -1,4 +1,4 @@
-import { PublicationStatus } from '../../../core/type/PublicationStatus'
+import { PublicationStatus } from '../../../domain/type/PublicationStatus'
 
 export class ChangePublicationStatusCommand {
     constructor(

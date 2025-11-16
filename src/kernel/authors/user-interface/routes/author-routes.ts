@@ -1,8 +1,12 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import { AuthorController } from '../controller/AuthorController'
+import { servicesBindings } from '../../../../infrastructure/config/services-bindings'
 
-const authorController = new AuthorController()
+const authorController = new AuthorController(
+    servicesBindings.author.get('IPublicationCollection'),
+    servicesBindings.author.get('IPublicationReadModel')
+)
 
 const authorRouter = express.Router()
 

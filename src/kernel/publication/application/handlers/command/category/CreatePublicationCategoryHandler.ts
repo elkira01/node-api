@@ -1,6 +1,6 @@
-import { IPublicationCategoryRepository } from '../../../../core/repository/IPublicationCategoryRepository'
+import { IPublicationCategoryRepository } from '../../../../domain/repository/IPublicationCategoryRepository'
 import { CreatePublicationCategoryCommand } from '../../../use-cases/command/category/CreatePublicationCategoryCommand'
-import { PublicationCategory } from '../../../../core/entity/PublicationCategory'
+import { PublicationCategory } from '../../../../domain/entity/PublicationCategory'
 
 export class CreatePublicationCategoryHandler {
     constructor(private repository: IPublicationCategoryRepository) {}
@@ -12,6 +12,6 @@ export class CreatePublicationCategoryHandler {
             command.imageUrl,
             command.description
         )
-        return this.repository.create(publicationCategory)
+        return this.repository.save(publicationCategory)
     }
 }

@@ -34,7 +34,7 @@ GET {{baseUrl}}/publication-category/1d42a856-2741-4d2e-aff8-4171853ac3ea
 Accept: application/json
 
 ###
-GET {{baseUrl}}/publication-category/collection?page[offset]=1&page[limit]=1&q=poll
+GET {{baseUrl}}/publication-category/collection
 Accept: application/json
 
 ###

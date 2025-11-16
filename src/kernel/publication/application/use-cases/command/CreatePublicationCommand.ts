@@ -1,4 +1,4 @@
-import { PublicationType } from '../../../core/type/PublicationType'
+import { PublicationType } from '../../../domain/type/PublicationType'
 
 export class CreatePublicationCommand {
     constructor(

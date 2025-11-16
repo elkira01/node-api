@@ -1,5 +1,5 @@
 import { IUserSessionRepository } from '../../domain/repositories'
-import { UserSessionService } from '../../services'
+import { UserSessionService } from '../../application'
 
 export class SessionController {
     protected userSessionService: UserSessionService

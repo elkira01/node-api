@@ -79,8 +79,8 @@ model Publication {
   coverImageUrl    String
   additionalImages String[]          @default([])
   sellingPrice     Decimal           @db.Money
-  rentalPrice      Decimal           @db.Money
-  rentalPeriod     String
+  rentalPrice      Decimal?          @db.Money
+  rentalPeriod     String?
   description      String?
   status           PublicationStatus @default(DRAFT)
 
