@@ -77,4 +77,13 @@ export abstract class AppAbstractController {
             q: query['q'],
         }
     }
+
+    protected collectionResponse(data: any, total: number = 100) {
+        return {
+            data,
+            meta: {
+                total,
+            },
+        }
+    }
 }

@@ -28,7 +28,9 @@ export class PublicationController extends AppAbstractController {
                 parsedQuery.q
             )
         )
-        res.status(200).json(publication)
+        res.status(200).json(
+            this.collectionResponse(publication, publication.length)
+        )
     })
 
     getByCategory = this.asyncHandler(async (req: Request, res: Response) => {
@@ -57,7 +59,9 @@ export class PublicationController extends AppAbstractController {
                     parsedQuery.q
                 )
             )
-        res.status(200).json(publication)
+        res.status(200).json(
+            this.collectionResponse(publication, publication.length)
+        )
     })
 
     getOne = this.asyncHandler(async (req: Request, res: Response) => {

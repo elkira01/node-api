@@ -27,7 +27,7 @@ export class AuthorController extends AppAbstractController {
                 parsedQuery.q
             )
         )
-        res.status(200).json(results)
+        res.status(200).json(this.collectionResponse(results, results.length))
     })
 
     getOne = this.asyncHandler(async (req: Request, res: Response) => {
