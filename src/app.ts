@@ -8,6 +8,7 @@ import publicationRouter from './kernel/publication/user-interface/routes/public
 import authorRouter from './kernel/authors/user-interface/routes/author-routes'
 import { StripeController } from './user-interface/controllers/payments/StripeController'
 import expressAsyncHandler from 'express-async-handler'
+import { BlikPaymentController } from './user-interface/controllers/payments/BlikPaymentController'
 
 const app = express()
 
@@ -21,10 +22,16 @@ app.get('/test', (req, res) => {
 })
 
 const StripeCtrl = new StripeController()
+const BlikPayment = new BlikPaymentController()
 
 app.post(
     '/create-checkout-session',
     expressAsyncHandler(StripeCtrl.createSession)
+)
+
+app.post(
+    '/blik/create-checkout-session',
+    expressAsyncHandler(BlikPayment.createSession)
 )
 
 // app.use('/api', router.authRouter)
