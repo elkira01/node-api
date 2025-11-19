@@ -6,7 +6,7 @@ import cors from 'cors'
 import publicationCategoryRouter from './kernel/publication/user-interface/routes/category-routes'
 import publicationRouter from './kernel/publication/user-interface/routes/publication-routes'
 import authorRouter from './kernel/authors/user-interface/routes/author-routes'
-import { StripeController } from './user-interface/controllers/stripe/StripeController'
+import { StripeController } from './user-interface/controllers/payments/StripeController'
 import expressAsyncHandler from 'express-async-handler'
 
 const app = express()
