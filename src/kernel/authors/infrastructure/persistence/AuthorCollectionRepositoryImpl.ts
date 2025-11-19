@@ -13,14 +13,14 @@ export class AuthorCollectionRepositoryImpl
     ): Promise<AuthorCollectionViewModel[]> {
         const results = await this.repositoryClient.author.findMany({
             skip: query.getStartIndex(),
-            take: query.limit,
+            take: query.pagination.limit,
             where: {
                 firstName: {
-                    startsWith: query.q,
+                    startsWith: query.search?.q,
                     mode: 'insensitive',
                 },
                 lastName: {
-                    startsWith: query.q,
+                    startsWith: query.search?.q,
                     mode: 'insensitive',
                 },
             },
@@ -44,16 +44,22 @@ export class AuthorCollectionRepositoryImpl
     ): Promise<AuthorSelectViewModel[]> {
         const results = await this.repositoryClient.author.findMany({
             skip: query.getStartIndex(),
-            take: query.limit,
+            take: query.pagination.limit,
             where: {
-                firstName: {
-                    startsWith: query.q,
-                    mode: 'insensitive',
-                },
-                lastName: {
-                    startsWith: query.q,
-                    mode: 'insensitive',
-                },
+                OR: [
+                    {
+                        firstName: {
+                            startsWith: query.search?.q,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        lastName: {
+                            startsWith: query.search?.q,
+                            mode: 'insensitive',
+                        },
+                    },
+                ],
             },
         })
 

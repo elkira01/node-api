@@ -1,17 +1,18 @@
+import { FilterBy, Pagination, SearchBy, SortBy } from './types'
+
 export abstract class AbstractCollectionQuery {
     constructor(
-        public page: number,
-        public limit: number,
-        public q?: string,
-        public sort?: any,
-        public filter?: any
+        public pagination: Pagination = { page: 1, limit: 10 },
+        public search?: SearchBy,
+        public sort?: SortBy,
+        public filter?: FilterBy
     ) {}
 
     getEndIndex(): number {
-        return this.page * this.limit
+        return this.pagination.page * this.pagination.limit
     }
 
     getStartIndex(): number {
-        return this.getEndIndex() - this.limit
+        return this.getEndIndex() - this.pagination.limit
     }
 }

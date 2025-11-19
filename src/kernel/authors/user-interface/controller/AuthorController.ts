@@ -21,11 +21,7 @@ export class AuthorController extends AppAbstractController {
         const parsedQuery = this.parseCollectionQuery(req.query)
 
         const results = await this.collectionService.collection(
-            new GetAuthorCollectionQuery(
-                parsedQuery.page,
-                parsedQuery.limit,
-                parsedQuery.q
-            )
+            new GetAuthorCollectionQuery()
         )
         res.status(200).json(this.collectionResponse(results, results.length))
     })

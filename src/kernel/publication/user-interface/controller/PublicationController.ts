@@ -23,9 +23,8 @@ export class PublicationController extends AppAbstractController {
         const parsedQuery = this.parseCollectionQuery(req.query)
         const publication = await this.publicationCollection.collection(
             new GetPublicationCollectionQuery(
-                parsedQuery.page,
-                parsedQuery.limit,
-                parsedQuery.q
+                { page: 1, limit: 10 },
+                { author: 'test' }
             )
         )
         res.status(200).json(
@@ -39,12 +38,7 @@ export class PublicationController extends AppAbstractController {
 
         const publication =
             await this.publicationCollection.collectionByCategory(
-                new GetPublicationCollectionByCategoryQuery(
-                    params?.categoryId,
-                    parsedQuery.page,
-                    parsedQuery.limit,
-                    parsedQuery.q
-                )
+                new GetPublicationCollectionByCategoryQuery(params?.categoryId)
             )
         res.status(200).json(publication)
     })
@@ -53,11 +47,7 @@ export class PublicationController extends AppAbstractController {
         const parsedQuery = this.parseCollectionQuery(req.query)
         const publication =
             await this.publicationCollection.collectionForSelect(
-                new GetPublicationCollectionQuery(
-                    parsedQuery.page,
-                    parsedQuery.limit,
-                    parsedQuery.q
-                )
+                new GetPublicationCollectionQuery({ page: 1, limit: 10 })
             )
         res.status(200).json(
             this.collectionResponse(publication, publication.length)

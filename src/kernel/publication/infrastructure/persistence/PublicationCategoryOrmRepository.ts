@@ -15,10 +15,10 @@ export class PublicationCategoryOrmRepository
         const results =
             await this.repositoryClient.publicationCategory.findMany({
                 skip: query.getStartIndex(),
-                take: query.limit,
+                take: query.pagination.limit,
                 where: {
                     designation: {
-                        startsWith: query.q,
+                        startsWith: query.search?.q,
                         mode: 'insensitive',
                     },
                 },

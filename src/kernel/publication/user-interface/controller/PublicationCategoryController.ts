@@ -14,11 +14,7 @@ export class PublicationCategoryController extends AppAbstractController {
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
         const categories = await this.handleQuery(
-            new GetPublicationCategoryCollectionQuery(
-                parsedQuery.page,
-                parsedQuery.limit,
-                parsedQuery.q
-            )
+            new GetPublicationCategoryCollectionQuery()
         )
         res.status(200).json(categories)
     })
