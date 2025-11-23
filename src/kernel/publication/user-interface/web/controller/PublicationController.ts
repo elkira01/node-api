@@ -50,9 +50,7 @@ export class PublicationController extends AppAbstractController {
             await this.publicationCollection.collectionForSelect(
                 new GetPublicationCollectionQuery(
                     parsedQuery.pagination,
-                    parsedQuery.search,
-                    parsedQuery.sortOrder,
-                    parsedQuery.filter
+                    parsedQuery.search
                 )
             )
         res.status(200).json(publications)

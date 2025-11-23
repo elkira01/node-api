@@ -14,11 +14,17 @@ export class PublicationCollectionRepositoryImpl
     async collection(
         query: GetPublicationCollectionQuery
     ): Promise<CollectionResponseType<PublicationCollectionViewModel>> {
-        let parameterQueryClause = this.queryBuilder.sql``
+        let searchQueryClause = this.queryBuilder.sql``
+        let filterQueryClause = this.queryBuilder.sql``
 
         if (query.search) {
-            parameterQueryClause = this.queryBuilder
-                .sql`WHERE auth."firstName" ILIKE ${query.search} OR auth."lastName" ILIKE ${query.search}`
+            searchQueryClause = this.queryBuilder
+                .sql` ${query.filter ? this.queryBuilder.sql`AND` : this.queryBuilder.sql`WHERE`} auth."firstName" ILIKE ${query.search} OR auth."lastName" ILIKE ${query.search}`
+        }
+
+        if (query.filter?.status) {
+            filterQueryClause = this.queryBuilder
+                .sql`WHERE status = ${query.filter.status}::"PublicationStatus"`
         }
 
         const baseQueryClause = this.queryBuilder.sql`
@@ -38,7 +44,7 @@ export class PublicationCollectionRepositoryImpl
                 OFFSET ${query.getStartIndex()}`
 
         const completeQuery = this.queryBuilder
-            .sql`${baseQueryClause}${parameterQueryClause}${paginationClause}`
+            .sql`${baseQueryClause}${filterQueryClause}${searchQueryClause}${paginationClause}`
 
         const results = await this.entityManager.$queryRaw(completeQuery)
 

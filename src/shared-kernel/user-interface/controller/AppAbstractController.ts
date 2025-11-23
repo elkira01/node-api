@@ -78,7 +78,7 @@ export abstract class AppAbstractController {
                     limit: MAX_LIMIT,
                 },
                 sortOrder: query['sort'],
-                filter: filters,
+                filter: filters as any,
                 search: query['q'],
             }
         }
@@ -89,7 +89,7 @@ export abstract class AppAbstractController {
                 limit: parseInt(limit),
             },
             sortOrder: query['sort'],
-            filter: filters,
+            filter: filters as any,
             search: query['q'],
         }
     }
