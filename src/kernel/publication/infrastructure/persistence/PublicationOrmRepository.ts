@@ -1,6 +1,5 @@
 import { IPublicationRepository } from '../../domain/repository/IPublicationRepository'
 import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
-import { AbstractCollectionQuery } from '../../../../shared-kernel/application/query/AbstractCollectionQuery'
 import { PublicationType } from '../../domain/type/PublicationType'
 import { Publication } from '../../domain/entity/Publication'
 
@@ -13,7 +12,7 @@ export class PublicationOrmRepository
     }
 
     async findById(id: any): Promise<Publication | null> {
-        const resp = await this.repositoryClient.publication.findUnique({
+        const resp = await this.entityManager.publication.findUnique({
             where: { id: id },
         })
 
@@ -39,7 +38,7 @@ export class PublicationOrmRepository
 
     async save(payload: Publication): Promise<void> {
         !payload.getId()
-            ? await this.repositoryClient.publication.create({
+            ? await this.entityManager.publication.create({
                   data: {
                       title: payload.getTitle(),
                       type: payload.getPublicationType(),
@@ -54,7 +53,7 @@ export class PublicationOrmRepository
                       status: payload.getStatus(),
                   },
               })
-            : await this.repositoryClient.publication.update({
+            : await this.entityManager.publication.update({
                   where: { id: payload.getId() },
                   data: {
                       title: payload.getTitle(),
@@ -72,7 +71,7 @@ export class PublicationOrmRepository
     }
 
     async delete(id: any): Promise<void> {
-        await this.repositoryClient.publication.delete({
+        await this.entityManager.publication.delete({
             where: { id: id },
         })
     }

@@ -15,7 +15,7 @@ export class AuthorReadModelRepositoryImpl
         super()
     }
     async viewAuthor(query: GetAuthorQuery): Promise<AuthorViewModel | null> {
-        const author = await this.repositoryClient.author.findUnique({
+        const author = await this.entityManager.author.findUnique({
             where: { id: query.authorId },
             include: { publications: true },
         })

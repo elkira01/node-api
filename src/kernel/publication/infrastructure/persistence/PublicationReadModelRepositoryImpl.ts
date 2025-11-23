@@ -1,8 +1,4 @@
-import { IPublicationCollection } from '../../application/collection/IPublicationCollection'
 import { AbstractOrmRepository } from '../../../../shared-kernel/infrastructure/prisma/AbstractOrmRepository'
-import { GetPublicationCollectionQuery } from '../../application/use-cases/query/GetPublicationCollectionQuery'
-import { PublicationSelectViewModel } from '../../application/view-models/PublicationSelectViewModel'
-import { PublicationCollectionViewModel } from '../../application/view-models/PublicationCollectionViewModel'
 import { PublicationStatus } from '../../domain/type/PublicationStatus'
 import { IPublicationReadModel } from '../../application/read-model/IPublicationReadModel'
 import { GetPublicationQuery } from '../../application/use-cases/query/GetPublicationQuery'
@@ -10,8 +6,6 @@ import {
     BookViewModel,
     MagazineViewModel,
 } from '../../application/view-models/PublicationViewModel'
-import { query } from 'express'
-import { undefined } from 'zod'
 import { NotFoundException } from '../../../../shared-kernel/domain/NotFoundException'
 
 export class PublicationReadModelRepositoryImpl
@@ -19,7 +13,7 @@ export class PublicationReadModelRepositoryImpl
     implements IPublicationReadModel
 {
     async viewBook(query: GetPublicationQuery): Promise<BookViewModel> {
-        const results = await this.repositoryClient.$queryRaw`
+        const results = await this.entityManager.$queryRaw`
                 SELECT p.id AS id, 
                        p.title as title, 
                        p."authorId" as "authorId",
@@ -67,7 +61,7 @@ export class PublicationReadModelRepositoryImpl
     }
 
     async viewMagazine(query: GetPublicationQuery): Promise<MagazineViewModel> {
-        const results = await this.repositoryClient.$queryRaw`
+        const results = await this.entityManager.$queryRaw`
                 SELECT p.id AS id, 
                        p.title as title, 
                        p."authorId" as author_id,

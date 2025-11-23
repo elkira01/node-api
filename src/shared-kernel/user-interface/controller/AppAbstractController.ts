@@ -59,22 +59,38 @@ export abstract class AppAbstractController {
         const page = query['page[offset]'] ?? DEFAULT_OFFSET
         const limit = query['page[limit]'] ?? DEFAULT_LIMIT
 
+        const filters = Object.fromEntries(
+            new Map(
+                Object.entries(query).filter(
+                    ([key]) =>
+                        key !== 'page[offset]' &&
+                        key !== 'page[limit]' &&
+                        key !== 'q' &&
+                        key !== 'sort'
+                )
+            )
+        )
+
         if (limit > MAX_LIMIT) {
             return {
-                page: parseInt(page),
-                limit: MAX_LIMIT,
-                sort: query['sort'],
-                filter: query['filter'],
-                q: query['q'],
+                pagination: {
+                    page: parseInt(page),
+                    limit: MAX_LIMIT,
+                },
+                sortOrder: query['sort'],
+                filter: filters,
+                search: query['q'],
             }
         }
 
         return {
-            page: parseInt(page),
-            limit: parseInt(limit),
-            sort: query['sort'],
-            filter: query['filter'],
-            q: query['q'],
+            pagination: {
+                page: parseInt(page),
+                limit: parseInt(limit),
+            },
+            sortOrder: query['sort'],
+            filter: filters,
+            search: query['q'],
         }
     }
 

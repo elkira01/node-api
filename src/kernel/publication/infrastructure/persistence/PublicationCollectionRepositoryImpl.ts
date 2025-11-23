@@ -5,7 +5,6 @@ import { PublicationSelectViewModel } from '../../application/view-models/Public
 import { PublicationCollectionViewModel } from '../../application/view-models/PublicationCollectionViewModel'
 import { PublicationStatus } from '../../domain/type/PublicationStatus'
 import { GetPublicationCollectionByCategoryQuery } from '../../application/use-cases/query/GetPublicationCollectionByCategoryQuery'
-import _ from 'lodash'
 import { CollectionResponseType } from '../../../../shared-kernel/application/response/CollectionResponseType'
 
 export class PublicationCollectionRepositoryImpl
@@ -15,42 +14,33 @@ export class PublicationCollectionRepositoryImpl
     async collection(
         query: GetPublicationCollectionQuery
     ): Promise<CollectionResponseType<PublicationCollectionViewModel>> {
-        let parameterQuery = ''
+        let parameterQueryClause = this.queryBuilder.sql``
 
-        if (query.query) {
-            parameterQuery = parameterQuery.concat(
-                `WHERE ${Object.entries(query.query).reduce(
-                    (q: string, [key, value], index) =>
-                        q.concat(
-                            `${_.camelCase(key)} ILIKE '%${value}%' ${index < Object.entries(query.query ?? {}).length ? ', AND' : ''}`
-                        ),
-                    ''
-                )} `
-            )
+        if (query.search) {
+            parameterQueryClause = this.queryBuilder
+                .sql`WHERE auth."firstName" ILIKE ${query.search} OR auth."lastName" ILIKE ${query.search}`
         }
 
-        if (query.order) {
-            parameterQuery = parameterQuery.concat(
-                ` ORDER BY ${Object.entries(query.order).reduce((q: string, [key, value], index) => q.concat(`${_.camelCase(key)} ${value} ${index < Object.entries(query.order ?? {}).length ? ', AND' : ''}`), '')} `
-            )
-        }
+        const baseQueryClause = this.queryBuilder.sql`
+            SELECT
+                   p.id as id, p.title as title, "p"."authorId" as author_id, "p"."coverImageUrl" as cover_image_url, "p"."sellingPrice" as selling_price, p.status as status, p."createdAt" as created_at,
+                   pc.designation as category,
+                   auth."firstName" || ' ' || auth."lastName" as author
+            FROM
+                   "Publication" AS p
+                       JOIN
+                   "PublicationCategory" AS pc ON p."categoryId" = pc.id
+                       JOIN
+                   "Author" AS auth ON p."authorId" = auth."id"`
 
-        console.log('parameters', parameterQuery)
-
-        const results = await this.repositoryClient.$queryRaw`
-            SELECT 
-                p.id as id, p.title as title, "p"."authorId" as author_id, "p"."coverImageUrl" as cover_image_url, "p"."sellingPrice" as selling_price, p.status as status, p."createdAt" as created_at,
-                pc.designation as category, 
-                auth."firstName" || auth."lastName" as author
-            FROM 
-                    "Publication" AS p 
-                JOIN
-                    "PublicationCategory" AS pc ON p."categoryId" = pc.id 
-                JOIN
-                    "Author" AS auth ON p."authorId" = auth."id"
+        const paginationClause = this.queryBuilder.sql`
             LIMIT ${query.pagination.limit} 
-                OFFSET ${query.getStartIndex()}
-            `
+                OFFSET ${query.getStartIndex()}`
+
+        const completeQuery = this.queryBuilder
+            .sql`${baseQueryClause}${parameterQueryClause}${paginationClause}`
+
+        const results = await this.entityManager.$queryRaw(completeQuery)
 
         return {
             data: (results as any[]).map((item: any) => {
@@ -70,7 +60,7 @@ export class PublicationCollectionRepositoryImpl
                 pagination: {
                     page: query.pagination.page,
                     limit: query.pagination.limit,
-                    total: await this.repositoryClient.publication.count(),
+                    total: await this.entityManager.publication.count(),
                 },
             },
         }
@@ -79,12 +69,12 @@ export class PublicationCollectionRepositoryImpl
     async collectionForSelect(
         query: GetPublicationCollectionQuery
     ): Promise<CollectionResponseType<PublicationSelectViewModel>> {
-        const results = await this.repositoryClient.publication.findMany({
+        const results = await this.entityManager.publication.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
             where: {
                 title: {
-                    startsWith: query.query?.title,
+                    startsWith: query.search,
                     mode: 'insensitive',
                 },
             },
@@ -103,7 +93,7 @@ export class PublicationCollectionRepositoryImpl
                 pagination: {
                     page: query.pagination.page,
                     limit: query.pagination.limit,
-                    total: await this.repositoryClient.publication.count(),
+                    total: await this.entityManager.publication.count(),
                 },
             },
         }
@@ -111,7 +101,7 @@ export class PublicationCollectionRepositoryImpl
     async collectionByCategory(
         query: GetPublicationCollectionByCategoryQuery
     ): Promise<CollectionResponseType<PublicationCollectionViewModel>> {
-        const results = await this.repositoryClient.publication.findMany({
+        const results = await this.entityManager.publication.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
             where: {
@@ -140,7 +130,7 @@ export class PublicationCollectionRepositoryImpl
                 pagination: {
                     page: query.pagination.page,
                     limit: query.pagination.limit,
-                    total: await this.repositoryClient.publication.count(),
+                    total: await this.entityManager.publication.count(),
                 },
             },
         }

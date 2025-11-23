@@ -1,9 +1,10 @@
-import { PrismaClient } from '../../../infrastructure/generated/client'
+import { Prisma, PrismaClient } from '../../../infrastructure/generated/client'
 
 export abstract class AbstractOrmRepository {
-    protected repositoryClient: PrismaClient
+    protected entityManager: PrismaClient
+    protected queryBuilder = Prisma
 
     constructor() {
-        this.repositoryClient = new PrismaClient()
+        this.entityManager = new PrismaClient()
     }
 }

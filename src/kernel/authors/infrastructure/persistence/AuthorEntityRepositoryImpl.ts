@@ -9,7 +9,7 @@ export class AuthorEntityRepositoryImpl
     implements IAuthorRepository
 {
     async findByKey(key: string, value: any): Promise<Author | null> {
-        const resp = await this.repositoryClient.author.findUnique({
+        const resp = await this.entityManager.author.findUnique({
             where: { [key]: value } as any,
         })
 
@@ -33,7 +33,7 @@ export class AuthorEntityRepositoryImpl
 
     async save(payload: Author): Promise<void> {
         !payload.getId()
-            ? await this.repositoryClient.author.create({
+            ? await this.entityManager.author.create({
                   data: {
                       firstName: payload.getFirstName(),
                       lastName: payload.getLastName(),
@@ -43,7 +43,7 @@ export class AuthorEntityRepositoryImpl
                       pictureUrl: payload.getProfileImageUrl(),
                   },
               })
-            : await this.repositoryClient.author.update({
+            : await this.entityManager.author.update({
                   where: { id: payload.getId() },
                   data: {
                       firstName: payload.getFirstName(),
@@ -57,7 +57,7 @@ export class AuthorEntityRepositoryImpl
     }
 
     async delete(id: any): Promise<void> {
-        await this.repositoryClient.author.delete({
+        await this.entityManager.author.delete({
             where: { id: id },
         })
     }

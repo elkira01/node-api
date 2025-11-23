@@ -11,16 +11,16 @@ export class AuthorCollectionRepositoryImpl
     async collection(
         query: GetAuthorCollectionQuery
     ): Promise<AuthorCollectionViewModel[]> {
-        const results = await this.repositoryClient.author.findMany({
+        const results = await this.entityManager.author.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
             where: {
                 firstName: {
-                    startsWith: query.search?.q,
+                    startsWith: query.search,
                     mode: 'insensitive',
                 },
                 lastName: {
-                    startsWith: query.search?.q,
+                    startsWith: query.search,
                     mode: 'insensitive',
                 },
             },
@@ -42,20 +42,20 @@ export class AuthorCollectionRepositoryImpl
     async collectionForSelect(
         query: GetAuthorCollectionQuery
     ): Promise<AuthorSelectViewModel[]> {
-        const results = await this.repositoryClient.author.findMany({
+        const results = await this.entityManager.author.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
             where: {
                 OR: [
                     {
                         firstName: {
-                            startsWith: query.search?.q,
+                            startsWith: query.search,
                             mode: 'insensitive',
                         },
                     },
                     {
                         lastName: {
-                            startsWith: query.search?.q,
+                            startsWith: query.search,
                             mode: 'insensitive',
                         },
                     },

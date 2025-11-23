@@ -4,7 +4,7 @@ export abstract class AbstractCollectionQuery {
     constructor(
         public pagination: Pagination = { page: 1, limit: 10 },
         public search?: SearchBy,
-        public sort?: SortBy,
+        public sortOrder?: SortBy,
         public filter?: FilterBy
     ) {}
 

@@ -5,9 +5,10 @@ import { PublicationStatus } from '../../../domain/type/PublicationStatus'
 export class GetPublicationCollectionQuery extends AbstractCollectionQuery {
     constructor(
         public pagination: Pagination,
-        public query?: { title?: string; author?: string },
+        public search?: string,
+        public sortOrder?: any,
         public filter?: { status?: PublicationStatus; category?: string }
     ) {
-        super(pagination, query, undefined, filter)
+        super(pagination, search, sortOrder, filter)
     }
 }

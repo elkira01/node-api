@@ -21,17 +21,20 @@ export class PublicationController extends AppAbstractController {
 
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
+
         const publications = await this.publicationCollection.collection(
             new GetPublicationCollectionQuery(
-                { page: 1, limit: 10 },
-                { author: 'test' }
+                parsedQuery.pagination,
+                parsedQuery.search,
+                parsedQuery.sortOrder,
+                parsedQuery.filter
             )
         )
         res.status(200).json(publications)
     })
 
     getByCategory = this.asyncHandler(async (req: Request, res: Response) => {
-        const parsedQuery = this.parseCollectionQuery(req.query)
+        // const parsedQuery = this.parseCollectionQuery(req.query)
         const params = req.params
 
         const publications =
@@ -45,7 +48,12 @@ export class PublicationController extends AppAbstractController {
         const parsedQuery = this.parseCollectionQuery(req.query)
         const publications =
             await this.publicationCollection.collectionForSelect(
-                new GetPublicationCollectionQuery({ page: 1, limit: 10 })
+                new GetPublicationCollectionQuery(
+                    parsedQuery.pagination,
+                    parsedQuery.search,
+                    parsedQuery.sortOrder,
+                    parsedQuery.filter
+                )
             )
         res.status(200).json(publications)
     })
@@ -67,20 +75,20 @@ export class PublicationController extends AppAbstractController {
     })
 
     create = this.asyncHandler(async (req: Request, res: Response) => {
-        const data = req.body
+        const payload = req.body
 
         const resp = await this.handleCommand(
             new CreatePublicationCommand(
-                data.type,
-                data.title,
-                data.authorId,
-                data.categoryId,
-                data.resume,
-                data.coverImageUrl,
-                data.contentFileUrl,
-                data.sellingPrice,
-                data.rentalPrice,
-                data.rentalPeriod
+                payload.type,
+                payload.title,
+                payload.authorId,
+                payload.categoryId,
+                payload.resume,
+                payload.coverImageUrl,
+                payload.contentFileUrl,
+                payload.sellingPrice,
+                payload.rentalPrice,
+                payload.rentalPeriod
             )
         )
         res.status(201).json({ id: resp })
