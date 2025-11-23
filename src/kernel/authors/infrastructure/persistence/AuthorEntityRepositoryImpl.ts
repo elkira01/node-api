@@ -31,8 +31,8 @@ export class AuthorEntityRepositoryImpl
         return Promise.resolve(null)
     }
 
-    async save(payload: Author): Promise<void> {
-        !payload.getId()
+    async save(payload: Author): Promise<any> {
+        const author = !payload.getId()
             ? await this.entityManager.author.create({
                   data: {
                       firstName: payload.getFirstName(),
@@ -54,6 +54,8 @@ export class AuthorEntityRepositoryImpl
                       pictureUrl: payload.getProfileImageUrl(),
                   },
               })
+
+        return author.id
     }
 
     async delete(id: any): Promise<void> {

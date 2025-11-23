@@ -2,11 +2,11 @@ POST {{baseUrl}}/author/create
 Content-Type: application/json
 
 {
-  "firstName": "Kocy",
-  "lastName": "Yanno",
-  "email": "kocyyano@email.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe23@email.com",
   "profileImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/profile-images/H.G._Wells_by_Beresford.jpg",
-  "biography": "C'est Kocy",
+  "biography": "Unknown",
   "type": "AUTHOR"
 }
 

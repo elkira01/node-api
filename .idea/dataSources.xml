@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://ep-holy-heart-ad5ye3a8-pooler.c-2.us-east-1.aws.neon.tech/neondb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db_kbm@localhost" uuid="c473b44c-e824-43e2-ae9b-85b71d86037e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/db_kbm</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

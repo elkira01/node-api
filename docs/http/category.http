@@ -10,8 +10,8 @@ POST {{baseUrl}}/publication-category/create
 Content-Type: application/json
 
 {
-  "designation": "Sciences fiction",
-  "description": "RAS",
+  "designation": "Test Category",
+  "description": "Test Category",
   "imageUrl": ""
 }
 

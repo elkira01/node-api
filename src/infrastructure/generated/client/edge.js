@@ -197,7 +197,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/elkira01/workspace/PROJECTS/node-api/src/infrastructure/generated/client",
+      "value": "C:\\workspace\\PROJECTS\\node-api\\src\\infrastructure\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -206,12 +206,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/elkira01/workspace/PROJECTS/node-api/prisma/schema.prisma",
+    "sourceFilePath": "C:\\workspace\\PROJECTS\\node-api\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -225,7 +225,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

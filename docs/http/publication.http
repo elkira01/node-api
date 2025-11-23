@@ -5,8 +5,8 @@ Content-Type: application/json
 {
   "title": "100% JEUNES",
   "type": "MAGAZINE",
-  "authorId": "f8c148a5-95e6-4ad0-9dd0-d9714b53ac62",
-  "categoryId": "b61b559d-5f43-4055-b6de-233d83533aae",
+  "authorId": "da01779f-26d7-4457-873d-d137bd8593b4",
+  "categoryId": "b5b2c7fd-820c-4fd7-ab57-0d5bfe814392",
   "coverImageUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/covers/War-of-the-worlds-tripod.jpg",
   "contentFileUrl": "https://jaqtlievrad7l14s.public.blob.vercel-storage.com/pdf/La%20Guerre%20des%20mondes%20%28H.%20G.%20Wells%29%20%28Z-Library%29.pdf",
   "sellingPrice": 100,
@@ -52,7 +52,7 @@ GET {{baseUrl}}/publication/7c1888e9-3cee-45e2-aa1d-249fcb0f1013/magazine
 Accept: application/json
 
 ###
-GET {{baseUrl}}/publication/collection?page[offset]=1&page[limit]=5&q=Johnny
+GET {{baseUrl}}/publication/collection?page[offset]=1&page[limit]=5
 Accept: application/json
 
 ###

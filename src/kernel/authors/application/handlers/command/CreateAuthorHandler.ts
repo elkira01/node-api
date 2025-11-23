@@ -15,8 +15,6 @@ export class CreateAuthorHandler {
             command.email,
             command.profileImageUrl
         )
-        await this.repository.save(author)
-
-        return author.getId()
+        return await this.repository.save(author)
     }
 }
