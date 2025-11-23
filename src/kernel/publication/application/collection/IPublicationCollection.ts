@@ -2,17 +2,18 @@ import { PublicationSelectViewModel } from '../view-models/PublicationSelectView
 import { PublicationCollectionViewModel } from '../view-models/PublicationCollectionViewModel'
 import { GetPublicationCollectionQuery } from '../use-cases/query/GetPublicationCollectionQuery'
 import { GetPublicationCollectionByCategoryQuery } from '../use-cases/query/GetPublicationCollectionByCategoryQuery'
+import { CollectionResponseType } from '../../../../shared-kernel/application/response/CollectionResponseType'
 
 export interface IPublicationCollection {
     collection(
         query: GetPublicationCollectionQuery
-    ): Promise<PublicationCollectionViewModel[]>
+    ): Promise<CollectionResponseType<PublicationCollectionViewModel>>
 
     collectionByCategory(
         query: GetPublicationCollectionByCategoryQuery
-    ): Promise<PublicationCollectionViewModel[]>
+    ): Promise<CollectionResponseType<PublicationCollectionViewModel>>
 
     collectionForSelect(
         query: GetPublicationCollectionQuery
-    ): Promise<PublicationSelectViewModel[]>
+    ): Promise<CollectionResponseType<PublicationSelectViewModel>>
 }

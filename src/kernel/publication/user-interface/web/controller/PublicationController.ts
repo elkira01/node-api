@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
-import { AppAbstractController } from '../../../../shared-kernel/user-interface/controller/AppAbstractController'
-import { GetPublicationCollectionQuery } from '../../application/use-cases/query/GetPublicationCollectionQuery'
-import { GetPublicationQuery } from '../../application/use-cases/query/GetPublicationQuery'
-import { CreatePublicationCommand } from '../../application/use-cases/command/CreatePublicationCommand'
-import { UpdatePublicationCommand } from '../../application/use-cases/command/UpdatePublicationCommand'
-import { ChangePublicationStatusCommand } from '../../application/use-cases/command/ChangePublicationStatusCommand'
-import { DeletePublicationCommand } from '../../application/use-cases/command/DeletePublicationCommand'
-import { IPublicationCollection } from '../../application/collection/IPublicationCollection'
-import { PublicationReadModelRepositoryImpl } from '../../infrastructure/persistence/PublicationReadModelRepositoryImpl'
-import { PublicationType } from '../../domain/type/PublicationType'
-import { GetPublicationCollectionByCategoryQuery } from '../../application/use-cases/query/GetPublicationCollectionByCategoryQuery'
+import { AppAbstractController } from '../../../../../shared-kernel/user-interface/controller/AppAbstractController'
+import { GetPublicationCollectionQuery } from '../../../application/use-cases/query/GetPublicationCollectionQuery'
+import { GetPublicationQuery } from '../../../application/use-cases/query/GetPublicationQuery'
+import { CreatePublicationCommand } from '../../../application/use-cases/command/CreatePublicationCommand'
+import { UpdatePublicationCommand } from '../../../application/use-cases/command/UpdatePublicationCommand'
+import { ChangePublicationStatusCommand } from '../../../application/use-cases/command/ChangePublicationStatusCommand'
+import { DeletePublicationCommand } from '../../../application/use-cases/command/DeletePublicationCommand'
+import { IPublicationCollection } from '../../../application/collection/IPublicationCollection'
+import { PublicationReadModelRepositoryImpl } from '../../../infrastructure/persistence/PublicationReadModelRepositoryImpl'
+import { PublicationType } from '../../../domain/type/PublicationType'
+import { GetPublicationCollectionByCategoryQuery } from '../../../application/use-cases/query/GetPublicationCollectionByCategoryQuery'
 
 export class PublicationController extends AppAbstractController {
     constructor(
@@ -21,37 +21,33 @@ export class PublicationController extends AppAbstractController {
 
     getAll = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
-        const publication = await this.publicationCollection.collection(
+        const publications = await this.publicationCollection.collection(
             new GetPublicationCollectionQuery(
                 { page: 1, limit: 10 },
                 { author: 'test' }
             )
         )
-        res.status(200).json(
-            this.collectionResponse(publication, publication.length)
-        )
+        res.status(200).json(publications)
     })
 
     getByCategory = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
         const params = req.params
 
-        const publication =
+        const publications =
             await this.publicationCollection.collectionByCategory(
                 new GetPublicationCollectionByCategoryQuery(params?.categoryId)
             )
-        res.status(200).json(publication)
+        res.status(200).json(publications)
     })
 
     getAllForSelect = this.asyncHandler(async (req: Request, res: Response) => {
         const parsedQuery = this.parseCollectionQuery(req.query)
-        const publication =
+        const publications =
             await this.publicationCollection.collectionForSelect(
                 new GetPublicationCollectionQuery({ page: 1, limit: 10 })
             )
-        res.status(200).json(
-            this.collectionResponse(publication, publication.length)
-        )
+        res.status(200).json(publications)
     })
 
     getOne = this.asyncHandler(async (req: Request, res: Response) => {

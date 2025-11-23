@@ -6,6 +6,7 @@ import { PublicationCollectionViewModel } from '../../application/view-models/Pu
 import { PublicationStatus } from '../../domain/type/PublicationStatus'
 import { GetPublicationCollectionByCategoryQuery } from '../../application/use-cases/query/GetPublicationCollectionByCategoryQuery'
 import _ from 'lodash'
+import { CollectionResponseType } from '../../../../shared-kernel/application/response/CollectionResponseType'
 
 export class PublicationCollectionRepositoryImpl
     extends AbstractOrmRepository
@@ -13,7 +14,7 @@ export class PublicationCollectionRepositoryImpl
 {
     async collection(
         query: GetPublicationCollectionQuery
-    ): Promise<PublicationCollectionViewModel[]> {
+    ): Promise<CollectionResponseType<PublicationCollectionViewModel>> {
         let parameterQuery = ''
 
         if (query.query) {
@@ -49,27 +50,35 @@ export class PublicationCollectionRepositoryImpl
                     "Author" AS auth ON p."authorId" = auth."id"
             LIMIT ${query.pagination.limit} 
                 OFFSET ${query.getStartIndex()}
-            ${parameterQuery}
             `
 
-        return (results as any[]).map((item: any) => {
-            return new PublicationCollectionViewModel(
-                item.id,
-                item.title,
-                item.author_id,
-                item.author,
-                item.category,
-                item.cover_image_url,
-                item.selling_price as unknown as number,
-                item.status as PublicationStatus,
-                item.created_at
-            )
-        })
+        return {
+            data: (results as any[]).map((item: any) => {
+                return new PublicationCollectionViewModel(
+                    item.id,
+                    item.title,
+                    item.author_id,
+                    item.author,
+                    item.category,
+                    item.cover_image_url,
+                    item.selling_price as unknown as number,
+                    item.status as PublicationStatus,
+                    item.created_at
+                )
+            }),
+            meta: {
+                pagination: {
+                    page: query.pagination.page,
+                    limit: query.pagination.limit,
+                    total: await this.repositoryClient.publication.count(),
+                },
+            },
+        }
     }
 
     async collectionForSelect(
         query: GetPublicationCollectionQuery
-    ): Promise<PublicationSelectViewModel[]> {
+    ): Promise<CollectionResponseType<PublicationSelectViewModel>> {
         const results = await this.repositoryClient.publication.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
@@ -81,18 +90,27 @@ export class PublicationCollectionRepositoryImpl
             },
         })
 
-        return results.map(
-            (item) =>
-                new PublicationSelectViewModel(
-                    item.id,
-                    item.title,
-                    item.coverImageUrl
-                )
-        )
+        return {
+            data: results.map(
+                (item) =>
+                    new PublicationSelectViewModel(
+                        item.id,
+                        item.title,
+                        item.coverImageUrl
+                    )
+            ),
+            meta: {
+                pagination: {
+                    page: query.pagination.page,
+                    limit: query.pagination.limit,
+                    total: await this.repositoryClient.publication.count(),
+                },
+            },
+        }
     }
     async collectionByCategory(
         query: GetPublicationCollectionByCategoryQuery
-    ): Promise<PublicationCollectionViewModel[]> {
+    ): Promise<CollectionResponseType<PublicationCollectionViewModel>> {
         const results = await this.repositoryClient.publication.findMany({
             skip: query.getStartIndex(),
             take: query.pagination.limit,
@@ -104,19 +122,27 @@ export class PublicationCollectionRepositoryImpl
             },
         })
 
-        return (results as any[]).map(
-            (item: any) =>
-                new PublicationCollectionViewModel(
+        return {
+            data: (results as any[]).map((item: any) => {
+                return new PublicationCollectionViewModel(
                     item.id,
                     item.title,
-                    item.authorId,
-                    `${item.Author?.firstName} ${item.Author?.lastName}`,
-                    null,
-                    item.coverImageUrl,
-                    item.sellingPrice as unknown as number,
+                    item.author_id,
+                    item.author,
+                    item.category,
+                    item.cover_image_url,
+                    item.selling_price as unknown as number,
                     item.status as PublicationStatus,
-                    item.createdAt
+                    item.created_at
                 )
-        )
+            }),
+            meta: {
+                pagination: {
+                    page: query.pagination.page,
+                    limit: query.pagination.limit,
+                    total: await this.repositoryClient.publication.count(),
+                },
+            },
+        }
     }
 }

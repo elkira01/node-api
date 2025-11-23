@@ -6,9 +6,8 @@ export class GetPublicationCollectionQuery extends AbstractCollectionQuery {
     constructor(
         public pagination: Pagination,
         public query?: { title?: string; author?: string },
-        public order?: { created_at: ['ASC', 'DESC']; title: ['ASC', 'DESC'] },
         public filter?: { status?: PublicationStatus; category?: string }
     ) {
-        super(pagination, query, order, filter)
+        super(pagination, query, undefined, filter)
     }
 }

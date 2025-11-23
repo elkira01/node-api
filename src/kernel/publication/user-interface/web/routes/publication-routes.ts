@@ -1,7 +1,7 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import { PublicationController } from '../controller/PublicationController'
-import { servicesBindings } from '../../../../infrastructure/config/services-bindings'
+import { servicesBindings } from '../../../../../infrastructure/config/services-bindings'
 
 const publicationController = new PublicationController(
     servicesBindings.publication.get('IPublicationCollection'),

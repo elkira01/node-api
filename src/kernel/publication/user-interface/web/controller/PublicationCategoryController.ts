@@ -1,10 +1,10 @@
-import { AppAbstractController } from '../../../../shared-kernel/user-interface/controller/AppAbstractController'
-import { GetPublicationCategoryCollectionQuery } from '../../application/use-cases/query/GetPublicationCategoryCollectionQuery'
+import { AppAbstractController } from '../../../../../shared-kernel/user-interface/controller/AppAbstractController'
+import { GetPublicationCategoryCollectionQuery } from '../../../application/use-cases/query/GetPublicationCategoryCollectionQuery'
 import { Request, Response } from 'express'
-import { GetPublicationCategoryQuery } from '../../application/use-cases/query/GetPublicationCategoryQuery'
-import { CreatePublicationCategoryCommand } from '../../application/use-cases/command/category/CreatePublicationCategoryCommand'
-import { UpdatePublicationCategoryCommand } from '../../application/use-cases/command/category/UpdatePublicationCategoryCommand'
-import { DeletePublicationCategoryCommand } from '../../application/use-cases/command/category/DeletePublicationCategoryCommand'
+import { GetPublicationCategoryQuery } from '../../../application/use-cases/query/GetPublicationCategoryQuery'
+import { CreatePublicationCategoryCommand } from '../../../application/use-cases/command/category/CreatePublicationCategoryCommand'
+import { UpdatePublicationCategoryCommand } from '../../../application/use-cases/command/category/UpdatePublicationCategoryCommand'
+import { DeletePublicationCategoryCommand } from '../../../application/use-cases/command/category/DeletePublicationCategoryCommand'
 
 export class PublicationCategoryController extends AppAbstractController {
     constructor() {
