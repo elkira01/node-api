@@ -68,6 +68,18 @@ export class PublicationCollectionRepositoryImpl
                     limit: query.pagination.limit,
                     total: await this.entityManager.publication.count(),
                 },
+                filter: {
+                    status: [
+                        PublicationStatus.DRAFT,
+                        PublicationStatus.PUBLISHED,
+                    ],
+                },
+                order: [
+                    'created_at_asc',
+                    'created_at_desc',
+                    'title_asc',
+                    'title_desc',
+                ]
             },
         }
     }

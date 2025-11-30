@@ -7,7 +7,7 @@ export class GetPublicationCollectionQuery extends AbstractCollectionQuery {
         public pagination: Pagination,
         public search?: string,
         public sortOrder?: any,
-        public filter?: { status?: PublicationStatus; category?: string }
+        public filter?: { status?: PublicationStatus }
     ) {
         super(pagination, search, sortOrder, filter)
     }
