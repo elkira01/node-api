@@ -22,7 +22,7 @@ export class PublicationCollectionRepositoryImpl
                 .sql` ${query.filter ? this.queryBuilder.sql`AND` : this.queryBuilder.sql`WHERE`} auth."firstName" ILIKE ${query.search} OR auth."lastName" ILIKE ${query.search}`
         }
 
-        if (query.filter?.status) {
+        if (query.filter?.status && (query.filter.status as any) !== 'all') {
             filterQueryClause = this.queryBuilder
                 .sql`WHERE status = ${query.filter.status}::"PublicationStatus"`
         }
