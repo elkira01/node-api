@@ -70,6 +70,7 @@ export class PublicationCollectionRepositoryImpl
                 },
                 filter: {
                     status: [
+                        'all',
                         PublicationStatus.DRAFT,
                         PublicationStatus.PUBLISHED,
                     ],
@@ -79,7 +80,7 @@ export class PublicationCollectionRepositoryImpl
                     'created_at_desc',
                     'title_asc',
                     'title_desc',
-                ]
+                ],
             },
         }
     }
