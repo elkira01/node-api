@@ -52,7 +52,7 @@ GET {{baseUrl}}/publication/7c1888e9-3cee-45e2-aa1d-249fcb0f1013/magazine
 Accept: application/json
 
 ###
-GET {{baseUrl}}/publication/collection?page[offset]=1&page[limit]=5&status=PUBLISHED
+GET {{baseUrl}}/publication/collection?page[offset]=1&page[limit]=5&status=DRAFT
 Accept: application/json
 
 ###

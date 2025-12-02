@@ -71,8 +71,6 @@ export abstract class AppAbstractController {
             )
         )
 
-        console.log(_filter)
-
         const _pagination = {
             page: parseInt(page),
             limit: limit > MAX_LIMIT ? MAX_LIMIT : parseInt(limit),
@@ -80,7 +78,7 @@ export abstract class AppAbstractController {
 
         return {
             pagination: _pagination,
-            sortOrder: query['sort'],
+            sortOrder: query['order'],
             filter: _filter,
             search: query['q'],
         }
