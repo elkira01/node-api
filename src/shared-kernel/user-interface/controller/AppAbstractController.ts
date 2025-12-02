@@ -59,7 +59,7 @@ export abstract class AppAbstractController {
         const page = query['page[offset]'] ?? DEFAULT_OFFSET
         const limit = query['page[limit]'] ?? DEFAULT_LIMIT
 
-        const filters = Object.fromEntries(
+        const _filter = Object.fromEntries(
             new Map(
                 Object.entries(query).filter(
                     ([key]) =>
@@ -71,25 +71,17 @@ export abstract class AppAbstractController {
             )
         )
 
-        if (limit > MAX_LIMIT) {
-            return {
-                pagination: {
-                    page: parseInt(page),
-                    limit: MAX_LIMIT,
-                },
-                sortOrder: query['sort'],
-                filter: filters as any,
-                search: query['q'],
-            }
+        console.log(_filter)
+
+        const _pagination = {
+            page: parseInt(page),
+            limit: limit > MAX_LIMIT ? MAX_LIMIT : parseInt(limit),
         }
 
         return {
-            pagination: {
-                page: parseInt(page),
-                limit: parseInt(limit),
-            },
+            pagination: _pagination,
             sortOrder: query['sort'],
-            filter: filters as any,
+            filter: _filter,
             search: query['q'],
         }
     }

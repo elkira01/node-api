@@ -38,6 +38,11 @@ export type PublicationCategory = $Result.DefaultSelection<Prisma.$PublicationCa
  * 
  */
 export type Publication = $Result.DefaultSelection<Prisma.$PublicationPayload>
+/**
+ * Model TestModel
+ * 
+ */
+export type TestModel = $Result.DefaultSelection<Prisma.$TestModelPayload>
 
 /**
  * Enums
@@ -252,6 +257,16 @@ export class PrismaClient<
     * ```
     */
   get publication(): Prisma.PublicationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.testModel`: Exposes CRUD operations for the **TestModel** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TestModels
+    * const testModels = await prisma.testModel.findMany()
+    * ```
+    */
+  get testModel(): Prisma.TestModelDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -697,7 +712,8 @@ export namespace Prisma {
     UserSession: 'UserSession',
     Author: 'Author',
     PublicationCategory: 'PublicationCategory',
-    Publication: 'Publication'
+    Publication: 'Publication',
+    TestModel: 'TestModel'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -713,7 +729,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "userSession" | "author" | "publicationCategory" | "publication"
+      modelProps: "user" | "userSession" | "author" | "publicationCategory" | "publication" | "testModel"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1064,6 +1080,76 @@ export namespace Prisma {
           count: {
             args: Prisma.PublicationCountArgs<ExtArgs>
             result: $Utils.Optional<PublicationCountAggregateOutputType> | number
+          }
+        }
+      }
+      TestModel: {
+        payload: Prisma.$TestModelPayload<ExtArgs>
+        fields: Prisma.TestModelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TestModelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TestModelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          findFirst: {
+            args: Prisma.TestModelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TestModelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          findMany: {
+            args: Prisma.TestModelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>[]
+          }
+          create: {
+            args: Prisma.TestModelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          createMany: {
+            args: Prisma.TestModelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TestModelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>[]
+          }
+          delete: {
+            args: Prisma.TestModelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          update: {
+            args: Prisma.TestModelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          deleteMany: {
+            args: Prisma.TestModelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TestModelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TestModelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestModelPayload>
+          }
+          aggregate: {
+            args: Prisma.TestModelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTestModel>
+          }
+          groupBy: {
+            args: Prisma.TestModelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TestModelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TestModelCountArgs<ExtArgs>
+            result: $Utils.Optional<TestModelCountAggregateOutputType> | number
           }
         }
       }
@@ -6345,6 +6431,894 @@ export namespace Prisma {
 
 
   /**
+   * Model TestModel
+   */
+
+  export type AggregateTestModel = {
+    _count: TestModelCountAggregateOutputType | null
+    _avg: TestModelAvgAggregateOutputType | null
+    _sum: TestModelSumAggregateOutputType | null
+    _min: TestModelMinAggregateOutputType | null
+    _max: TestModelMaxAggregateOutputType | null
+  }
+
+  export type TestModelAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TestModelSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TestModelMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    amount: number | null
+  }
+
+  export type TestModelMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    amount: number | null
+  }
+
+  export type TestModelCountAggregateOutputType = {
+    id: number
+    name: number
+    amount: number
+    _all: number
+  }
+
+
+  export type TestModelAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type TestModelSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type TestModelMinAggregateInputType = {
+    id?: true
+    name?: true
+    amount?: true
+  }
+
+  export type TestModelMaxAggregateInputType = {
+    id?: true
+    name?: true
+    amount?: true
+  }
+
+  export type TestModelCountAggregateInputType = {
+    id?: true
+    name?: true
+    amount?: true
+    _all?: true
+  }
+
+  export type TestModelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestModel to aggregate.
+     */
+    where?: TestModelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestModels to fetch.
+     */
+    orderBy?: TestModelOrderByWithRelationInput | TestModelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TestModelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestModels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestModels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TestModels
+    **/
+    _count?: true | TestModelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TestModelAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TestModelSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TestModelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TestModelMaxAggregateInputType
+  }
+
+  export type GetTestModelAggregateType<T extends TestModelAggregateArgs> = {
+        [P in keyof T & keyof AggregateTestModel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTestModel[P]>
+      : GetScalarType<T[P], AggregateTestModel[P]>
+  }
+
+
+
+
+  export type TestModelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestModelWhereInput
+    orderBy?: TestModelOrderByWithAggregationInput | TestModelOrderByWithAggregationInput[]
+    by: TestModelScalarFieldEnum[] | TestModelScalarFieldEnum
+    having?: TestModelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TestModelCountAggregateInputType | true
+    _avg?: TestModelAvgAggregateInputType
+    _sum?: TestModelSumAggregateInputType
+    _min?: TestModelMinAggregateInputType
+    _max?: TestModelMaxAggregateInputType
+  }
+
+  export type TestModelGroupByOutputType = {
+    id: string
+    name: string
+    amount: number
+    _count: TestModelCountAggregateOutputType | null
+    _avg: TestModelAvgAggregateOutputType | null
+    _sum: TestModelSumAggregateOutputType | null
+    _min: TestModelMinAggregateOutputType | null
+    _max: TestModelMaxAggregateOutputType | null
+  }
+
+  type GetTestModelGroupByPayload<T extends TestModelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TestModelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TestModelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TestModelGroupByOutputType[P]>
+            : GetScalarType<T[P], TestModelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TestModelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    amount?: boolean
+  }, ExtArgs["result"]["testModel"]>
+
+  export type TestModelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    amount?: boolean
+  }, ExtArgs["result"]["testModel"]>
+
+  export type TestModelSelectScalar = {
+    id?: boolean
+    name?: boolean
+    amount?: boolean
+  }
+
+
+  export type $TestModelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TestModel"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      amount: number
+    }, ExtArgs["result"]["testModel"]>
+    composites: {}
+  }
+
+  type TestModelGetPayload<S extends boolean | null | undefined | TestModelDefaultArgs> = $Result.GetResult<Prisma.$TestModelPayload, S>
+
+  type TestModelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TestModelFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: TestModelCountAggregateInputType | true
+    }
+
+  export interface TestModelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TestModel'], meta: { name: 'TestModel' } }
+    /**
+     * Find zero or one TestModel that matches the filter.
+     * @param {TestModelFindUniqueArgs} args - Arguments to find a TestModel
+     * @example
+     * // Get one TestModel
+     * const testModel = await prisma.testModel.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TestModelFindUniqueArgs>(args: SelectSubset<T, TestModelFindUniqueArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one TestModel that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {TestModelFindUniqueOrThrowArgs} args - Arguments to find a TestModel
+     * @example
+     * // Get one TestModel
+     * const testModel = await prisma.testModel.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TestModelFindUniqueOrThrowArgs>(args: SelectSubset<T, TestModelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first TestModel that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelFindFirstArgs} args - Arguments to find a TestModel
+     * @example
+     * // Get one TestModel
+     * const testModel = await prisma.testModel.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TestModelFindFirstArgs>(args?: SelectSubset<T, TestModelFindFirstArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first TestModel that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelFindFirstOrThrowArgs} args - Arguments to find a TestModel
+     * @example
+     * // Get one TestModel
+     * const testModel = await prisma.testModel.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TestModelFindFirstOrThrowArgs>(args?: SelectSubset<T, TestModelFindFirstOrThrowArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more TestModels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TestModels
+     * const testModels = await prisma.testModel.findMany()
+     * 
+     * // Get first 10 TestModels
+     * const testModels = await prisma.testModel.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const testModelWithIdOnly = await prisma.testModel.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TestModelFindManyArgs>(args?: SelectSubset<T, TestModelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a TestModel.
+     * @param {TestModelCreateArgs} args - Arguments to create a TestModel.
+     * @example
+     * // Create one TestModel
+     * const TestModel = await prisma.testModel.create({
+     *   data: {
+     *     // ... data to create a TestModel
+     *   }
+     * })
+     * 
+     */
+    create<T extends TestModelCreateArgs>(args: SelectSubset<T, TestModelCreateArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many TestModels.
+     * @param {TestModelCreateManyArgs} args - Arguments to create many TestModels.
+     * @example
+     * // Create many TestModels
+     * const testModel = await prisma.testModel.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TestModelCreateManyArgs>(args?: SelectSubset<T, TestModelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TestModels and returns the data saved in the database.
+     * @param {TestModelCreateManyAndReturnArgs} args - Arguments to create many TestModels.
+     * @example
+     * // Create many TestModels
+     * const testModel = await prisma.testModel.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TestModels and only return the `id`
+     * const testModelWithIdOnly = await prisma.testModel.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TestModelCreateManyAndReturnArgs>(args?: SelectSubset<T, TestModelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a TestModel.
+     * @param {TestModelDeleteArgs} args - Arguments to delete one TestModel.
+     * @example
+     * // Delete one TestModel
+     * const TestModel = await prisma.testModel.delete({
+     *   where: {
+     *     // ... filter to delete one TestModel
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TestModelDeleteArgs>(args: SelectSubset<T, TestModelDeleteArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one TestModel.
+     * @param {TestModelUpdateArgs} args - Arguments to update one TestModel.
+     * @example
+     * // Update one TestModel
+     * const testModel = await prisma.testModel.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TestModelUpdateArgs>(args: SelectSubset<T, TestModelUpdateArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more TestModels.
+     * @param {TestModelDeleteManyArgs} args - Arguments to filter TestModels to delete.
+     * @example
+     * // Delete a few TestModels
+     * const { count } = await prisma.testModel.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TestModelDeleteManyArgs>(args?: SelectSubset<T, TestModelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TestModels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TestModels
+     * const testModel = await prisma.testModel.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TestModelUpdateManyArgs>(args: SelectSubset<T, TestModelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TestModel.
+     * @param {TestModelUpsertArgs} args - Arguments to update or create a TestModel.
+     * @example
+     * // Update or create a TestModel
+     * const testModel = await prisma.testModel.upsert({
+     *   create: {
+     *     // ... data to create a TestModel
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TestModel we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TestModelUpsertArgs>(args: SelectSubset<T, TestModelUpsertArgs<ExtArgs>>): Prisma__TestModelClient<$Result.GetResult<Prisma.$TestModelPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of TestModels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelCountArgs} args - Arguments to filter TestModels to count.
+     * @example
+     * // Count the number of TestModels
+     * const count = await prisma.testModel.count({
+     *   where: {
+     *     // ... the filter for the TestModels we want to count
+     *   }
+     * })
+    **/
+    count<T extends TestModelCountArgs>(
+      args?: Subset<T, TestModelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TestModelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TestModel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TestModelAggregateArgs>(args: Subset<T, TestModelAggregateArgs>): Prisma.PrismaPromise<GetTestModelAggregateType<T>>
+
+    /**
+     * Group by TestModel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestModelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TestModelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TestModelGroupByArgs['orderBy'] }
+        : { orderBy?: TestModelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TestModelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestModelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TestModel model
+   */
+  readonly fields: TestModelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TestModel.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TestModelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TestModel model
+   */ 
+  interface TestModelFieldRefs {
+    readonly id: FieldRef<"TestModel", 'String'>
+    readonly name: FieldRef<"TestModel", 'String'>
+    readonly amount: FieldRef<"TestModel", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TestModel findUnique
+   */
+  export type TestModelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter, which TestModel to fetch.
+     */
+    where: TestModelWhereUniqueInput
+  }
+
+  /**
+   * TestModel findUniqueOrThrow
+   */
+  export type TestModelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter, which TestModel to fetch.
+     */
+    where: TestModelWhereUniqueInput
+  }
+
+  /**
+   * TestModel findFirst
+   */
+  export type TestModelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter, which TestModel to fetch.
+     */
+    where?: TestModelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestModels to fetch.
+     */
+    orderBy?: TestModelOrderByWithRelationInput | TestModelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestModels.
+     */
+    cursor?: TestModelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestModels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestModels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestModels.
+     */
+    distinct?: TestModelScalarFieldEnum | TestModelScalarFieldEnum[]
+  }
+
+  /**
+   * TestModel findFirstOrThrow
+   */
+  export type TestModelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter, which TestModel to fetch.
+     */
+    where?: TestModelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestModels to fetch.
+     */
+    orderBy?: TestModelOrderByWithRelationInput | TestModelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TestModels.
+     */
+    cursor?: TestModelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestModels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestModels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TestModels.
+     */
+    distinct?: TestModelScalarFieldEnum | TestModelScalarFieldEnum[]
+  }
+
+  /**
+   * TestModel findMany
+   */
+  export type TestModelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter, which TestModels to fetch.
+     */
+    where?: TestModelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TestModels to fetch.
+     */
+    orderBy?: TestModelOrderByWithRelationInput | TestModelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TestModels.
+     */
+    cursor?: TestModelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TestModels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TestModels.
+     */
+    skip?: number
+    distinct?: TestModelScalarFieldEnum | TestModelScalarFieldEnum[]
+  }
+
+  /**
+   * TestModel create
+   */
+  export type TestModelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * The data needed to create a TestModel.
+     */
+    data: XOR<TestModelCreateInput, TestModelUncheckedCreateInput>
+  }
+
+  /**
+   * TestModel createMany
+   */
+  export type TestModelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TestModels.
+     */
+    data: TestModelCreateManyInput | TestModelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TestModel createManyAndReturn
+   */
+  export type TestModelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many TestModels.
+     */
+    data: TestModelCreateManyInput | TestModelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TestModel update
+   */
+  export type TestModelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * The data needed to update a TestModel.
+     */
+    data: XOR<TestModelUpdateInput, TestModelUncheckedUpdateInput>
+    /**
+     * Choose, which TestModel to update.
+     */
+    where: TestModelWhereUniqueInput
+  }
+
+  /**
+   * TestModel updateMany
+   */
+  export type TestModelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TestModels.
+     */
+    data: XOR<TestModelUpdateManyMutationInput, TestModelUncheckedUpdateManyInput>
+    /**
+     * Filter which TestModels to update
+     */
+    where?: TestModelWhereInput
+  }
+
+  /**
+   * TestModel upsert
+   */
+  export type TestModelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * The filter to search for the TestModel to update in case it exists.
+     */
+    where: TestModelWhereUniqueInput
+    /**
+     * In case the TestModel found by the `where` argument doesn't exist, create a new TestModel with this data.
+     */
+    create: XOR<TestModelCreateInput, TestModelUncheckedCreateInput>
+    /**
+     * In case the TestModel was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TestModelUpdateInput, TestModelUncheckedUpdateInput>
+  }
+
+  /**
+   * TestModel delete
+   */
+  export type TestModelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+    /**
+     * Filter which TestModel to delete.
+     */
+    where: TestModelWhereUniqueInput
+  }
+
+  /**
+   * TestModel deleteMany
+   */
+  export type TestModelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TestModels to delete
+     */
+    where?: TestModelWhereInput
+  }
+
+  /**
+   * TestModel without action
+   */
+  export type TestModelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TestModel
+     */
+    select?: TestModelSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6431,6 +7405,15 @@ export namespace Prisma {
   };
 
   export type PublicationScalarFieldEnum = (typeof PublicationScalarFieldEnum)[keyof typeof PublicationScalarFieldEnum]
+
+
+  export const TestModelScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    amount: 'amount'
+  };
+
+  export type TestModelScalarFieldEnum = (typeof TestModelScalarFieldEnum)[keyof typeof TestModelScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6959,6 +7942,50 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Publication"> | Date | string
   }
 
+  export type TestModelWhereInput = {
+    AND?: TestModelWhereInput | TestModelWhereInput[]
+    OR?: TestModelWhereInput[]
+    NOT?: TestModelWhereInput | TestModelWhereInput[]
+    id?: StringFilter<"TestModel"> | string
+    name?: StringFilter<"TestModel"> | string
+    amount?: IntFilter<"TestModel"> | number
+  }
+
+  export type TestModelOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type TestModelWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TestModelWhereInput | TestModelWhereInput[]
+    OR?: TestModelWhereInput[]
+    NOT?: TestModelWhereInput | TestModelWhereInput[]
+    name?: StringFilter<"TestModel"> | string
+    amount?: IntFilter<"TestModel"> | number
+  }, "id">
+
+  export type TestModelOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    amount?: SortOrder
+    _count?: TestModelCountOrderByAggregateInput
+    _avg?: TestModelAvgOrderByAggregateInput
+    _max?: TestModelMaxOrderByAggregateInput
+    _min?: TestModelMinOrderByAggregateInput
+    _sum?: TestModelSumOrderByAggregateInput
+  }
+
+  export type TestModelScalarWhereWithAggregatesInput = {
+    AND?: TestModelScalarWhereWithAggregatesInput | TestModelScalarWhereWithAggregatesInput[]
+    OR?: TestModelScalarWhereWithAggregatesInput[]
+    NOT?: TestModelScalarWhereWithAggregatesInput | TestModelScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TestModel"> | string
+    name?: StringWithAggregatesFilter<"TestModel"> | string
+    amount?: IntWithAggregatesFilter<"TestModel"> | number
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -7386,6 +8413,48 @@ export namespace Prisma {
     status?: EnumPublicationStatusFieldUpdateOperationsInput | $Enums.PublicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestModelCreateInput = {
+    id?: string
+    name: string
+    amount: number
+  }
+
+  export type TestModelUncheckedCreateInput = {
+    id?: string
+    name: string
+    amount: number
+  }
+
+  export type TestModelUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TestModelUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TestModelCreateManyInput = {
+    id?: string
+    name: string
+    amount: number
+  }
+
+  export type TestModelUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TestModelUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7878,6 +8947,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPublicationStatusFilter<$PrismaModel>
     _max?: NestedEnumPublicationStatusFilter<$PrismaModel>
+  }
+
+  export type TestModelCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type TestModelAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type TestModelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type TestModelMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type TestModelSumOrderByAggregateInput = {
+    amount?: SortOrder
   }
 
   export type UserSessionCreateNestedManyWithoutUserInput = {
@@ -8961,6 +10056,10 @@ export namespace Prisma {
      * @deprecated Use PublicationDefaultArgs instead
      */
     export type PublicationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PublicationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TestModelDefaultArgs instead
+     */
+    export type TestModelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TestModelDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

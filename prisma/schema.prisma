@@ -91,6 +91,12 @@ model Publication {
   Author   Author              @relation(fields: [authorId], references: [id])
 }
 
+model TestModel {
+  id String @id @default(uuid(4))
+  name String
+  amount Int
+}
+
 enum PublicationType {
   BOOK
   MAGAZINE

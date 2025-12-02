@@ -182,6 +182,12 @@ exports.Prisma.PublicationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TestModelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  amount: 'amount'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -216,7 +222,8 @@ exports.Prisma.ModelName = {
   UserSession: 'UserSession',
   Author: 'Author',
   PublicationCategory: 'PublicationCategory',
-  Publication: 'Publication'
+  Publication: 'Publication',
+  TestModel: 'TestModel'
 };
 
 /**

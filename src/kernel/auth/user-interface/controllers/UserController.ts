@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { UserService } from '../../application'
-import { RegistrationDTO, UserDTO } from '../../../auth/user-interface/dto'
-import { IUserRepository } from '../../../auth/domain/repositories'
+import { RegistrationDTO, UserDTO } from '../dto'
+import { IUserRepository } from '../../domain/repositories'
 
 export class UserController {
     protected userService: UserService
